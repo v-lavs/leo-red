@@ -1,0 +1,28 @@
+@use "../base/mixins";
+@use "../base/variables";
+
+.page-certificates {
+
+}
+
+.certificates {
+  padding-top: 140px;
+  max-width: 825px;
+  width: 100%;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 32px;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+  &__title{
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 1.58;
+  }
+}

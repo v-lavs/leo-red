@@ -1,0 +1,149 @@
+@use "../base/mixins";
+@use "../base/variables";
+
+.catalog-filter__header {
+  padding-top: 100px;
+  padding-bottom: 32px;
+}
+
+.top-bar {
+  padding-bottom: 32px;
+  .category-select{
+    //display: inline-block;
+    display: inline;
+    font-size: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    vertical-align: baseline;
+    color: #d32f2f;
+    border: transparent;
+    background: transparent;
+    field-sizing: content;
+  }
+  &__title {
+    font-weight: 300;
+    font-size: 55px;
+    line-height: 1.02;
+    padding-left: 24px;
+    padding-right: 8px;
+  }
+}
+
+.tags-bar {
+  padding: 40px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+}
+
+.tag-item {
+  background-color: #F3F1EE;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1;
+  gap: 12px;
+
+  padding: 13px 24px;
+
+  &__remove {
+    width: 24px;
+    height: 29px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+}
+
+.filter-reset-btn {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  background-color: transparent;
+  border: none;
+  padding-right: 0;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  margin-left: auto;
+}
+
+.sidebar {
+  width: 294px;
+  padding-right: 20px;
+
+  .btn_close {
+    display: none;
+  }
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 24px 24px 0;
+    min-height: 40px;
+    position: relative;
+    font-weight: 300;
+    font-size: 16px;
+
+    &_toggle {
+      &:after {
+        content: '';
+        position: relative;
+        display: inline-block;
+        margin-left: 10px;
+        border-left: 1px solid;
+        border-bottom: 1px solid;
+        width: 6px;
+        height: 6px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &__section {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    .collapse {
+      overflow: hidden;
+      max-height: 0; /* Замість height: 0 */
+      padding-bottom: 0; /* Скидаємо паддінг у закритому стані */
+      transition: max-height 0.8s, padding 0.8s;
+
+      &.show {
+        padding-bottom: 24px;
+        max-height: 1000px;
+      }
+    }
+  }
+
+  &__footer {
+    padding-top: 40px;
+  }
+  .btn_dark{
+    margin-bottom: 16px;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+}

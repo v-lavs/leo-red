@@ -1,0 +1,34 @@
+@use "../base/mixins";
+@use "../base/variables";
+
+.splide__arrow {
+  width: 66px;
+  height: 66px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 1px solid #000000;
+  &:before{
+    position: absolute;
+    content: '' ;
+    display: block;
+    width: 44px;
+    height: 44px;
+    background-image: url(../images/icons/arrow-prev.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  svg{
+    display: none;
+  }
+  &--prev{
+    left: 0;
+  }
+  &--next{
+    right: 0;
+    transform: translateY(-50%) rotate(180deg);
+  }
+}
+.custom-arrow-prev{
+
+}

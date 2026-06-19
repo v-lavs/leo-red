@@ -1,0 +1,61 @@
+{% extends "layouts/base.njk" %}
+{% block title %}Сертифікати — {{ siteName }}{% endblock %}
+
+<svg width="0" height="0" style="position: absolute;">
+    <defs>
+        <clipPath id="bannerSvgMask" clipPathUnits="objectBoundingBox">
+            <path d="M 0,0 H 1 V 0.97 Q 1,1 0.97,1 H 0.03 Q 0,1 0,0.97 Z" />
+        </clipPath>
+    </defs>
+</svg>
+
+{% block main_class %}page page-certificates{% endblock %}
+{% block content %}
+    <div class="animation-wrapper">
+        <div class="animation-view hero-layers-container">
+            <section class="section-under-banner hero-layer -back">
+                <div class="section__heading">
+                    <h1 class="staggered-heading text-dark">
+                        <span class="staggered-heading__line">Сертифікати</span>
+                    </h1>
+                </div>
+            </section>
+
+            <section class="section-banner hero-layer -front">
+                <div class="banner-mask-wrapper">
+                    <div class="section-banner__bg">
+                        <img src="images/banner-home.jpg" alt="">
+                    </div>
+                    <div class="section__heading">
+                        <h1 class="staggered-heading text-white" aria-hidden="true">
+                            <span class="staggered-heading__line">Сертифікати</span>
+                        </h1>
+                    </div>
+                    <div class="block-awards">
+                        <img src="images/block-awards.svg" alt="">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+<div class="container">
+    <ul class="certificates">
+        {% set certificates = [
+            {  url_pdf: "#", title_certificates: "BRC / PM Клаудин, вул. Жоржи (PL / EN / DE)"},
+            {  url_pdf: "#", title_certificates: "BRC / PM Клаудин, вул. Жоржи (PL / EN / DE)"},
+            {  url_pdf: "#", title_certificates: "Додаток – ISO 9001: 2015 (PL)"},
+            {  url_pdf: "#", title_certificates: "Додаток – ISO 9001: 2015 (PL)"},
+            {  url_pdf: "#", title_certificates: "Каталог нашої продкуції 2026"}
+        ] %}
+        {% for item in certificates %}
+        <li class="certificates__item">
+            <h3 class="certificates__title">{{ item.title_certificates }}</h3>
+            <a href="{{ item.url_pdf }}" class="btn btn_main btn_border btn_dark" download><span class="icon"><img
+                            src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Завантажити cертифікат</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

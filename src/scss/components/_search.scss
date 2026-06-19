@@ -1,0 +1,62 @@
+@use "../base/mixins";
+@use "../base/variables";
+
+.btn_open-search{
+  border-radius: 10px;
+  background-color: #F3F1EE;
+  border: none;
+  width: 56px;
+  height: 56px;
+  margin-left: 18px;
+  margin-right: auto;
+  position: relative;
+  flex-shrink: 0;
+  &:before{
+    position: absolute;
+    content: '';
+    left:50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 18px;
+    height: 18px;
+    background-image: url(../images/icons/ic-search.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    z-index: 1;
+  }
+}
+
+.h-search{
+  padding-top: 200px;
+  padding-bottom: 50px;
+
+}
+
+.search{
+  &__input-group{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  &__input {
+    display: block;
+    width: auto;
+    flex-grow: 1;
+    border: none;
+    font-weight:300;
+    font-size: 55px;
+    line-height: 1.04;
+  }
+}
+.search-form{
+  ::placeholder{
+    color: rgba(158, 158, 158, 0.44);
+  }
+}
+.search-block{
+  border-bottom: 1px solid #000000;
+  padding: 32px 24px;
+  width: 100%;
+}

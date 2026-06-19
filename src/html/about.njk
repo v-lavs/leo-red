@@ -1,0 +1,109 @@
+{% extends "layouts/base.njk" %}
+
+{% block title %}Про нас — {{ siteName }}{% endblock %}
+
+<svg width="0" height="0" style="position: absolute;">
+    <defs>
+        <clipPath id="bannerSvgMask" clipPathUnits="objectBoundingBox">
+            <path d="M 0,0 H 1 V 0.97 Q 1,1 0.97,1 H 0.03 Q 0,1 0,0.97 Z" />
+        </clipPath>
+    </defs>
+</svg>
+
+{% block main_class %}page page-about{% endblock %}
+{% block content %}
+    <div class="animation-wrapper">
+        <div class="animation-view hero-layers-container">
+            <section class="section-under-banner hero-layer -back">
+                <div class="section__heading">
+                    <h1 class="staggered-heading text-dark">
+                        <span class="staggered-heading__line">Офіційний</span>
+                        <span class="staggered-heading__line">представник</span>
+                        <span class="staggered-heading__line">KGL</span>
+                    </h1>
+                </div>
+            </section>
+
+            <section class="section-banner hero-layer -front">
+                <div class="banner-mask-wrapper">
+                    <div class="section-banner__bg">
+                        <img src="images/banner-home.jpg" alt="">
+                    </div>
+                    <div class="section__heading">
+                        <h1 class="staggered-heading text-white" aria-hidden="true">
+                            <span class="staggered-heading__line">Офіційний</span>
+                            <span class="staggered-heading__line">представник</span>
+                            <span class="staggered-heading__line">KGL</span>
+                        </h1>
+                    </div>
+                    <div class="block-awards">
+                        <img src="images/block-awards.svg" alt="">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="block-grey">
+        <div class="container">
+            <div class="text_md">
+                Метою нашої компанії є постачання продукції незмінно високої якості, відомих європейських
+                виробників, що
+                відповідає індивідуальним вимогам клієнта.
+                Вся запропонована продукція відповідає стандартам НАССР, ISO 9001:2015 та BRC.
+            </div>
+        </div>
+    </div>
+
+    <section class="section-about-material" style="background-image: url(images/bg-about.jpg);">
+        <div class="container">
+            <div class="section__content text_md">
+                <p>Пластик є цінним матеріалом і не має розглядатися як відходи. Його переробка дозволяє економити
+                    ресурси, знижувати витрати енергії та викиди CO₂, а також створювати нові можливості для бізнесу.
+                    Важливо мінімізувати утворення відходів через впровадження економіки замкненого циклу та подовження
+                    життєвого циклу продукції.</p>
+                <p>Сучасна харчова упаковка часто є багатокомпонентною, що ускладнює її переробку. Тому вже на етапі
+                    дизайну важливо закладати можливість подальшої утилізації. Рішення на кшталт MONO-ПЕТ та RESPECT by
+                    KGL забезпечують ефективну переробку й відповідають принципам циркулярної економіки.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-awards">
+        <div class="container">
+            <div class="section__heading">
+                <h1 class="staggered-heading">
+                    <span class="staggered-heading__line">Наші нагороди</span>
+                </h1>
+            </div>
+            <div class="">
+                <div class="splide slider-certificates" aria-label="Галерея сертифікатів">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            {% set certificates = [
+                                {  url: "images/awards/nagoroda1.jpg"},
+                                {  url: "images/awards/nagoroda4.jpg"},
+                                {  url: "images/awards/nagoroda2.jpg"},
+                                {  url: "images/awards/nagoroda5.jpg"},
+                                {  url: "images/awards/nagoroda3.jpg"},
+                                {  url: "images/awards/nagoroda6.jpg"},
+                                {  url: "images/awards/nagoroda7.jpg"}
+                            ] %}
+                            {% for item in certificates %}
+                                <li class="splide__slide">
+                                    <!-- href веде на велике фото, яке відкриє baguetteBox -->
+                                    <a href="{{ item.url }}" class="certificate-link">
+                                        <!-- src веде на маленьке фото (прев'ю) всередині сталого блоку -->
+                                        <img src="{{ item.url }}" alt="Сертифікат відповідності 1" loading="lazy">
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include "partials/section-contacts.njk" %}
+{% endblock %}

@@ -1,0 +1,78 @@
+// Buttons
+@use "../base/mixins";
+@use "../base/variables";
+
+.btn {
+  display: inline-flex;
+  position: relative;
+  appearance: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+  align-items: center;
+
+  &_main {
+    color: #1E1E1E;
+    padding: 15px 20px 15px 15px;
+    border-radius: 30px;
+    border: none;
+    background: rgba(0, 0, 0, 0.1);
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      border: 1px solid #1E1E1E;
+      border-radius: 50%;
+      transform: rotate(180deg);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  &_border {
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    padding-top: 14px;
+    padding-bottom: 14px;
+
+    .icon {
+      filter: invert(1);
+    }
+  }
+
+  &_dark {
+    border-color: #DC0101;
+    background-color: #DC0101;
+  }
+
+  &_round {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    border: 1.29px solid #000000;
+    background-color: #fff;
+    overflow: hidden;
+    flex-shrink: 0;
+    &:before {
+      position: absolute;
+      content: '';
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(180deg);
+      width: 42px;
+      height: 44px;
+      background-image: url(../images/icons/arrow-prev.svg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      z-index: 1;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "gulp-setup",
+  "version": "1.0.0",
+  "description": "Production-grade Gulp setup for HTML website development",
+  "scripts": {
+    "dev": "gulp",
+    "build": "gulp build --prod",
+    "clean": "gulp clean"
+  },
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.5.0",
+    "browser-sync": "3.0.4",
+    "cssnano": "7.1.9",
+    "del": "8.0.1",
+    "esbuild": "0.28.0",
+    "gulp": "5.0.1",
+    "gulp-if": "3.0.0",
+    "gulp-newer": "1.4.0",
+    "gulp-notify": "5.0.0",
+    "gulp-nunjucks-render": "2.2.3",
+    "gulp-plumber": "1.2.1",
+    "gulp-postcss": "10.0.0",
+    "gulp-sass": "6.0.1",
+    "postcss": "8.5.14",
+    "postcss-sort-media-queries": "6.6.1",
+    "sass": "1.70.0",
+    "sharp": "0.34.5"
+  },
+  "dependencies": {
+    "nice-select2": "^2.4.1"
+  }
+}

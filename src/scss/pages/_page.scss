@@ -1,0 +1,7 @@
+@use "../base/mixins";
+@use "../base/variables";
+.page-product,
+.single-post,
+.page-catalog{
+  padding-top: 121px;
+}

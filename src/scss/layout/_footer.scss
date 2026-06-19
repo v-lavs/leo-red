@@ -1,0 +1,128 @@
+@use "../base/mixins";
+@use "../base/variables";
+// Footer
+
+.footer {
+  background-color: #CE1111F2;
+  padding-top: 52px;
+  padding-bottom: 23px;
+  color: #FFFFFF;
+
+  &_top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 115px;
+  }
+
+  &__part {
+    display: flex;
+    flex-direction: column;
+    padding-right: 50px;
+    flex-grow: 1;
+  }
+
+  &__slogan {
+    padding: 17px;
+    color: #F3F1EE;
+    max-width: 470px;
+    width: 100%;
+    margin-bottom: 22px;
+
+    &:before {
+      background-image: url(../images/icons/logo-sm.svg);
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .staggered-heading {
+    font-size: 55px;
+    line-height: 1.03;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+
+    &__item {
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 24px;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1;
+
+      a {
+        display: inline-block;
+        padding: 0;
+      }
+    }
+  }
+
+  .logo_xl {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &_bottom{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 36px;
+    font-size: 20px;
+  }
+}
+
+.working-hours {
+  font-size: 16px;
+  line-height: 40px;
+  max-width: 276px;
+  width: 100%;
+  margin-left: auto;
+
+  h3 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    margin-bottom: 32px;
+  }
+}
+
+.working-hours__content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto; /* Робить дві колонки */
+  row-gap: 8px;
+
+  dt {
+    grid-column: 1; /* Дні йдуть у першу колонку */
+    font-weight: normal;
+  }
+
+  dd {
+    grid-column: 2; /* Години йдуть у другу колонку */
+    text-align: right; /* Вирівнювання годин по правому краю */
+    margin: 0; /* Прибирає стандартний відступ браузера */
+  }
+}
+
+.social-list {
+  display: flex;
+  gap: 10px;
+
+  &__item {
+    background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid #FFFFFF;
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+  }
+}
+

@@ -1,0 +1,56 @@
+@use "../base/mixins";
+@use "../base/variables";
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1;
+  font-size: 16px;
+  color: #000000;
+}
+.custom-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.custom-checkbox__box {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  background-color: #ffffff;
+  transition: background-color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.custom-checkbox__input:checked ~ .custom-checkbox__box {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.custom-checkbox__box::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid #ffffff;
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.2s ease;
+}
+
+.custom-checkbox__input:checked ~ .custom-checkbox__box::after {
+  transform: rotate(45deg) scale(1);
+}
+
+

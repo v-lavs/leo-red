@@ -1,0 +1,94 @@
+{% extends "layouts/base.njk" %}
+
+{% block title %}Блог — {{ siteName }}{% endblock %}
+
+<svg width="0" height="0" style="position: absolute;">
+    <defs>
+        <clipPath id="bannerSvgMask" clipPathUnits="objectBoundingBox">
+            <path d="M 0,0 H 1 V 0.97 Q 1,1 0.97,1 H 0.03 Q 0,1 0,0.97 Z" />
+        </clipPath>
+    </defs>
+</svg>
+
+{% block main_class %}page page-blog{% endblock %}
+{% block content %}
+    <div class="animation-wrapper">
+        <div class="animation-view hero-layers-container">
+            <section class="section-under-banner hero-layer -back">
+                <div class="section__heading">
+                    <h1 class="staggered-heading text-dark">
+                        <span class="staggered-heading__line">Блог</span>
+                    </h1>
+                </div>
+            </section>
+
+            <section class="section-banner hero-layer -front">
+                <div class="banner-mask-wrapper">
+                    <div class="section-banner__bg">
+                        <img src="images/banner-home.jpg" alt="">
+                    </div>
+                    <div class="section__heading">
+                        <h1 class="staggered-heading text-white" aria-hidden="true">
+                            <span class="staggered-heading__line">Блог</span>
+                        </h1>
+                    </div>
+                    <div class="block-awards">
+                        <img src="images/block-awards.svg" alt="">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <section class="section-posts">
+        <div class="container">
+            <nav class="filter-category">
+                <div class="filter-category__item">
+                    {% set cat_posts = [
+                        {  cat_posts: "Виробництво"},
+                        {  cat_posts: "Індустрія"},
+                        {  cat_posts: "Наші нагороди"},
+                        {  cat_posts: "Розробки"}
+                    ] %}
+                    {% for item in cat_posts %}
+
+                        <a href="#" class="btn btn_main btn_border btn_dark"><span class="icon"><img
+                                        src="images/icons/arrow-prev.svg" alt=""
+                                        aria-hidden="true"></span>{{ item.cat_posts }}</a>
+                    {% endfor %}
+                </div>
+
+            </nav>
+            <h2 class="section-posts__title">Усі статті</h2>
+            <ul class="posts">
+                {% set post_list = [
+                    {  title: "Сучасне пакування для мясної промисловості", date:"4 квітня, 2024"},
+                    {  title: "Сучасне пакування для мясної промисловості", date:"4 квітня, 2024"},
+                    {  title: "Сучасне пакування для мясної промисловості", date:"4 квітня, 2024"},
+
+                    {  title: "Сучасне пакування для мясної промисловості", date:"4 квітня, 2024"},
+                    {  title: "Сучасне пакування для мясної промисловості", date:"4 квітня, 2024"},
+                    {  title: "Сучасне пакування для мясної промисловості", date:"4 квітня, 2024"},
+
+                    {  title: "Сучасне пакування для мясної промисловості", date:"4 квітня, 2024"},
+                    {  title: "Сучасне пакування для мясної промисловості", date:"4 квітня, 2024"},
+                    {  title: "Сучасне пакування для мясної промисловості", date:"4 квітня, 2024"}
+                     ] %}
+                {% for item in post_list %}
+                <li class="posts__item">
+                    <a href="single-post.html" class="card-article">
+                        <div class="card-article__thumb">
+                            <img src="images/thumb-post.jpg" alt="">
+                        </div>
+                        <h3 class="card-article__title">{{ item.title }}</h3>
+                        <span class="card-article__date">{{ item.date }}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="section-posts__footer">
+                {% include "partials/pagination.njk" %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

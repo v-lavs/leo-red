@@ -1,0 +1,28 @@
+@use "../base/mixins";
+@use "../base/variables";
+
+.pagination {
+  display: inline-flex;
+  gap: 24px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1;
+  padding-top: 70px;
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  &__arrow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 66px;
+    height: 66px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+  }
+  &__next{
+    transform: rotate(180deg);
+  }
+}

@@ -1,0 +1,37 @@
+@use "../base/mixins";
+@use "../base/variables";
+
+form{
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 40px;
+  color: #000;
+  .textarea,
+  .input{
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.29);
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+  }
+  .input{
+    height: 57px;
+  }
+  ::placeholder{
+    color: #CFCACA;
+  }
+  .label{
+    display: block;
+  }
+  .form-group{
+    margin-bottom: 32px;
+    &:last-of-type{
+      margin-bottom: 0;
+    }
+  }
+  .btn_submit{
+    margin-top: 40px;
+  }
+}
+

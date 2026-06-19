@@ -1,0 +1,132 @@
+@use "../../base/mixins";
+@use "../../base/variables";
+
+.animation-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 0 18px 20px;
+
+  z-index: 1;
+}
+.banner-mask-wrapper {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%; // GSAP зменшує висоту
+  overflow: hidden;
+  will-change: height;
+
+  // Підключаємо наш новий контур
+  clip-path: url(#bannerSvgMask);
+}
+// Запінений контейнер (фіксована коробка на 100vh)
+.animation-view {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+
+  z-index: 2;
+}
+
+// Загальні правила для шарів-сендвічів
+.hero-layer {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  overflow: hidden; // Гарантує, що контент не випаде при обрізанні
+}
+
+// ПЕРЕДНІЙ ШАР: Банер з м'ясом
+.section-banner {
+  z-index: 2; // Лежить над сірою секцією
+  will-change: clip-path;
+
+  &__bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; bottom: 0;
+    border-radius: 0 0 15px 15px;
+    overflow: hidden;
+    height: 100vh;
+    img { width: 100%; height: 100%; object-fit: cover; }
+  }
+
+  .staggered-heading.text-white {
+    color: #ffffff; // Чистий білий колір на тлі фото
+  }
+}
+.banner-mask-wrapper {
+  position: absolute;
+  bottom: 0; // Прив'язуємо до низу (або top: 0, якщо шторка йде в інший бік. Якщо ховаємо знизу вгору — ставимо top: 0)
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; // GSAP буде зменшувати цю висоту до 0%
+
+  overflow: hidden;
+  border-radius: 0 0 30px 30px !important; // Твої залізобетонні 30px кути!
+  //will-change: height;
+}
+// ЗАДНІЙ ШАР: Сіра зона під банером
+.section-under-banner {
+  z-index: 1; // Чекає знизу, поки зникне банер
+  background-color: #E7E5E2;
+  border-radius: 0 0 30px 30px;
+
+  .staggered-heading.text-dark {
+    color: #1D1F25; // Твій глибокий фірмовий колір
+  }
+}
+
+// Блок нагород (їде разом із банером)
+.block-awards {
+  max-width: 273px;
+  position: absolute;
+  bottom: 50px;
+  right: 52px;
+  z-index: 6;
+}
+
+// Контейнер заголовка (в обох секціях стоїть у абсолютно ідентичних координатах)
+.animation-view .section__heading {
+  position: fixed; // Змінюємо з fixed на absolute всередині шарів, щоб маска їх бачила!
+  max-width: 711px;
+  width: 100%;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 5;
+
+  .staggered-heading {
+    font-size: 94px;
+    line-height: 1.02;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// Контейнер для твоєї 3D тарілки та гранул
+.canvas-container {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 3;
+  display: none;
+  pointer-events: none;
+  align-items: center;
+  justify-content: center;
+}
+//.canvas-container {
+//  position: fixed;
+//  top: 0; left: 0; width: 100%; height: 100%;
+//  pointer-events: none;
+//  //display: flex;
+//  align-items: center;
+//  justify-content: center;
+//  z-index: 3; // Найвищий рівень, щоб літало поверх усього контенту
+//  display: none;
+//}
+

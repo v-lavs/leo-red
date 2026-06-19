@@ -1,0 +1,285 @@
+{% extends "layouts/base.njk" %}
+{% block title %}Home — {{ siteName }}{% endblock %}
+
+<svg width="0" height="0" style="position: absolute;">
+    <defs>
+        <clipPath id="bannerSvgMask" clipPathUnits="objectBoundingBox">
+            <path d="M 0,0 H 1 V 0.97 Q 1,1 0.97,1 H 0.03 Q 0,1 0,0.97 Z" />
+        </clipPath>
+    </defs>
+</svg>
+
+{% block main_class %}home{% endblock %}
+{% block content %}
+    <div class="animation-wrapper">
+
+        <div class="animation-view hero-layers-container">
+
+            <section class="section-under-banner hero-layer -back">
+                <div class="section__heading">
+                    <h1 class="staggered-heading text-dark">
+                        <span class="staggered-heading__line">Більше,</span>
+                        <span class="staggered-heading__line">ніж просто</span>
+                        <span class="staggered-heading__line">упаковка</span>
+                    </h1>
+                </div>
+            </section>
+
+            <section class="section-banner hero-layer -front">
+                <div class="banner-mask-wrapper">
+                    <div class="section-banner__bg">
+                        <img src="images/banner-home.jpg" alt="">
+                    </div>
+                    <div class="section__heading">
+                        <h1 class="staggered-heading text-white" aria-hidden="true">
+                            <span class="staggered-heading__line">Більше,</span>
+                            <span class="staggered-heading__line">ніж просто</span>
+                            <span class="staggered-heading__line">упаковка</span>
+                        </h1>
+                    </div>
+                    <div class="block-awards">
+                        <img src="images/block-awards.svg" alt="">
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="canvas-container">
+            <img src="images/tarilka.png" alt="" class="canvas-mock">
+        </div>
+
+    </div>
+
+    <div class="main__bg ">
+        <section class="section-about next-section next-section" style="background-image: url(images/bg-home.jpg);"
+                 id="about-trigger">
+            <div class="container">
+                <div class="section__heading ">
+                    <h2 class="title_sm">
+                        <span class="staggered-heading__line">Про нас</span>
+                    </h2>
+                </div>
+                <div class="baseline__wrapper text_xl">
+                    <div class="baseline__wrapper-item">
+                    <span class="baseline__text-label"><strong>Leonix</strong> - офіційний представник
+                    <strong> KGL</strong> <br>
+                        в Україні</span>
+                        <span class="baseline__wrapper-icon"><img src="images/ic-1-bl2.png" alt=""
+                                                                  aria-hidden="true"></span>
+                    </div>
+                    <div class="baseline__wrapper-item">
+                        <span class="baseline__text-label"> Щомісяця понад понад 150 000 000 упаковок постачаються як комплексне рішення з високоякісних пакувальних</span>
+                        <span class="text__wrapper-icon"><img src="images/ic-2-bl2.png" alt=""
+                                                              aria-hidden="true"></span>
+                    </div>
+                    <div class="baseline__wrapper-item">
+                        <span class="baseline__text-label"> матеріалів провідних європейських виробників для м’ясної, рибної, молочної та аграрної промисловості</span>
+                        <span class="text__wrapper-icon"><img src="images/ic-3-bl2.png" alt=""
+                                                              aria-hidden="true"></span>
+                    </div>
+                    <div class="baseline__wrapper-item">
+                        <span class="baseline__text-label">з фокусом на інновації та індивідуальні потреби клієнтів</span>
+                    </div>
+                    <div class="baseline__wrapper-item">
+                        <span class="baseline__text-label">.</span>
+                    </div>
+                </div>
+                <a href="about.html" class="btn btn_main btn_border"><span class="icon"><img
+                                src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Про нас</a>
+            </div>
+        </section>
+        <section class="section section-partners">
+            <div class="container">
+                <div class="section__heading">
+                    <h1 class="staggered-heading">
+                        <span class="staggered-heading__line">З нами працюють</span>
+                    </h1>
+                </div>
+            </div>
+            <div class="splide partner-marquee" aria-label="Логотипи партнерів">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        {% set logos = [
+                            {  url: "images/partners/naturproducts.svg", title: "Натурпродукти"},
+                            {  url: "images/partners/silpo.svg", title: "Сільпо"},
+                            {  url: "images/partners/dobra-vecherja.svg", title: "Добра вечеря"},
+                            {  url: "images/partners/norven.svg", title: "Norven"},
+                            {  url: "images/partners/kyiv-mk.svg", title: "Київський м'ясокомбінат"},
+                            {  url: "images/partners/globino.svg", title: "Глобино"},
+                            {  url: "images/partners/nasha-rjaba.svg", title: "Наша ряба"},
+                            {  url: "images/partners/avk.svg", title: "АВК"},
+                            {  url: "images/partners/rodynna-kovbaska.svg", title: "Родинна ковбаска"},
+                            {  url: "images/partners/pan-kurchak.svg", title: "Пан курчак"}
+                        ] %}
+                        {% for item in logos %}
+                            <li class="splide__slide">
+                                <img src="{{ item.url }}" alt="{{ item.title }}">
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="section section-showcase">
+            <div class="container">
+                <div class="section__heading">
+                    <h1 class="staggered-heading">
+                        <span class="staggered-heading__line">Познайомся з</span>
+                        <span class="staggered-heading__line">нашими продуктами</span>
+                    </h1>
+                </div>
+                <!-- Головний контейнер-блок -->
+                <div class="split-showcase">
+
+                    <!-- Ліва частина -->
+                    <div class="split-showcase__left">
+                        <!-- Меню категорій -->
+                        <ul class="split-showcase__menu">
+                            <li class="split-showcase__menu-item category-with-decor  active" data-target="cat-1">Риба &
+                                Мясо
+                            </li>
+                            <li class="split-showcase__menu-item category-with-decor" data-target="cat-2">гастрономія
+                            </li>
+                            <li class="split-showcase__menu-item category-with-decor" data-target="cat-3">Напої</li>
+                            <li class="split-showcase__menu-item category-with-decor" data-target="cat-4">Яйця</li>
+                            <li class="split-showcase__menu-item category-with-decor" data-target="cat-5">Овочі</li>
+                            <li class="split-showcase__menu-item category-with-decor" data-target="cat-6">Кондитерські
+                                вироби
+                            </li>
+                            <li class="split-showcase__menu-item category-with-decor" data-target="cat-7">плівка</li>
+                            <li class="split-showcase__menu-item category-with-decor" data-target="cat-8">молочна
+                                продукція
+                            </li>
+                        </ul>
+
+                        <!-- Динамічний контент -->
+                        <div class="split-showcase__content">
+                            <div class="split-showcase__tab split-showcase__card cat-1 active">
+                                <div class="split-showcase__img-block">
+                                    <img src="images/img-product-home.png" alt="">
+                                </div>
+                                <div class="split-showcase__card-footer">
+                                    <a href="#" class="btn btn_main"><span class="icon"><img
+                                                    src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути
+                                        каталог</a>
+                                </div>
+                            </div>
+                            <div class="split-showcase__tab split-showcase__card cat-2">
+                                <div class="split-showcase__img-block">
+                                    <img src="images/product1.png" alt="">
+                                </div>
+                                <div class="split-showcase__card-footer">
+                                    <a href="#" class="btn btn_main"><span class="icon"><img
+                                                    src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути
+                                        каталог</a>
+                                </div>
+                            </div>
+                            <div class="split-showcase__tab split-showcase__card cat-3">
+                                <div class="split-showcase__img-block">
+                                    <img src="images/card-prod-img1.png" alt="">
+
+                                </div>
+                                <div class="split-showcase__card-footer">
+                                    <a href="#" class="btn btn_main"><span class="icon"><img
+                                                    src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути
+                                        каталог</a>
+                                </div>
+                            </div>
+                            <div class="split-showcase__tab split-showcase__card cat-4">
+                                <div class="split-showcase__img-block">
+                                    <img src="images/product2.png" alt="">
+                                </div>
+                                <div class="split-showcase__card-footer">
+                                    <a href="#" class="btn btn_main"><span class="icon"><img
+                                                    src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути
+                                        каталог</a>
+                                </div>
+                            </div>
+                            <div class="split-showcase__tab split-showcase__card cat-5">
+                                <div class="split-showcase__img-block">
+                                    <img src="images/img-product-home.png" alt="">
+                                </div>
+                                <div class="split-showcase__card-footer">
+                                    <a href="#" class="btn btn_main"><span class="icon"><img
+                                                    src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути
+                                        каталог</a>
+                                </div>
+                            </div>
+                            <div class="split-showcase__tab split-showcase__card cat-6">
+                                <div class="split-showcase__img-block">
+                                    <img src="images/img-product-home.png" alt="">
+                                </div>
+                                <div class="split-showcase__card-footer">
+                                    <a href="#" class="btn btn_main"><span class="icon"><img
+                                                    src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути
+                                        каталог</a>
+                                </div>
+                            </div>
+                            <div class="split-showcase__tab split-showcase__card cat-7">
+                                <div class="split-showcase__img-block">
+                                    <img src="images/img-product-home.png" alt="">
+                                </div>
+                                <div class="split-showcase__card-footer">
+                                    <a href="#" class="btn btn_main"><span class="icon"><img
+                                                    src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути
+                                        каталог</a>
+                                </div>
+                            </div>
+                            <div class="split-showcase__tab split-showcase__card cat-8">
+                                <div class="split-showcase__img-block">
+                                    <img src="images/img-product-home.png" alt="">
+                                </div>
+                                <div class="split-showcase__card-footer">
+                                    <a href="#" class="btn btn_main"><span class="icon"><img
+                                                    src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути
+                                        каталог</a>
+                                </div>
+                            </div>
+                            <div class="icon-pointer"><img src="images/sector.png"
+                                                           alt="Вказівник на кнопку з загальним каталогом"></div>
+                        </div>
+
+                    </div>
+
+                    <!-- Права частина -->
+                    <div class="split-showcase__right">
+                        <div class="split-showcase__tab split-showcase__xl-img cat-1 active">
+                            <img src="images/img-catalog-block.jpg" alt="">
+                        </div>
+                        <div class="split-showcase__tab split-showcase__xl-img cat-2">
+                            <img src="images/img-catalog-block2.jpg" alt="">
+                        </div>
+                        <div class="split-showcase__tab split-showcase__xl-img cat-3">
+                            <img src="images/plastykova-upakovka.webp" alt="">
+                        </div>
+                        <div class="split-showcase__tab split-showcase__xl-img cat-4">
+                            <img src="images/img-catalog-block3.jpg" alt="">
+                        </div>
+                        <div class="split-showcase__tab split-showcase__xl-img cat-5">
+                            <img src="images/img-catalog-block.jpg" alt="">
+                        </div>
+                        <div class="split-showcase__tab split-showcase__xl-img cat-6">
+                            <img src="images/img-catalog-block.jpg" alt="">
+                        </div>
+                        <div class="split-showcase__tab split-showcase__xl-img cat-7">
+                            <img src="images/img-catalog-block.jpg" alt="">
+                        </div>
+                        <div class="split-showcase__tab split-showcase__xl-img cat-8">
+                            <img src="images/img-catalog-block.jpg" alt="">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="section__footer">
+                    <a href="about.html" class="btn btn_main btn_border btn_dark"><span class="icon"><img
+                                    src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути усю
+                        нашу
+                        продукцію</a>
+                </div>
+            </div>
+        </section>
+
+        {% include "partials/section-contacts.njk" %}
+    </div>
+{% endblock %}
