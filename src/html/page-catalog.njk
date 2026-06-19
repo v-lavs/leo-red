@@ -11,15 +11,14 @@
             <div class="catalog-filter__header">
                 <div class="top-bar">
                     <h2 class="top-bar__title">Я шукаю контейнери для
-                        <select class="custom-select category-select" id="inline-select">
-                            <option value="gastronomy">гастрономія</option>
-                            <option value="fish-meat">риба & мясо</option>
-                            <option value="drinks">напої</option>
-                            <option value="eggs">яйця</option>
-                            <option value="vegetables">овочі</option>
-                            <option value="confectioner">кондитерські вироби</option>
-                            <option value="packaging-film">плівка</option>
-                            <option value="dairy">молочна продукція</option>
+                        <select class="js-custom-select category-select" id="inline-select">
+                            <option value="gastronomy">гастрономії</option>
+                            <option value="fish-meat">риби & мяса</option>
+                            <option value="drinks">напоїв</option>
+                            <option value="eggs">яєць</option>
+                            <option value="vegetables">овочів</option>
+                            <option value="confectioner">кондитерських виробів</option>
+                            <option value="dairy">молочної продукції</option>
                         </select>
                     </h2>
                 </div>
@@ -197,10 +196,74 @@
 
                 </aside>
 
-                <main class="products-grid">
-                    <!-- Картки товарів... -->
-                </main>
+                <div class="products-grid">
+                    {% set products = [
+                        {
+                            cat: "Гастрономія",
+                            title:"ЛОТОК 178X117X38",
+                            image: "images/product1.png",
+                            url: "page-product.html"
+                        },
+                        {
+                            cat: "Гастрономія",
+                            title:"ЛОТОК 178X117X38",
+                            image: "images/product1.png",
+                            url: "page-product.html"
+                        },
+                        {
+                            cat: "Гастрономія",
+                            title:"ЛОТОК 178X117X38",
+                            image: "images/product1.png",
+                            url: "page-product.html"
+                        },
+                        {
+                            cat: "Гастрономія",
+                            title:"ЛОТОК 178X117X38",
+                            image: "images/product2.png",
+                            url: "page-product.html"
+                        },
+                        {
+                            cat: "Гастрономія",
+                            title:"ЛОТОК 178X117X38",
+                            image: "images/product1.png",
+                            url: "page-product.html"
+                        },
+                        {
+                            cat: "Гастрономія",
+                            title:"ЛОТОК 178X117X38",
+                            image: "images/product1.png",
+                            url: "page-product.html"
+                        },
+                        {
+                            cat: "Гастрономія",
+                            title:"ЛОТОК 178X117X38",
+                            image: "images/product1.png",
+                            url: "page-product.html"
+                        },
+
+                        {
+                            cat: "Гастрономія",
+                            title:"ЛОТОК 178X117X38",
+                            image: "images/product2.png",
+                            url: "page-product.html"
+                        }
+                    ] %}
+                    {% for product in products %}
+                        <a href="{{ product.url }}" class="card">
+                            <div class="category-card__title category-with-decor">{{ product.cat }}</div>
+                            <h3 class="card__title">{{ product.title }}</h3>
+                            <div class="card__img-wrap">
+                                <img src="{{ product.image }}" alt="{{ product.title }}" class="card__img">
+                            </div>
+                        </a>
+                    {% else %}
+                        <p>В даній категорії товару не знайдено.</p>
+                    {% endfor %}
+                </div>
             </div>
-        </form> <!-- Кінець глобальної форми -->
+            <div class="wrap-pagination">
+                {% include "partials/pagination.njk" %}
+            </div>
+        </form>
     </div>
 {% endblock %}

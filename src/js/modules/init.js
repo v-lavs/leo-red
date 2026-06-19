@@ -1,6 +1,8 @@
 // Initialization module
-export function init() {
 
+import NiceSelect from "nice-select2";
+
+export function init() {
     // Обов'язково реєструємо плагін
 
     gsap.registerPlugin(ScrollTrigger);
@@ -8,50 +10,6 @@ export function init() {
     //=====================================================================
     // SETTINGS HEADER
     //=====================================================================
-    // function initHeaderScroll() {
-    //   const header = document.querySelector('.header');
-    //   if (!header) return;
-    //
-    //   // Перевіряємо, чи був хедер світлим в HTML від самого початку (на сторінках без банера)
-    //   const isInitialLight = header.classList.contains('header_light');
-    //   let lastScroll = 0;
-    //
-    //   // Створюємо плавну GSAP-анімацію ховання/показу по осі Y
-    //   const headerTween = gsap.to(header, {
-    //     yPercent: -100,
-    //     duration: 0.3,
-    //     ease: "power2.out",
-    //     paused: true
-    //   });
-    //
-    //   // Внутрішня функція для точного керування світлим класом
-    //   function updateScrollTheme(currentScroll) {
-    //     if (isInitialLight) {
-    //       header.classList.add('header_light');
-    //       return;
-    //     }
-    //
-    //     // Робимо світлим ТІЛЬКИ якщо скролимо вгору десь посередині сайту
-    //     const isScrollingUp = currentScroll < lastScroll && currentScroll > 100;
-    //     header.classList.toggle('header_light', isScrollingUp);
-    //   }
-    //
-    //   // Вішаємо подію скролу
-    //   window.addEventListener('scroll', () => {
-    //     let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-    //     if (currentScroll < 0) currentScroll = 0; // Захист від bounce-ефекту в Safari
-    //
-    //     // Сама логіка реверсного скролу
-    //     if (currentScroll > lastScroll && currentScroll > 100) {
-    //       headerTween.play(); // Скрол вниз — ховаємо
-    //     } else if (currentScroll < lastScroll) {
-    //       headerTween.reverse(); // Скрол вгору — показуємо
-    //     }
-    //
-    //     updateScrollTheme(currentScroll);
-    //     lastScroll = currentScroll;
-    //   });
-    // }
 
     function initHeader() {
         const header = document.querySelector('.header');
@@ -243,8 +201,8 @@ export function init() {
             {
                 y: 0,
                 autoAlpha: 1,
-                duration: 0.5,
-                ease: 'power2.out'
+                duration: 0.25,
+                ease: 'power1.out'
             }
         );
 
@@ -678,7 +636,11 @@ export function init() {
     //===========================================================================
     // CUSTOM SELECT
     //===========================================================================
+    const customSelect = document.querySelectorAll(".js-custom-select");
 
+    if (customSelect) {
+        NiceSelect.bind(customSelect);
+    }
 
     //===========================================================================
     // init function
