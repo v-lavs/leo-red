@@ -3,8 +3,6 @@
 import NiceSelect from "nice-select2";
 
 export function init() {
-    // Обов'язково реєструємо плагін
-
     gsap.registerPlugin(ScrollTrigger);
 
     //=====================================================================
@@ -580,14 +578,58 @@ export function init() {
             gap: '20px',
             pagination: false,
             arrows: true,
+            autoWidth: false,
             breakpoints: {
                 576: {perPage: 1},
-                perMove: 1,
             }
         });
         relatedSlider.mount();
 
         return relatedSlider;
+    }
+    //==========================================================================
+    //SIMILAR PRODUCTS
+    //==========================================================================
+    function initSliderSimilarProducts() {
+
+        if (!document.querySelector('.similar-products')) return null;
+
+        const similarProductsSlider = new Splide('.similar-products', {
+            type: 'slide',
+            perPage: 3,
+            perMove: 1,
+            gap: 0,
+            pagination: false,
+            arrows: true,
+            autoWidth: false,
+            breakpoints: {
+                576: {perPage: 1},
+                768:{perPage: 2}
+            }
+        });
+        similarProductsSlider.mount();
+
+        return similarProductsSlider;
+    }
+
+    //=========================================================================
+    //PRODUCT SLIDER
+    //=========================================================================
+    function initSliderProduct() {
+
+        if (!document.querySelector('.product-slider')) return null;
+
+        const productSlider = new Splide('.product-slider', {
+            type: 'slide',
+            perPage: 1,
+            perMove: 1,
+            gap: '20px',
+            pagination: false,
+            arrows: true,
+        });
+        productSlider.mount();
+
+        return productSlider;
     }
 
     //===========================================================================
@@ -615,10 +657,10 @@ export function init() {
 //==============================================================================
 //  COLLAPS CONTENT
 //  ============================================================================
-// Окремо оформлена функція для сайдбару
     function initSidebarCollapse() {
         const toggles = document.querySelectorAll('[data-toggle="collapse"]');
         if (toggles.length === 0) return;
+
         toggles.forEach(toggle => {
             toggle.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -629,19 +671,86 @@ export function init() {
                 if (targetBlock) {
                     targetBlock.classList.toggle('show');
                     toggle.classList.toggle('is-active');
+
+                    // 1. Знаходимо батьківську секцію, в якій лежить цей таггл
+                    const section = toggle.closest('.sidebar__section');
+
+                    // Якщо у вашій структурі клас називається просто 'section', змініть на:
+                    // const section = toggle.closest('.section');
+
+                    if (section) {
+                        // 2. Перевіряємо, чи відкрився блок (чи є у нього клас 'show')
+                        if (targetBlock.classList.contains('show')) {
+                            section.classList.add('is-open'); // додаємо клас відкритого стану
+                        } else {
+                            section.classList.remove('is-open'); // прибираємо, якщо закрили
+                        }
+                    }
                 }
             });
         });
     }
+
     //===========================================================================
     // CUSTOM SELECT
     //===========================================================================
-    const customSelect = document.querySelectorAll(".js-custom-select");
 
-    if (customSelect) {
-        NiceSelect.bind(customSelect);
+ function initCustomSelect ()  {
+        const customSelect = document.querySelector(".js-custom-select");
+        if (customSelect) {
+            NiceSelect.bind(customSelect, {searchable: false});
+            const niceSelectHtml = customSelect.nextElementSibling;
+
+            if (niceSelectHtml) {
+                gsap.fromTo(niceSelectHtml,
+                    {
+                        opacity: 0,
+                        rotationX: 90,
+                        transformOrigin: "bottom center",
+                        transformPerspective: 800
+                    },
+                    {
+                        opacity: 1,
+                        rotationX: 0,
+                        duration: 0.7,
+                        ease: "power3.inOut",
+                        delay: 0.3
+                    }
+                );
+            }
+        }
     }
+    //==========================================================================
+    // OPEN DESCRIPTION END SPECS PRODUCT
+    //==========================================================================
+    function initOpenSpecs (){
+        const triggers = document.querySelectorAll('.js-accordion-trigger');
 
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                // Працюємо лише на мобільних (якщо потрібно)
+                if (window.innerWidth <= 767) {
+
+                    // Знаходимо ID контенту, який прив'язаний до цієї кнопки
+                    const contentId = this.getAttribute('aria-controls');
+                    const content = document.getElementById(contentId);
+
+                    if (content) {
+                        const isOpen = content.classList.contains('is-open');
+
+                        if (isOpen) {
+                            content.classList.remove('is-open');
+                            this.setAttribute('aria-expanded', 'false');
+                        } else {
+                            content.classList.add('is-open');
+                            this.setAttribute('aria-expanded', 'true');
+                        }
+                    }
+
+                }
+            });
+        });
+    }
     //===========================================================================
     // init function
     //===========================================================================
@@ -652,7 +761,11 @@ export function init() {
     initSplitTabs();
     initSliderRelated();
     initCertificatesSlider();
+    initCustomSelect();
     initSidebarCollapse();
+    initSliderProduct();
+    initSliderSimilarProducts();
+    initOpenSpecs();
 
     window.addEventListener('load', () => {
         initHeroAnimation();

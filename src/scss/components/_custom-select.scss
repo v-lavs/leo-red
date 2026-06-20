@@ -1,3 +1,76 @@
+@use "../../../node_modules/nice-select2/dist/css/nice-select2";
 @use "../base/mixins";
 @use "../base/variables";
 
+.category-select {
+  appearance: none;
+  display: inline;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  vertical-align: baseline;
+  color: #d32f2f;
+  //border: transparent;
+  background: transparent;
+  //field-sizing: content;
+}
+
+.nice-select {
+  display: inline-flex;
+  padding-left: 0;
+  padding-right: 50px;
+  border: none;
+  opacity: 0;
+
+  perspective: 800px;
+  &:after {
+    border-bottom: 2px solid #000000;
+    border-right: 2px solid #000000;
+    width: 15px;
+    height: 15px;
+    right: 8px;
+    margin-top: -8px;
+  }
+
+  li.disabled {
+    display: none;
+  }
+
+  .nice-select-dropdown {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    margin-top: 4px;
+    overflow-y: auto;
+    max-height: 1000px;
+    transition: all 0.35s ease-out, opacity 0.15s ease-out;
+  }
+
+  .list {
+    padding: 8px 0;
+  }
+
+  .option {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #4b5563;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover,
+    &.focus {
+      background-color: #f3f4f6;
+      color: #111827;
+    }
+
+    &.selected {
+      color: #e31e24;
+      font-weight: 600;
+      background-color: #fef2f2;
+    }
+  }
+
+}

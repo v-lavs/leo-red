@@ -11,7 +11,9 @@
             <div class="catalog-filter__header">
                 <div class="top-bar">
                     <h2 class="top-bar__title">Я шукаю контейнери для
-                        <select class="js-custom-select category-select" id="inline-select">
+
+                        <select class="js-custom-select category-select">
+                            <option value="" disabled selected>всіх категорій</option>
                             <option value="gastronomy">гастрономії</option>
                             <option value="fish-meat">риби & мяса</option>
                             <option value="drinks">напоїв</option>
@@ -20,6 +22,7 @@
                             <option value="confectioner">кондитерських виробів</option>
                             <option value="dairy">молочної продукції</option>
                         </select>
+
                     </h2>
                 </div>
 
@@ -48,7 +51,7 @@
                             <img src="images/icons/btn-close.svg"
                                  alt="Видалити тег"></button>
                     </li>
-                    <li class="tag-item">Салати
+                    <li class="tag-item">Оливки, соління та маринади
                         <button type="button" class="tag-item__remove">
                             <img src="images/icons/btn-close.svg"
                                  alt="Видалити тег"></button>
@@ -69,7 +72,7 @@
                                class="sidebar__heading sidebar__heading_toggle"
                                data-toggle="collapse"
                                data-target="#size-filter">Розмір</a>
-                            <div class="collapse show" id="size-filter">
+                            <div class="collapse" id="size-filter">
                                 <label class="custom-checkbox">
                                     <input type="checkbox" name="size" value="size-xl" class="custom-checkbox__input">
                                     <span class="custom-checkbox__box"></span>
@@ -102,13 +105,13 @@
                                 <label class="custom-checkbox">
                                     <input type="checkbox" name="dish-type" value="cool" class="custom-checkbox__input">
                                     <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Холодні</span>
+                                    <span class="custom-checkbox__label">Холодні страви</span>
                                 </label>
 
                                 <label class="custom-checkbox">
                                     <input type="checkbox" name="dish-type" value="hot" class="custom-checkbox__input">
                                     <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Гарчі</span>
+                                    <span class="custom-checkbox__label">Гарчі страви</span>
                                 </label>
                             </div>
                         </div>

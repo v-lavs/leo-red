@@ -44,15 +44,13 @@
   margin-bottom: 54px;
 
 }
-
-.related-slider-wrapper {
-  position: relative;
-  padding: 0 70px;
-}
-
 .related-posts {
-  position: initial;
   max-width: 860px;
   width: 100%;
   margin: 0 auto;
+}
+.similar-products,
+.related-posts {
+  position: initial;
+
 }
