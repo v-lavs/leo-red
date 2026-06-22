@@ -1,0 +1,97 @@
+{#{% macro techBlock(data) %}#}
+{#    <article class="tech-block">#}
+
+{#        <!-- Текстовая часть: Заголовок и Описание -->#}
+{#        <div class="tech-block__header">#}
+{#            <div class="tech-block__icon">#}
+{#                <img src="img/{{ data.icon }}" alt="">#}
+{#            </div>#}
+{#            <h3 class="tech-block__title">{{ data.title }}</h3>#}
+{#        </div>#}
+
+{#        <div class="tech-block__content">#}
+
+{#            <!-- Начало общего текстового блока (динамический контент) -->#}
+{#            <div class="tech-block__description dynamic-content">#}
+
+{#                {% for paragraph in data.description %}#}
+{#                    <p class="tech-block__text">{{ paragraph }}</p>#}
+{#                {% endfor %}#}
+
+{#                #}{# Если список есть, он выведется прямо тут, внутри .dynamic-content #}
+{#                {% if data.steps and data.steps.length > 0 %}#}
+{#                    <p>{{ data.stepsTitle | default('Спрощений процес:') }}</p>#}
+{#                    <ul>#}
+{#                        {% for step in data.steps %}#}
+{#                            <li class="tech-block__step-item">{{ step }}</li>#}
+{#                        {% endfor %}#}
+{#                    </ul>#}
+{#                {% endif %}#}
+
+{#            </div> #}{# <--- ТЕПЕРЬ ТЕГ ЗАКРЫВАЕТСЯ ЗДЕСЬ. Он закрывает .dynamic-content для ВСЕХ блоков! #}
+
+{#            <!-- Независимая сетка всегда идет следом, снаружи текста -->#}
+{#            <div class="tech-block__products-grid">#}
+{#                {% for product in data.products %}#}
+{#                    <a href="#" class="category-card tech-block__product-card">#}
+{#                        <span class="category-card__title tech-block__product-category">{{ product.category }}</span>#}
+{#                        <div class="category-card__img-wrap">#}
+{#                            <img src="{{ product.image }}" alt="{{ product.category }}" class="category-card__img">#}
+{#                        </div>#}
+{#                    </a>#}
+{#                {% endfor %}#}
+{#            </div>#}
+
+{#        </div>#}
+
+{#    </article>#}
+{#{% endmacro %}#}
+
+
+{% macro techBlock(data) %}
+    <article class="overview-card tech-block">
+
+        <div class="overview-card__header">
+            <div class="overview-card__icon">
+                <img src="img/{{ data.icon }}" alt="">
+            </div>
+            <h3 class="overview-card__title">{{ data.title }}</h3>
+        </div>
+
+        <div class="overview-card__content">
+
+            <!-- Начало общего текстового блока (динамический контент) -->
+            <div class="overview-card__description dynamic-content">
+
+                {% for paragraph in data.description %}
+                    <p >{{ paragraph }}</p>
+                {% endfor %}
+
+                {# Если список есть, он выведется прямо тут, внутри .dynamic-content #}
+                {% if data.steps and data.steps.length > 0 %}
+                    <p>{{ data.stepsTitle | default('Спрощений процес:') }}</p>
+                    <ul>
+                        {% for step in data.steps %}
+                            <li >{{ step }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+            </div> {# <--- ТЕПЕРЬ ТЕГ ЗАКРЫВАЕТСЯ ЗДЕСЬ. Он закрывает .dynamic-content для ВСЕХ блоков! #}
+
+            <!-- Независимая сетка всегда идет следом, снаружи текста -->
+            <div class="overview-card__products-grid">
+                {% for product in data.products %}
+                    <a href="#" class="category-card tech-block__product-card">
+                        <span class="category-card__title tech-block__product-category">{{ product.category }}</span>
+                        <div class="category-card__img-wrap">
+                            <img src="{{ product.image }}" alt="{{ product.category }}" class="category-card__img">
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </article>
+{% endmacro %}

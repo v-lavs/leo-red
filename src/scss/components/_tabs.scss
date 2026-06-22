@@ -1,0 +1,25 @@
+@use "../base/mixins";
+@use "../base/variables";
+
+.tabs__content {
+  position: relative;
+
+}
+.prod-overview__panel,
+.tab-content {
+  opacity: 0;
+  transform: translateY(6px);
+  height: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.prod-overview__panel.active ,
+.tab-content.active {
+  opacity: 1;
+  transform: translateY(0);
+  height: auto;
+  pointer-events: auto;
+  z-index: 1;
+}
+

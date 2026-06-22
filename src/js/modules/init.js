@@ -432,95 +432,46 @@ export function init() {
 //    TABS
 //=============================================================================
     function initTabs() {
-        const tabs = document.querySelector('[data-tabs]');
-
-        if (tabs) {
-            const buttons = tabs.querySelectorAll('.tabs-nav__link');
-            const contents = tabs.querySelectorAll('.tab-content');
+        document.querySelectorAll('[data-tabs]').forEach(tabs => {
+            const buttons = tabs.querySelectorAll('[data-tab]');
+            const contents = tabs.querySelectorAll('[id]');
             const indicator = tabs.querySelector('.tab-active-border');
-            const navContainer = tabs.querySelector('.tabs__nav');
 
-            // Примусово розтягуємо контейнер на 100% і вмикаємо флекс, як вимагає дизайн
-            if (navContainer) {
-                navContainer.style.display = 'flex';
-                navContainer.style.width = '100%';
-            }
-
-            const moveIndicator = (button) => {
-                if (!indicator || !navContainer) return;
-
-                const buttonRect = button.getBoundingClientRect();
-                const navRect = navContainer.getBoundingClientRect();
-
-                // Отримуємо чистий padding контейнера, щоб анулювати будь-які системні зсуви
-                const navStyle = window.getComputedStyle(navContainer);
-                const navPaddingLeft = parseFloat(navStyle.paddingLeft) || 0;
-
-                // Вираховуємо ідеальну математичну позицію без "хвостів"
-                const leftOffset = buttonRect.left - navRect.left + navContainer.scrollLeft - navPaddingLeft;
-
-                indicator.style.width = `${buttonRect.width}px`;
-                indicator.style.transform = `translateX(${leftOffset}px)`;
+            const move = (btn) => {
+                if (!indicator) return;
+                indicator.style.width = btn.offsetWidth + 'px';
+                indicator.style.transform = `translateX(${btn.offsetLeft}px)`;
             };
 
-            const activateTab = (button) => {
-                const tabId = button.dataset.tab;
+            const activate = (btn) => {
+                const id = btn.dataset.tab;
 
-                buttons.forEach(btn => {
-                    btn.classList.remove('active');
-                    btn.setAttribute('aria-selected', 'false');
-                });
+                buttons.forEach(b => b.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
 
-                contents.forEach(content => {
-                    content.classList.remove('active');
-                });
+                btn.classList.add('active');
+                tabs.querySelector('#' + id)?.classList.add('active');
 
-                button.classList.add('active');
-                button.setAttribute('aria-selected', 'true');
-
-                const targetContent = document.getElementById(tabId);
-                if (targetContent) {
-                    targetContent.classList.add('active');
-                }
-
-                moveIndicator(button);
+                move(btn);
             };
 
-            buttons.forEach(button => {
-                button.addEventListener('click', () => {
-                    activateTab(button);
-                });
+            buttons.forEach(b => b.onclick = () => activate(b));
+
+            const initial = tabs.querySelector('.active[data-tab]') || buttons[0];
+            if (initial) activate(initial);
+        });
+
+        window.addEventListener('resize', () => {
+            document.querySelectorAll('[data-tabs]').forEach(tabs => {
+                const active = tabs.querySelector('[data-tab].active');
+                const indicator = tabs.querySelector('.tab-active-border');
+                if (!active || !indicator) return;
+
+                indicator.style.width = active.offsetWidth + 'px';
+                indicator.style.transform = `translateX(${active.offsetLeft}px)`;
             });
-
-            // Виправляємо баг старого коду при першому завантаженні (через повний рендер DOM)
-            const handleInitialPosition = () => {
-                const activeButton = tabs.querySelector('.tabs-nav__link.active') || buttons[0];
-                if (activeButton) {
-                    // Якщо активного класу взагалі не було, додаємо його першій кнопці
-                    if (!activeButton.classList.contains('active')) {
-                        activateTab(activeButton);
-                    } else {
-                        moveIndicator(activeButton);
-                    }
-                }
-            };
-
-            // Запуск розрахунку після повної готовності сторінки, щоб уникнути зсуву в 8px
-            if (document.readyState === 'complete') {
-                handleInitialPosition();
-            } else {
-                window.addEventListener('load', handleInitialPosition);
-            }
-
-            window.addEventListener('resize', () => {
-                const current = tabs.querySelector('.tabs-nav__link.active');
-                if (current) {
-                    moveIndicator(current);
-                }
-            });
-        }
+        });
     }
-
 
 //==============================================================================
 //  SPLIT-TABS
@@ -758,6 +709,7 @@ export function init() {
     initBaselineAnim();
     initSliderPartners();
     initTabs();
+
     initSplitTabs();
     initSliderRelated();
     initCertificatesSlider();

@@ -1,5 +1,8 @@
 {% extends "layouts/base.njk" %}
 
+{% from "macros/tech-block.njk" import techBlock %}
+{% from "macros/solution-block.njk" import solutionBlock %}
+
 {% block title %}Про нас — {{ siteName }}{% endblock %}
 
 <svg width="0" height="0" style="position: absolute;">
@@ -69,6 +72,285 @@
         </div>
     </section>
 
+    <section class="plastic-loop section">
+        <div class="container">
+            <h2 class="plastic-loop__title">Пластик в замкнутому циклі</h2>
+            {% set steps_list = [
+                {
+                    title: "Виробництво",
+                    image: "images/Ellipse1.jpg",
+                    description: "Навіть 100% сировини може бути перероблено."
+                },
+                {
+                    title: "Застосування",
+                    image: "images/Ellipse2.jpg",
+                    description: "Параметри виробу з вторинної сировини не відрізняються від виробу з первинної (virgin) сировини."
+                },
+                {
+                    title: "Сортування",
+                    image: "images/Ellipse3.jpg",
+                    description: "Використану упаковку збирають і відправляють на переробку."
+                },
+                {
+                    title: "Переробка",
+                    image: "images/Ellipse4.jpg",
+                    description: "Упаковки очищають і подрібнюють, а отримані з них гранули використовують для виробництва подальших упаковок."
+                }
+            ] %}
+            <ul class="cycle-steps">
+                {% for item in steps_list %}
+                    <li class="cycle-step">
+                        <div class="cycle-step__img">
+                            <img src="{{ item.image }}" alt="{{ item.title }}">
+                        </div>
+                        <div class="cycle-step__body">
+                            <h3 class="cycle-step__title">{{ item.title }}</h3>
+                            <div class="cycle-step__description">{{ item.description }}</div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    <section class="section-manufacturing">
+        <div class="container">
+
+            {% set products = [
+                { id: "confectionery", title: "Кондитерські вироби", img: "images/tech-diagram/vypichka.svg" },
+                { id: "eggs", title: "Яйця", img: "images/tech-diagram/egg.svg" },
+                { id: "gastronomy", title: "Гастрономія", img: "images/tech-diagram/gastro.svg" },
+                { id: "vegetables", title: "Овочі", img: "images/tech-diagram/ovochi.svg" },
+                { id: "dairy-1", title: "Молочні продукти", img: "images/tech-diagram/molochni-prod.svg" },
+                { id: "meat", title: "Риба & М'ясо", img: "images/tech-diagram/mjaso.svg" },
+                { id: "dairy-2", title: "Молочна продукція", img: "images/tech-diagram/molochni-prod2.svg" }
+            ] %}
+
+            <div class="prod-scheme">
+
+                <div class="prod-scheme__top">
+                    <div class="prod-scheme__tech">
+                        <div class="prod-scheme__icon">
+                            <img src="images/tech-diagram/termoformuvenja.svg" alt="Термоформування">
+                        </div>
+                        <h4 class="prod-scheme__name">Термоформування</h4>
+                    </div>
+                </div>
+
+                <!-- Головна горизонтальна лінія розгалуження -->
+                <div class="prod-scheme__branch-line"></div>
+
+                <!-- Рівень 2: Сітка продуктів -->
+                <div class="prod-scheme__grid">
+                    {% for product in products %}
+
+                        <div class="prod-scheme__item">
+                            <div class="prod-scheme__card">
+                                <div class="prod-scheme__wrap-img">
+                                    <img src="{{ product.img }}" alt="{{ product.title }}">
+                                </div>
+                                <h4 class="prod-scheme__name">{{ product.title }}</h4>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Рівень 3: Супутні технології знизу -->
+                <div class="prod-scheme__bottom">
+
+                    <div class="prod-scheme__tech">
+                        <div class="prod-scheme__icon">
+                            <img src="images/tech-diagram/extruzia.svg" alt="Екструзія плівки">
+                        </div>
+                        <h4 class="prod-scheme__name">Екструзія плівки</h4>
+                    </div>
+
+                    <div class="prod-scheme__tech">
+                        <div class="prod-scheme__icon">
+                            <img src="images/tech-diagram/extruzia-vyduvna.svg" alt="Видувна екструзія">
+                        </div>
+                        <h4 class="prod-scheme__name">Видувна екструзія</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="prod-overview " data-tabs>
+                <!-- Навігація табів -->
+                <div class="prod-overview__tabs-nav">
+                    <button class="prod-overview__tab-btn" data-tab="solutions">Рішення</button>
+                    <button class="prod-overview__tab-btn active" data-tab="tech">Технології виробництва</button>
+                </div>
+
+                <div class="prod-overview__tabs-content">
+                    <div class="prod-overview__panel active" id="tech">
+                        {% set all_technologies = [
+                            {
+                                icon: "../images/tech-diagram/termoformuvenja.svg",
+                                title: "Термоформування",
+                                description: ["Це технологічний процес, що полягає у термічному та пресовому формуванні виробів певної форми з плівки або листових пластмас. У KGL ми використовуємо технологію термоформування для виробництва упаковки, призначеної переважно для харчової промисловості."],
+                                stepsTitle: "Спрощений процес термоформування — це насамперед:",
+                                steps: [
+                                "нагрів полотна плівки до температури, за якої матеріал стає plastic-ним;",
+                                "надання виробу бажаної форми за допомогою тиску;",
+                                "вирізання готового виробу з полотна плівки та підготовка його до пакування."
+                            ],
+                                products: [
+                                { category: "Риба & Мясо", image: "images/catalog/prod-pannel-1.png" },
+                                { category: "Гастрономія", image: "images/catalog/prod-pannel-2.png" },
+                                { category: "Напої", image: "images/catalog/prod-pannel-3.png" },
+                                { category: "Яйця", image: "images/catalog/prod-pannel-4.png" },
+                                { category: "Овочі", image: "images/catalog/prod-pannel-5.png" },
+                                { category: "Кондитерські вироби", image: "images/catalog/prod-pannel-6.png" },
+                                { category: "Плівка", image: "images/catalog/prod-pannel-7.png" },
+                                { category: "Молочна продукція", image: "images/catalog/prod-pannel-8.png" }
+                            ]
+                            },
+                            {
+                                icon: "../images/tech-diagram/extruzia.svg",
+                                title: "Екструзія плівки",
+                                description: ["Технологія екструзії плівки використовується KGL для виробництва напівфабрикату,
+                                 який згодом застосовується у процесі внутрішнього термоформування або для виготовлення готового продукту,
+                                 що безпосередньо постачається Замовнику."
+                            ],
+                                stepsTitle: "Спрощений процес екструзії плівки включає насамперед:",
+                                steps: [
+                                "підготовку відповідним чином складеної суміші, що складається з основної сировини, а також добавок, таких як барвники, модифікатори тощо;",
+                                "гомогенізацію суміші в циліндрі екструдера;",
+                                "подачу суміші на головку екструдера із дотриманням заданих параметрів полотна плівки;",
+                                "каландрування, охолодження та намотування полотна у фінальний рулон."
+                            ],
+                                products: [
+                                { category: "Риба & Мясо", image: "images/catalog/prod-pannel-1.png" },
+                                { category: "Гастрономія", image: "images/catalog/prod-pannel-2.png" },
+                                { category: "Молочна продукція", image: "images/catalog/prod-pannel-8.png" }
+                            ]
+                            },
+                            {
+                                icon: "../images/tech-diagram/extruzia-vyduvna.svg",
+                                title: "Видувна екструзія",
+                                description: ["Екструзійно-видувне формування полягає в пластифікації заготовки,
+                                отриманої екструзією з термопластичного матеріалу, та подальшому формоутворенні шляхом
+                                заповнення її повітрям або інертним газом. У результаті матеріал доходить до стінок видувної
+                                 форми, що складається з двох напівформ, після чого охолоджується та виймається."
+                            ],
+                                products: [
+                                { category: "Молочна продукція", image: "images/catalog/prod-pannel-8.png" }
+                            ]
+                            }
+                        ] %}
+
+                        <div class="prod-overview__blocks-list">
+                            {% for technology in all_technologies %}
+                                {{ techBlock(technology) }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="prod-overview__panel" id="solutions">
+                        {% set all_solutions = [
+                            {
+                                icon: "../images/tech-diagram/termoformuvenja.svg",
+                                title: "Приклеювання абсорбційних прокладок",
+                                paragraphs: [
+                                "У KGL ми пропонуємо нашим клієнтам додатковий продукт для пластикового пакування — абсорбційні прокладки.",
+                                "Сьогодні абсорбційна прокладка часто є важливим елементом під час зберігання свіжих продуктів,
+                                зокрема м’яса та риби. Вона призначена для поглинання надлишкової вологи, що сприяє збереженню
+                                найвищої якості продукції та подовженню терміну її придатності."
+                            ],
+                                image: "images/about/imgtab2-1.png"
+                            },
+                            {
+                                icon: "../images/tech-diagram/termoformuvenja.svg",
+                                title: "Принт",
+                                paragraphs: [
+                                "Технологія друку використовується для декорування стаканчиків, призначених для молочної галузі, сфери громадського харчування та пакування яєць.",
+                                "Друк виконується за технологією сухого офсетного друку з використанням до 8 кольорів."
+                            ],
+
+                                image: "images/about/imgtab2-2.png"
+                            },
+                            {
+                                icon: "../images/tech-diagram/termoformuvenja.svg",
+                                title: "Комплектація термоусадковою плівкою та етикетками",
+                                paragraphs: [
+                                "Пляшки, виготовлені за технологією екструзійно-видувного формування, можуть бути оснащені термоусадковими етикетками (shrink sleeve) або звичайними етикетками.",
+                                "Етикетки також можуть використовуватися для пакування яєць."
+                            ],
+
+                                image: "images/about/imgtab2-3.png"
+                            },
+                            {
+                                icon: "../images/tech-diagram/termoformuvenja.svg",
+                                title: "Конструкції зі спіненого матеріалу",
+                                paragraphs: [
+                                "Міцне пакування зі зменшеною вагою завдяки спіненим структурам матеріалу
+                                KGL є виробником пакування зі спінених плівок зі значно меншою щільністю порівняно з литими плівками, виготовленими
+                                навіть зі 100% переробленої сировини. Залежно від типу пакування його вага може бути зменшена на кілька десятків відсотків без втрати механічної міцності.",
+                                "Спінені матеріали є чудовою альтернативою пакуванню з пінополістиролу (EPS), яке поступово виводиться з обігу.",
+                                "Процес спінювання здійснюється на екструзійній лінії, оснащеній спеціальним обладнанням,
+                                 де відбувається ефективне змішування газу (вуглекислого газу або азоту) з полімерним матеріалом підвищеної в'язкості."
+                            ],
+                                image: "images/about/imgtab2-4.png"
+                            },
+                            {
+                                icon: "../images/tech-diagram/termoformuvenja.svg",
+                                title: "Термоформувальні плівки",
+                                paragraphs: [
+                                "Якість під повним контролем.",
+                                "Завдяки власним екструзійним лініям KGL не залежить від зовнішніх постачальників плівки. Власне виробництво дозволяє
+                                повністю контролювати процес виготовлення пакування на всіх етапах — від виробництва
+                                 плівки до готового виробу, забезпечуючи найвищу якість кінцевої продукції.",
+                                "Основними матеріалами, що переробляються, є поліетилентерефталат (ПЕТ) та поліпропілен (ПП).
+                                До структур, які ми виробляємо, належать, зокрема, ламіновані матеріали (наприклад, ПЕТ/ПЕ),
+                                коекструзійні та високобар'єрні структури з використанням шару EVOH."
+                            ],
+                                image: "images/about/imgtab2-5.png"
+                            },
+
+                            {
+                                icon: "../images/tech-diagram/termoformuvenja.svg",
+                                title: "Упаковка RESPECT by KGL",
+                                paragraphs: [
+                                "Сучасна упаковка RESPECT by KGL із запатентованою системою нанесення клейового шару на «комірець»
+                                забезпечує надійне закривання без використання стандартної ПЕ-плівки, ламінованої на ПЕТ-основу.",
+                                "Завдяки цій технології упаковка є на 100% придатною до вторинної переробки. Клейовий шар легко
+                                видаляється під час процесу переробки (гарячого миття), після чого матеріал може бути перероблений у чистий ПЕТ, аналогічно ПЕТ-пляшкам."
+                            ],
+                                benefitsTitle: "Основні переваги:",
+                                benefits: [
+                                "висока прозорість;",
+                                "широкий вибір розмірів і кольорів;",
+                                "запатентована система закривання лотка;",
+                                "моноструктура ПЕТ без шару ПЕ;",
+                                "придатність до повторної переробки;",
+                                "позитивна оцінка процесу очищення EFSA."
+                            ],
+                                image: "images/about/imgtab2-5.png"
+                            },
+                            {
+                                icon: "../images/tech-diagram/termoformuvenja.svg",
+                                title: "ПЕТ-упаковка з високою термостійкістю — CPET",
+                                paragraphs: [
+                                "Сучасна упаковка з CPET для готових страв, виготовлена за інноваційною технологією термоформування, витримує температуру до 200°C.",
+                                "Вона є більш функціональною порівняно з традиційною поліпропіленовою упаковкою, оскільки
+                                підходить для розігрівання не лише в мікрохвильових печах, але й у звичайних духовках.",
+                                "Упаковка з CPET (включно зі спіненим XCPET) може виготовлятися з матеріалів із високим вмістом переробленої сировини."
+                            ],
+                                image: "images/about/imgtab2-5.png"
+                            }
+                        ] %}
+
+                        <div class="prod-overview__solutions-list">
+                            {% for solution in all_solutions %}
+                                {{ solutionBlock(solution) }}
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
     <section class="section-awards">
         <div class="container">
             <div class="section__heading">

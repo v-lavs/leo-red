@@ -16,6 +16,7 @@
 @use 'layout/sections/section-partners';
 @use 'layout/sections/section-showcase';
 @use 'layout/sections/section-contacts';
+@use 'layout/sections/section-manufacturing';
 
 // Components
 @use 'components/buttons';
@@ -27,6 +28,7 @@
 @use 'components/slider';
 @use 'components/custom-checkbox';
 @use 'components/custom-select';
+@use 'components/tabs';
 
 @use 'pages/page';
 @use 'pages/page-about';

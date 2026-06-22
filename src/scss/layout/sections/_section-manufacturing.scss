@@ -1,0 +1,348 @@
+@use "../../base/mixins";
+@use "../../base/variables";
+
+.section-manufacturing {
+  background-color: #F3F1EE;
+  border-radius: 30px;
+  padding: 100px 0;
+  margin-bottom: 100px;
+}
+
+.prod-scheme {
+  padding-bottom: 90px;
+  max-width: 1156px;
+  width: 100%;
+  margin: 0 auto;
+
+  &__grid {
+    display: flex;
+    justify-content: space-between;
+    padding: 70px 0;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 70px;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      content: '';
+      display: block;
+      background-color: #000000;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      height: 42px;
+      width: 1px;
+    }
+
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: flex-end;
+
+    .prod-scheme__tech {
+      max-width: 100px;
+      width: 10%;
+      margin-left: 7%;
+      padding-top: 70px;
+
+      &:first-child:before {
+        position: absolute;
+        content: '';
+        display: block;
+        background-color: #000000;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        height: 42px;
+        width: 1px;
+      }
+
+      &:last-child:before {
+        position: absolute;
+        content: '';
+        top: -5px;
+        display: block;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 92px;
+        background-image: url(../images/icons/arrow2.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+  }
+
+  &__card {
+    position: relative;
+  }
+
+  &__item {
+    position: relative;
+    max-width: 138px;
+    width: 14%;
+    flex-grow: 1;
+    padding-bottom: 8px;
+
+    &:first-child:before,
+    &:last-child:before {
+      position: absolute;
+      content: '';
+      top: -20px;
+      display: block;
+      left: 50%;
+      transform: translate(-50%, -100%);
+      width: 8px;
+      height: 50px;
+      background-image: url(../images/icons/arrow.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    &:after,
+    &:first-child:after,
+    &:last-child:after {
+      position: absolute;
+      content: '';
+      display: block;
+      background-color: #000000;
+      top: -70px;
+      height: 1px;
+      width: 100%;
+    }
+
+    &:after {
+      width: 150%;
+      left: 0;
+    }
+
+    &:first-child:after {
+      left: 50%;
+    }
+
+    &:last-child:after {
+      right: 50%;
+      left: auto;
+    }
+
+    &:nth-child(5) .prod-scheme__card:after,
+    &:nth-child(7) .prod-scheme__card:after {
+      position: absolute;
+      content: '';
+      bottom: -28px;
+      display: block;
+      transform: translateY(100%) rotate(180deg);
+      width: 8px;
+      height: 50px;
+      background-image: url(../images/icons/arrow.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    &:nth-child(5) .prod-scheme__card:after {
+      left: 62%;
+    }
+
+    &:nth-child(7) .prod-scheme__card:after {
+      left: auto;
+      right: 62%;
+    }
+
+    &:nth-child(5) .prod-scheme__card:before,
+    &:nth-child(7) .prod-scheme__card:before {
+      position: absolute;
+      content: '';
+      display: block;
+      background-color: #000000;
+      height: 1px;
+      bottom: -78px;
+      width: 150%;
+    }
+
+    &:nth-child(5) .prod-scheme__card:before {
+      left: 65%;
+    }
+
+    &:nth-child(7) .prod-scheme__card:before {
+      right: 65%;
+    }
+
+  }
+
+  &__name {
+    font-weight: 300;
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+  }
+
+  &__wrap-img {
+    width: 104px;
+    height: 104px;
+    margin: 0 auto 25px;
+  }
+
+  &__tech {
+    position: relative;
+    max-width: 100px;
+  }
+
+  &__icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+  }
+}
+
+
+.prod-overview {
+  display: flex;
+  flex-wrap: nowrap;
+
+  &__tabs-nav {
+    padding-left: 60px;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    height: max-content;
+  }
+
+  &__tab-btn {
+    background-color: transparent;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1;
+    text-transform: uppercase;
+    border: none;
+    color: #AEAEAE;
+    transition: .5s;
+    margin-top: 32px;
+
+    &.active {
+      color: #000;
+    }
+  }
+
+  &__tabs-content {
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    padding-left: 18px;
+    overflow: hidden;
+  }
+
+  &__panel {
+
+    background-color: #F3F1EE;
+  }
+}
+
+.overview-card {
+  display: flex;
+  padding: 32px 0;
+  border-bottom: 1px solid #B2B2B2;
+  margin-bottom: 32px;
+
+  &__header {
+    position: relative;
+    width: 38%;
+    padding: 30px;
+
+    h3 {
+      font-weight: 400;
+      font-size: 45px;
+      line-height: 1.33;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    width: 49px;
+    height: 49px;
+    top: -18px;
+    left: -18px;
+    z-index: 1;
+  }
+
+  &__content {
+    width: 62%;
+    padding-left: 32px;
+
+    p {
+      line-height: 2.5;
+    }
+  }
+
+  &__description {
+    padding-left: 28px;
+    padding-bottom: 32px;
+  }
+
+  &__products-grid {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .dynamic-content {
+    ul {
+      margin: 0;
+    }
+
+    li {
+      line-height: 2.5;
+      margin-bottom: 10px;
+
+      &:before {
+        top: 18px;
+      }
+    }
+  }
+}
+
+.overview-card__products-grid {
+  .category-card {
+    background-color: #edeae8;
+    width: 23%;
+    border-radius: 0 0 16px 16px;
+    padding: 22px 10px 96px;
+    height: 330px;
+
+    &__title {
+      font-size: 16px;
+      font-weight: 300;
+      text-transform: uppercase;
+      margin-left: auto;
+      padding: 0 12px;
+    }
+
+    &__img-wrap {
+      width: 157px;
+      height: 140px;
+      margin-left: -10px;
+    }
+  }
+}
+
+.overview-card__image-wrap {
+  width: 100%;
+
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+  }
+}
+
+
