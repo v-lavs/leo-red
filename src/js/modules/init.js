@@ -14,9 +14,9 @@ export function init() {
 
         if (!header) return null;
 
+        // Запам'ятовуємо початковий стан при завантаженні сторінки
         const isInitialLight = header.classList.contains('header_light');
-
-        let lastScroll = 0;
+        let lastScroll = window.scrollY || document.documentElement.scrollTop;
 
         const panelState = {
             search: false,
@@ -31,24 +31,33 @@ export function init() {
             paused: true
         });
 
-        function updateTheme(currentScroll = window.scrollY) {
+        function updateTheme(currentScroll = window.scrollY || document.documentElement.scrollTop) {
+            // 1. Якщо хедер початково мав бути білим, він завжди білий
             if (isInitialLight) {
                 header.classList.add('header_light');
                 return;
             }
 
+            // 2. Якщо відкрита будь-яка панель — хедер обов'язково білий
             const hasOpenPanels = Object.values(panelState).some(Boolean);
-
             if (hasOpenPanels) {
                 header.classList.add('header_light');
                 return;
             }
 
-            const isScrollingUp =
-                currentScroll < lastScroll &&
-                currentScroll > 100;
+            // 3. Якщо ми на самому верху сторінки (менше 100px), повертаємо початковий стан (не light)
+            if (currentScroll <= 100) {
+                header.classList.remove('header_light');
+                return;
+            }
 
-            header.classList.toggle('header_light', isScrollingUp);
+            // 4. Логіка під час скролу: якщо скролимо вгору — додаємо light.
+            // Якщо викликано вручну (при закритті панелі) і скрол на місці — зберігаємо поточний стан.
+            if (currentScroll < lastScroll) {
+                header.classList.add('header_light');
+            } else if (currentScroll > lastScroll) {
+                header.classList.remove('header_light');
+            }
         }
 
         function setPanelState(name, state) {
@@ -57,10 +66,7 @@ export function init() {
         }
 
         window.addEventListener('scroll', () => {
-            let currentScroll =
-                window.pageYOffset ||
-                document.documentElement.scrollTop;
-
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
             if (currentScroll < 0) currentScroll = 0;
 
             if (currentScroll > lastScroll && currentScroll > 100) {
@@ -70,602 +76,166 @@ export function init() {
             }
 
             updateTheme(currentScroll);
-
             lastScroll = currentScroll;
-        });
+        }, {passive: true});
 
         return {
             setPanelState
         };
     }
 
-    // //====================================================================
-    // //SEARCH PANEL
-    // //====================================================================
-    // function initSearch(header) {
-    //     const panel = document.querySelector('.h-search');
-    //
-    //     if (!panel) return null;
-    //
-    //     const content = panel.querySelector('.search-form');
-    //
-    //     let isOpen = false;
-    //
-    //     const tl = gsap.timeline({
-    //         paused: true
-    //     });
-    //
-    //     tl.set(panel, {
-    //         pointerEvents: 'auto'
-    //     });
-    //
-    //     // Панель зверху
-    //     tl.fromTo(
-    //         panel,
-    //         {
-    //             y: -140,
-    //             autoAlpha: 0
-    //         },
-    //         {
-    //             y: 0,
-    //             autoAlpha: 1,
-    //             duration: 0.5,
-    //             ease: 'power3.out'
-    //         }
-    //     );
-    //
-    //     // Контент справа
-    //     if (content) {
-    //         tl.fromTo(
-    //             content,
-    //             {
-    //                 x: 80,
-    //                 autoAlpha: 0
-    //             },
-    //             {
-    //                 x: 0,
-    //                 autoAlpha: 1,
-    //                 duration: 0.5,
-    //                 ease: 'power4.out'
-    //             },
-    //             '-=0.2'
-    //         );
-    //     }
-    //
-    //     tl.eventCallback('onReverseComplete', () => {
-    //         gsap.set(panel, {
-    //             pointerEvents: 'none'
-    //         });
-    //     });
-    //
-    //     function open() {
-    //         if (isOpen) return;
-    //
-    //         isOpen = true;
-    //
-    //         gsap.set(panel, {
-    //             pointerEvents: 'auto'
-    //         });
-    //
-    //         header.setPanelState('search', true);
-    //
-    //         tl.play();
-    //     }
-    //
-    //     function close() {
-    //         if (!isOpen) return;
-    //
-    //         isOpen = false;
-    //
-    //         header.setPanelState('search', false);
-    //
-    //         tl.reverse();
-    //     }
-    //
-    //     return {
-    //         open,
-    //         close,
-    //         isOpen: () => isOpen
-    //     };
-    // }
-    //
-    // //=====================================================================
-    // // CATEGORY MEGA-MENU
-    // //=====================================================================
-    // function initCategories(header) {
-    //     const panel = document.querySelector('.h-mega-menu');
-    //
-    //     if (!panel) return null;
-    //
-    //     const cards = panel.querySelectorAll('.category-card');
-    //
-    //     let isOpen = false;
-    //
-    //     const tl = gsap.timeline({
-    //         paused: true
-    //     });
-    //
-    //     tl.set(panel, {
-    //         pointerEvents: 'auto'
-    //     });
-    //
-    //     // Панель зверху
-    //     tl.fromTo(
-    //         panel,
-    //         {
-    //             y: -140,
-    //             autoAlpha: 0
-    //         },
-    //         {
-    //             y: 0,
-    //             autoAlpha: 1,
-    //             duration: 0.25,
-    //             ease: 'power1.out'
-    //         }
-    //     );
-    //
-    //     // Картки справа
-    //     tl.fromTo(
-    //         cards,
-    //         {
-    //             x: 80,
-    //             autoAlpha: 0,
-    //             scale: 0.96
-    //         },
-    //         {
-    //             x: 0,
-    //             autoAlpha: 1,
-    //             scale: 1,
-    //             duration: 0.6,
-    //             stagger: 0.08,
-    //             ease: 'power1.out'
-    //         },
-    //         '-=0.2'
-    //     );
-    //
-    //     tl.eventCallback('onReverseComplete', () => {
-    //         gsap.set(panel, {
-    //             pointerEvents: 'none'
-    //         });
-    //     });
-    //
-    //     function open() {
-    //         if (isOpen) return;
-    //
-    //         isOpen = true;
-    //
-    //         gsap.set(panel, {
-    //             pointerEvents: 'auto'
-    //         });
-    //
-    //         header.setPanelState('categories', true);
-    //
-    //         tl.play();
-    //     }
-    //
-    //     function close() {
-    //         if (!isOpen) return;
-    //
-    //         isOpen = false;
-    //
-    //         header.setPanelState('categories', false);
-    //
-    //         tl.reverse();
-    //     }
-    //
-    //     return {
-    //         open,
-    //         close,
-    //         isOpen: () => isOpen
-    //     };
-    // }
-    //
-    // //загальний ховер
-    // function bindHover(trigger, panel, instance) {
-    //     let timeout;
-    //
-    //     const open = () => {
-    //         clearTimeout(timeout);
-    //         instance.open();
-    //     };
-    //
-    //     const close = () => {
-    //         timeout = setTimeout(() => {
-    //             instance.close();
-    //         }, 120);
-    //     };
-    //
-    //     trigger?.addEventListener('mouseenter', open);
-    //     panel?.addEventListener('mouseenter', open);
-    //
-    //     trigger?.addEventListener('mouseleave', close);
-    //     panel?.addEventListener('mouseleave', close);
-    // }
-    //
-    // const header = initHeader();
-    //
-    // const search = initSearch(header);
-    // const categories = initCategories(header);
-    //
-    // const searchTrigger = document.querySelector('.btn_open-search');
-    // const searchPanel = document.querySelector('.h-search');
-    //
-    // const categoriesTrigger = document.querySelector('.btn_open-megamenu');
-    // const categoriesPanel = document.querySelector('.h-mega-menu');
-    //
-    // bindHover(searchTrigger, searchPanel, search);
-    // bindHover(categoriesTrigger, categoriesPanel, categories);
-    // // клік на кнопку
-    // searchTrigger?.addEventListener('click', () => {
-    //     if (!search.isOpen()) {
-    //         categories.close();
-    //         search.open();
-    //     } else {
-    //         search.close();
-    //     }
-    // });
-    // categoriesTrigger?.addEventListener('click', () => {
-    //     if (!categories.isOpen()) {
-    //         search.close();
-    //         categories.open();
-    //     } else {
-    //         categories.close();
-    //     }
-    // });
-
-//====================================================================
-// INIT PANEL
-//====================================================================
-//     function initPanel({
-//                            header,
-//                            panelSelector,
-//                            contentSelector,
-//                            stateName,
-//                            contentAnimation
-//                        }) {
-//         const panel = document.querySelector(panelSelector);
-//         if (!panel) return null;
-//         const content = panel.querySelectorAll(contentSelector);
-//         let isOpen = false;
-//         function open() {
-//             if (isOpen) return;
-//             isOpen = true;
-//             header.setPanelState(stateName, true);
-//             panel.classList.add('is-open');
-//             if (content?.length) {
-//                 gsap.fromTo(
-//                     content,
-//                     contentAnimation.from,
-//                     contentAnimation.to
-//                 );
-//             }
-//         }
-//         function close() {
-//             if (!isOpen) return;
-//             isOpen = false;
-//             header.setPanelState(stateName, false);
-//             panel.classList.remove('is-open');
-//         }
-//         return {
-//             open,
-//             close,
-//             isOpen: () => isOpen
-//         };
-//     }
-//====================================================================
-// HOVER + CLICK LOGIC
-//====================================================================
-//
-//     function bindInteractions(trigger, panel, instance, otherInstance = null) {
-//
-//         if (!instance) return;
-//
-//         let timeout;
-//         const isDesktop = () =>
-//             window.matchMedia('(min-width: 1025px)').matches;
-//         // =====================
-//         // HOVER (desktop only)
-//         // =====================
-//         const openHover = () => {
-//             if (!isDesktop()) return;
-//             clearTimeout(timeout);
-//             otherInstance?.close();
-//             instance.open();
-//         };
-//
-//         const closeHover = () => {
-//             if (!isDesktop()) return;
-//             clearTimeout(timeout);
-//             timeout = setTimeout(() => {
-//                 instance.close();
-//             }, 120);
-//         };
-//
-//         trigger?.addEventListener('mouseenter', openHover);
-//         panel?.addEventListener('mouseenter', openHover);
-//
-//         trigger?.addEventListener('mouseleave', closeHover);
-//         panel?.addEventListener('mouseleave', closeHover);
-//
-//         // =====================
-//         // CLICK (tablet/mobile)
-//         // =====================
-//
-//         trigger?.addEventListener('click', () => {
-//             if (isDesktop()) return;
-//             if (instance.isOpen()) {
-//                 instance.close();
-//             } else {
-//                 otherInstance?.close();
-//                 instance.open();
-//             }
-//         });
-//     }
-
-//====================================================================
-// INIT ALL HEADER
-//====================================================================
-//     function initHeaderPanels() {
-//
-//         const header = initHeader();
-//
-//         const search = initPanel({
-//             header,
-//             panelSelector: '.h-search',
-//             contentSelector: '.search-form',
-//             stateName: 'search',
-//             contentAnimation: {
-//                 from: {
-//                     x: 80,
-//                     autoAlpha: 0
-//                 },
-//                 to: {
-//                     x: 0,
-//                     autoAlpha: 1,
-//                     duration: 0.5,
-//                     ease: 'power4.out'
-//                 }
-//             }
-//         });
-//
-//         const categories = initPanel({
-//             header,
-//             panelSelector: '.h-mega-menu',
-//             contentSelector: '.category-card',
-//             stateName: 'categories',
-//             contentAnimation: {
-//                 from: {
-//                     x: 80,
-//                     autoAlpha: 0,
-//                     scale: 0.96
-//                 },
-//                 to: {
-//                     x: 0,
-//                     autoAlpha: 1,
-//                     scale: 1,
-//                     duration: 0.55,
-//                     stagger: 0.08,
-//                     ease: 'power3.out'
-//                 }
-//             }
-//         });
-//
-//         bindInteractions(
-//             document.querySelector('.btn_open-search'),
-//             document.querySelector('.h-search'),
-//             search,
-//             categories
-//         );
-//
-//         bindInteractions(
-//             document.querySelector('.btn_open-megamenu'),
-//             document.querySelector('.h-mega-menu'),
-//             categories,
-//             search
-//         );
-//
-//         return {
-//             search,
-//             categories
-//         };
-//     }
-
-
-//====================================================================
-// UNIVERSAL PANEL
-//====================================================================
-    function initPanel({
-                           header,
-                           panelSelector,
-                           contentSelector,
-                           stateName,
-                           contentAnimation
-                       }) {
-
-        const panel = document.querySelector(panelSelector);
+// =====================================================================
+// SEARCH PANEL
+// =====================================================================
+    function initSearch(header) {
+        const panel = document.querySelector('.h-search');
         if (!panel) return null;
-        const content = panel.querySelectorAll(contentSelector);
+
+        const content = panel.querySelector('.search-form');
         let isOpen = false;
-        gsap.set(panel, {
-            y: -140,
-            autoAlpha: 0,
-            pointerEvents: 'none'
-        });
+        const tl = gsap.timeline({paused: true});
 
-        const tl = gsap.timeline({
-            paused: true
-        });
+        tl.set(panel, {pointerEvents: 'auto'});
+        tl.fromTo(panel, {y: -140, autoAlpha: 0}, {y: 0, autoAlpha: 1, duration: 0.5, ease: 'power3.out'});
 
-        // Панель зверху
-        tl.to(panel, {
-            y: 0,
-            autoAlpha: 1,
-            duration: .45,
-            ease: 'power3.out'
-        });
-
-        // Контент
-        if (content.length) {
-            tl.fromTo(
-                content,
-                {
-                    x: 80,
-                    autoAlpha: 0
-                },
-                {
-                    x: 0,
-                    autoAlpha: 1,
-                    duration: 0.5,
-                    ease: 'power4.out'
-                },
-                '-=0.2'
-            );
+        if (content) {
+            tl.fromTo(content, {x: 80, autoAlpha: 0}, {x: 0, autoAlpha: 1, duration: 0.5, ease: 'power4.out'}, '-=0.2');
         }
-        tl.eventCallback('onReverseComplete', () => {
 
-            gsap.set(panel, {
-                pointerEvents: 'none'
-            });
+        tl.eventCallback('onReverseComplete', () => {
+            gsap.set(panel, {pointerEvents: 'none'});
         });
 
         function open() {
             if (isOpen) return;
             isOpen = true;
-            header.setPanelState(stateName, true);
-            gsap.set(panel, {
-                pointerEvents: 'auto'
-            });
-            tl.play(0);
+            header.setPanelState('search', true);
+            tl.play();
         }
+
         function close() {
             if (!isOpen) return;
             isOpen = false;
-            header.setPanelState(stateName, false);
+            header.setPanelState('search', false);
             tl.reverse();
         }
-        return {
-            open,
-            close,
-            isOpen: () => isOpen
-        };
+
+        return {open, close, isOpen: () => isOpen};
     }
 
+// =====================================================================
+// CATEGORY MEGA-MENU
+// =====================================================================
+    function initCategories(header) {
+        const panel = document.querySelector('.h-mega-menu');
+        if (!panel) return null;
 
-// //====================================================================
-// // INIT
-// //====================================================================
+        const cards = panel.querySelectorAll('.category-card');
+        let isOpen = false;
+        const tl = gsap.timeline({paused: true});
 
-    const header = initHeader();
+        tl.set(panel, {pointerEvents: 'auto'});
+        tl.fromTo(panel, {y: -140, autoAlpha: 0}, {y: 0, autoAlpha: 1, duration: 0.25, ease: 'power1.out'});
 
-// //====================================================================
-// // SEARCH
-// //====================================================================
-    const search = initPanel({
-
-        header,
-        panelSelector: '.h-search',
-        contentSelector: '.search-form',
-        stateName: 'search',
-        contentAnimation: {
-            from: {
-                x: 80,
-                autoAlpha: 0
-            },
-            to: {
-                x: 0,
-                autoAlpha: 1,
-                duration: .45,
-                ease: 'power4.out'
-            }
-        }
-    });
-//     //====================================================================
-// // CATEGORIES
-// //====================================================================
-    const categories = initPanel({
-        header,
-        panelSelector: '.h-mega-menu',
-        contentSelector: '.category-card',
-        stateName: 'categories',
-        contentAnimation: {
-            from: {
-                x: 80,
-                autoAlpha: 0,
-                scale: .96
-            },
-            to: {
+        if (cards.length) {
+            tl.fromTo(cards, {x: 80, autoAlpha: 0, scale: 0.96}, {
                 x: 0,
                 autoAlpha: 1,
                 scale: 1,
-                duration: .55,
-                stagger: .08,
-                ease: 'power3.out'
-            }
+                duration: 0.6,
+                stagger: 0.08,
+                ease: 'power1.out'
+            }, '-=0.2');
         }
-    });
 
-// //====================================================================
-// // ELEMENTS
-// //====================================================================
+        tl.eventCallback('onReverseComplete', () => {
+            gsap.set(panel, {pointerEvents: 'none'});
+        });
 
-    const searchTrigger = document.querySelector('.btn_open-search');
-    const searchPanel = document.querySelector('.h-search');
-    const categoriesTrigger = document.querySelector('.btn_open-megamenu');
-    const categoriesPanel = document.querySelector('.h-mega-menu');
+        function open() {
+            if (isOpen) return;
+            isOpen = true;
+            header.setPanelState('categories', true);
+            tl.play();
+        }
 
-    function bindInteractions(trigger, panel, instance) {
+        function close() {
+            if (!isOpen) return;
+            isOpen = false;
+            header.setPanelState('categories', false);
+            tl.reverse();
+        }
 
-        if (!instance) return;
-        let timeout;
+        return {open, close, isOpen: () => isOpen};
+    }
 
-        const isDesktop = () =>
-            window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+// =====================================================================
+// ІНІЦІАЛІЗАЦІЯ ТА РОЗДІЛЕННЯ ДЕСТКОП / МОБІЛКА
+// =====================================================================
+    function initHeaderComponent() {
+        const header = initHeader();
+        const search = initSearch(header);
+        const categories = initCategories(header);
 
-        // ===== HOVER (desktop) =====
-        const openHover = () => {
-            if (!isDesktop()) return;
-            clearTimeout(timeout);
-            instance.open();
-        };
+        const searchTrigger = document.querySelector('.btn_open-search');
+        const searchPanel = document.querySelector('.h-search');
+        const categoriesTrigger = document.querySelector('.btn_open-megamenu');
+        const categoriesPanel = document.querySelector('.h-mega-menu');
 
-        const closeHover = () => {
-            if (!isDesktop()) return;
-            clearTimeout(timeout);
-            timeout = setTimeout(() => {
-                instance.close();
-            }, 120);
-        };
+// Перевірка на десктоп (ширина екрану > 1024px)
+        const isDesktop = window.matchMedia('(min-width: 1025px)');
 
-        trigger?.addEventListener('mouseenter', openHover);
-        panel?.addEventListener('mouseenter', openHover);
+        function bindHover(trigger, panel, instance) {
+            let timeout;
 
-        trigger?.addEventListener('mouseleave', closeHover);
-        panel?.addEventListener('mouseleave', closeHover);
-
-        // ===== CLICK (mobile) =====
-        trigger?.addEventListener('click', () => {
-            if (isDesktop()) return;
-            if (instance.isOpen()) {
-                instance.close();
-            } else {
-                search?.close();
-                categories?.close();
+            const open = () => {
+                if (!isDesktop.matches) return; // Ігноруємо ховер на мобільних
+                clearTimeout(timeout);
                 instance.open();
+            };
+
+            const close = () => {
+                if (!isDesktop.matches) return; // Ігноруємо ховер на мобільних
+                timeout = setTimeout(() => {
+                    instance.close();
+                }, 120);
+            };
+
+            trigger?.addEventListener('mouseenter', open);
+            panel?.addEventListener('mouseenter', open);
+            trigger?.addEventListener('mouseleave', close);
+            panel?.addEventListener('mouseleave', close);
+        }
+
+// Навешуємо ховер (працюватиме лише на десктопі завдяки перевірці всередині)
+        bindHover(searchTrigger, searchPanel, search);
+        bindHover(categoriesTrigger, categoriesPanel, categories);
+
+// Кліки (для мобілки, а також як fallback для десктопу)
+        searchTrigger?.addEventListener('click', (e) => {
+            if (isDesktop.matches) return; // На десктопі керує ховер
+            e.preventDefault();
+
+            if (!search.isOpen()) {
+                categories?.close();
+                search.open();
+            } else {
+                search.close();
+            }
+        });
+
+        categoriesTrigger?.addEventListener('click', (e) => {
+            if (isDesktop.matches) return; // На десктопі керує ховер
+            e.preventDefault();
+
+            if (!categories.isOpen()) {
+                search?.close();
+                categories.open();
+            } else {
+                categories.close();
             }
         });
     }
-
-    bindInteractions(
-        searchTrigger,
-        searchPanel,
-        search
-    );
-
-    bindInteractions(
-        categoriesTrigger,
-        categoriesPanel,
-        categories
-    );
 
     //=====================================================================
     // SECTION BANNER ANIMATION
@@ -1061,7 +631,7 @@ export function init() {
     //===========================================================================
     // init function
     //===========================================================================
-    // initHeaderPanels();
+    initHeaderComponent();
     initBaselineAnim();
     initSliderPartners();
     initTabs();

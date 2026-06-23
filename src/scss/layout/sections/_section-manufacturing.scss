@@ -325,9 +325,13 @@
     }
 
     &__img-wrap {
-      width: 157px;
+      //width: 157px;
+      //height: 140px;
+      //margin-left: -10px;
       height: 140px;
-      margin-left: -10px;
+      margin-left: 0;
+      object-fit: contain;
+      width: 100%;
     }
   }
 }
@@ -344,9 +348,14 @@
 
   }
 }
-
-@include mixins.respond-to(variables.$xl){
-  .overview-card__header {
-    font-size: 40px;
+@include mixins.respond-to(variables.$xxl){
+  .overview-card__products-grid .category-card {
+    width: 31%;
   }
+}
+@include mixins.respond-to(variables.$xl){
+  .overview-card__header h3 {
+    font-size: 36px;
+  }
+
 }

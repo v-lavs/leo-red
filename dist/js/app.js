@@ -304,33 +304,40 @@
   function init() {
     gsap.registerPlugin(ScrollTrigger);
     function initHeader() {
-      const header2 = document.querySelector(".header");
-      if (!header2) return null;
-      const isInitialLight = header2.classList.contains("header_light");
-      let lastScroll = 0;
+      const header = document.querySelector(".header");
+      if (!header) return null;
+      const isInitialLight = header.classList.contains("header_light");
+      let lastScroll = window.scrollY || document.documentElement.scrollTop;
       const panelState = {
         search: false,
         categories: false,
         burger: false
       };
-      const headerTween = gsap.to(header2, {
+      const headerTween = gsap.to(header, {
         yPercent: -100,
         duration: 0.3,
         ease: "power2.out",
         paused: true
       });
-      function updateTheme(currentScroll = window.scrollY) {
+      function updateTheme(currentScroll = window.scrollY || document.documentElement.scrollTop) {
         if (isInitialLight) {
-          header2.classList.add("header_light");
+          header.classList.add("header_light");
           return;
         }
         const hasOpenPanels = Object.values(panelState).some(Boolean);
         if (hasOpenPanels) {
-          header2.classList.add("header_light");
+          header.classList.add("header_light");
           return;
         }
-        const isScrollingUp = currentScroll < lastScroll && currentScroll > 100;
-        header2.classList.toggle("header_light", isScrollingUp);
+        if (currentScroll <= 100) {
+          header.classList.remove("header_light");
+          return;
+        }
+        if (currentScroll < lastScroll) {
+          header.classList.add("header_light");
+        } else if (currentScroll > lastScroll) {
+          header.classList.remove("header_light");
+        }
       }
       function setPanelState(name, state) {
         panelState[name] = state;
@@ -346,163 +353,124 @@
         }
         updateTheme(currentScroll);
         lastScroll = currentScroll;
-      });
+      }, { passive: true });
       return {
         setPanelState
       };
     }
-    function initPanel({
-      header: header2,
-      panelSelector,
-      contentSelector,
-      stateName,
-      contentAnimation
-    }) {
-      const panel = document.querySelector(panelSelector);
+    function initSearch(header) {
+      const panel = document.querySelector(".h-search");
       if (!panel) return null;
-      const content = panel.querySelectorAll(contentSelector);
+      const content = panel.querySelector(".search-form");
       let isOpen = false;
-      gsap.set(panel, {
-        y: -140,
-        autoAlpha: 0,
-        pointerEvents: "none"
-      });
-      const tl = gsap.timeline({
-        paused: true
-      });
-      tl.to(panel, {
-        y: 0,
-        autoAlpha: 1,
-        duration: 0.45,
-        ease: "power3.out"
-      });
-      if (content.length) {
-        tl.fromTo(
-          content,
-          {
-            x: 80,
-            autoAlpha: 0
-          },
-          {
-            x: 0,
-            autoAlpha: 1,
-            duration: 0.5,
-            ease: "power4.out"
-          },
-          "-=0.2"
-        );
+      const tl = gsap.timeline({ paused: true });
+      tl.set(panel, { pointerEvents: "auto" });
+      tl.fromTo(panel, { y: -140, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out" });
+      if (content) {
+        tl.fromTo(content, { x: 80, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.5, ease: "power4.out" }, "-=0.2");
       }
       tl.eventCallback("onReverseComplete", () => {
-        gsap.set(panel, {
-          pointerEvents: "none"
-        });
+        gsap.set(panel, { pointerEvents: "none" });
       });
       function open() {
         if (isOpen) return;
         isOpen = true;
-        header2.setPanelState(stateName, true);
-        gsap.set(panel, {
-          pointerEvents: "auto"
-        });
-        tl.play(0);
+        header.setPanelState("search", true);
+        tl.play();
       }
       function close() {
         if (!isOpen) return;
         isOpen = false;
-        header2.setPanelState(stateName, false);
+        header.setPanelState("search", false);
         tl.reverse();
       }
-      return {
-        open,
-        close,
-        isOpen: () => isOpen
-      };
+      return { open, close, isOpen: () => isOpen };
     }
-    const header = initHeader();
-    const search = initPanel({
-      header,
-      panelSelector: ".h-search",
-      contentSelector: ".search-form",
-      stateName: "search",
-      contentAnimation: {
-        from: {
-          x: 80,
-          autoAlpha: 0
-        },
-        to: {
-          x: 0,
-          autoAlpha: 1,
-          duration: 0.45,
-          ease: "power4.out"
-        }
-      }
-    });
-    const categories = initPanel({
-      header,
-      panelSelector: ".h-mega-menu",
-      contentSelector: ".category-card",
-      stateName: "categories",
-      contentAnimation: {
-        from: {
-          x: 80,
-          autoAlpha: 0,
-          scale: 0.96
-        },
-        to: {
+    function initCategories(header) {
+      const panel = document.querySelector(".h-mega-menu");
+      if (!panel) return null;
+      const cards = panel.querySelectorAll(".category-card");
+      let isOpen = false;
+      const tl = gsap.timeline({ paused: true });
+      tl.set(panel, { pointerEvents: "auto" });
+      tl.fromTo(panel, { y: -140, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.25, ease: "power1.out" });
+      if (cards.length) {
+        tl.fromTo(cards, { x: 80, autoAlpha: 0, scale: 0.96 }, {
           x: 0,
           autoAlpha: 1,
           scale: 1,
-          duration: 0.55,
+          duration: 0.6,
           stagger: 0.08,
-          ease: "power3.out"
-        }
+          ease: "power1.out"
+        }, "-=0.2");
       }
-    });
-    const searchTrigger = document.querySelector(".btn_open-search");
-    const searchPanel = document.querySelector(".h-search");
-    const categoriesTrigger = document.querySelector(".btn_open-megamenu");
-    const categoriesPanel = document.querySelector(".h-mega-menu");
-    function bindInteractions(trigger, panel, instance) {
-      if (!instance) return;
-      let timeout;
-      const isDesktop = () => window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-      const openHover = () => {
-        if (!isDesktop()) return;
-        clearTimeout(timeout);
-        instance.open();
-      };
-      const closeHover = () => {
-        if (!isDesktop()) return;
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-          instance.close();
-        }, 120);
-      };
-      trigger?.addEventListener("mouseenter", openHover);
-      panel?.addEventListener("mouseenter", openHover);
-      trigger?.addEventListener("mouseleave", closeHover);
-      panel?.addEventListener("mouseleave", closeHover);
-      trigger?.addEventListener("click", () => {
-        if (isDesktop()) return;
-        if (instance.isOpen()) {
-          instance.close();
-        } else {
-          search?.close();
-          categories?.close();
+      tl.eventCallback("onReverseComplete", () => {
+        gsap.set(panel, { pointerEvents: "none" });
+      });
+      function open() {
+        if (isOpen) return;
+        isOpen = true;
+        header.setPanelState("categories", true);
+        tl.play();
+      }
+      function close() {
+        if (!isOpen) return;
+        isOpen = false;
+        header.setPanelState("categories", false);
+        tl.reverse();
+      }
+      return { open, close, isOpen: () => isOpen };
+    }
+    function initHeaderComponent() {
+      const header = initHeader();
+      const search = initSearch(header);
+      const categories = initCategories(header);
+      const searchTrigger = document.querySelector(".btn_open-search");
+      const searchPanel = document.querySelector(".h-search");
+      const categoriesTrigger = document.querySelector(".btn_open-megamenu");
+      const categoriesPanel = document.querySelector(".h-mega-menu");
+      const isDesktop = window.matchMedia("(min-width: 1025px)");
+      function bindHover(trigger, panel, instance) {
+        let timeout;
+        const open = () => {
+          if (!isDesktop.matches) return;
+          clearTimeout(timeout);
           instance.open();
+        };
+        const close = () => {
+          if (!isDesktop.matches) return;
+          timeout = setTimeout(() => {
+            instance.close();
+          }, 120);
+        };
+        trigger?.addEventListener("mouseenter", open);
+        panel?.addEventListener("mouseenter", open);
+        trigger?.addEventListener("mouseleave", close);
+        panel?.addEventListener("mouseleave", close);
+      }
+      bindHover(searchTrigger, searchPanel, search);
+      bindHover(categoriesTrigger, categoriesPanel, categories);
+      searchTrigger?.addEventListener("click", (e) => {
+        if (isDesktop.matches) return;
+        e.preventDefault();
+        if (!search.isOpen()) {
+          categories?.close();
+          search.open();
+        } else {
+          search.close();
+        }
+      });
+      categoriesTrigger?.addEventListener("click", (e) => {
+        if (isDesktop.matches) return;
+        e.preventDefault();
+        if (!categories.isOpen()) {
+          search?.close();
+          categories.open();
+        } else {
+          categories.close();
         }
       });
     }
-    bindInteractions(
-      searchTrigger,
-      searchPanel,
-      search
-    );
-    bindInteractions(
-      categoriesTrigger,
-      categoriesPanel,
-      categories
-    );
     function initHeroAnimation() {
       if (!document.querySelector(".animation-view")) return;
       ScrollTrigger.config({ ignoreMobileResize: true });
@@ -788,6 +756,7 @@
         });
       });
     }
+    initHeaderComponent();
     initBaselineAnim();
     initSliderPartners();
     initTabs();

@@ -1190,9 +1190,11 @@ body.menu-open {
   padding: 0 12px;
 }
 .overview-card__products-grid .category-card__img-wrap {
-  width: 157px;
   height: 140px;
-  margin-left: -10px;
+  margin-left: 0;
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 100%;
 }
 
 .overview-card__image-wrap {
@@ -2676,8 +2678,14 @@ form .btn_submit {
 }
 
 @media only screen and (max-width: 1439px){
+  .staggered-heading {
+    font-size: 82px;
+  }
   .container {
     max-width: 1280px;
+  }
+  .overview-card__products-grid .category-card {
+    width: 31%;
   }
   .page-product .page__title {
     font-size: 70px;
@@ -2686,7 +2694,7 @@ form .btn_submit {
 
 @media only screen and (max-width: 1280px){
   .staggered-heading {
-    font-size: 82px;
+    font-size: 70px;
   }
   .container {
     max-width: 1180px;
@@ -2694,8 +2702,8 @@ form .btn_submit {
   .container {
     border: 2px solid red;
   }
-  .overview-card__header {
-    font-size: 40px;
+  .overview-card__header h3 {
+    font-size: 36px;
   }
 }
 

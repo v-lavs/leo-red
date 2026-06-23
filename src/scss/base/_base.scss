@@ -281,12 +281,18 @@ body.menu-open {
   backface-visibility: hidden;
 }
 
-@include mixins.respond-to(variables.$xl) {
+@include mixins.respond-to(variables.$xxl) {
 .staggered-heading{
   font-size: 82px;
 }
-}
 
+}
+@include mixins.respond-to(variables.$xl) {
+
+  .staggered-heading {
+    font-size: 70px;
+  }
+}
 @include mixins.respond-to(variables.$lg) {
 
 }
