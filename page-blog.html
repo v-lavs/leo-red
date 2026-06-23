@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!--зaкрыть индексацию -->
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="robots" content="noindex">
+  <meta name="yandex" content="none">
+
+  <title>Блог — Leonix</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.12.0/baguetteBox.min.css" integrity="sha512-1hit2XBKwGtoT792KMYEhLYTk+eYYATgFqSkftn4dG8/7TA0ysVRCBIYzhe+IRd9XPi2l8pceoKlV+Oa/B+PDA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+<div class="wrapper">
+<header class="header ">
+    <div class="container">
+        <div class="header__inner">
+            <button class="btn_burger" aria-label="Menu">
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+                <span class="burger__line"></span>
+            </button>
+
+            <button type="button" class="btn_open-megamenu" aria-label="Головне меню каталогу"
+                    aria-expanded="false"
+                    aria-controls="megaMenuContainer"
+                    id="megaMenuBtn">Продукція
+            </button>
+
+            <button type="button" class="btn_open-search" aria-label="Пошук"></button>
+
+            <div class="header__nav">
+                <button type="button" class="btn_close" aria-label="Закрити меню"></button>
+                <ul class="menu">
+                    <li class="menu__item"><a href="about.html">Про нас</a></li>
+                    <li class="menu__item"><a href="page-catalog.html">Каталоги</a></li>
+                    <li class="menu__item"><a href="page-сertificates.html">Сертифікати</a></li>
+                    <li class="menu__item"><a href="page-blog.html">Блог</a></li>
+                    <li class="menu__item"><a href="page-contacts.html">Контакти</a></li>
+                </ul>
+            </div>
+
+            <a href="index.html" class="header__logo">
+                <svg width="153" height="38" viewBox="0 0 153 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <title>Logo Leeonix</title>
+                    <path d="M53.0503 31.1338V9.56837H57.2346V27.798H68.822V31.1338H53.0503Z" fill="currentColor" />
+                    <path d="M85.3545 24.3452H74.0305C74.089 25.3401 74.3231 26.1009 74.7327 26.7154C75.1424 27.3006 75.7569 27.7395 76.5762 28.0321C77.4248 28.2955 78.5074 28.4418 79.8827 28.4418C81.258 28.4418 82.7503 28.2662 84.3889 27.8858V30.8412C82.6917 31.2508 80.9946 31.4264 79.2682 31.4264C76.108 31.4264 73.7671 30.7534 72.2163 29.4366C70.6655 28.0906 69.9047 26.0424 69.9047 23.2333C69.9047 20.4242 70.2265 20.0146 70.841 18.7856C71.4555 17.5566 72.3626 16.6203 73.5623 15.9766C74.762 15.3328 76.1958 15.0109 77.8637 15.0109C80.2923 15.0109 82.1358 15.7425 83.4233 17.1763C84.7108 18.61 85.3545 20.6876 85.3545 23.3503V24.3452ZM75.0253 18.6686C74.3816 19.4001 74.0597 20.512 74.0012 22.0336H81.5213C81.492 20.512 81.1409 19.4001 80.5264 18.6686C79.9119 17.937 78.9756 17.5859 77.7759 17.5859C76.5762 17.5859 75.6398 17.937 74.9961 18.6686H75.0253Z"
+                          fill="currentColor" />
+                    <path d="M91.8212 30.49C90.563 29.8756 89.5974 28.9392 88.8951 27.7102C88.1929 26.4813 87.871 24.9597 87.871 23.204C87.871 21.4484 88.2221 19.9268 88.8951 18.6978C89.5681 17.4689 90.5337 16.5618 91.792 15.918C93.0502 15.3035 94.5425 14.9817 96.2982 14.9817C98.0538 14.9817 99.5754 15.3035 100.834 15.918C102.092 16.5325 103.057 17.4396 103.731 18.6686C104.404 19.8975 104.725 21.3898 104.725 23.204C104.725 25.0182 104.374 26.452 103.672 27.681C102.97 28.9099 102.004 29.8463 100.717 30.49C99.4584 31.1338 97.9661 31.4264 96.2689 31.4264C94.5718 31.4264 93.0795 31.1045 91.8212 30.49ZM100.6 23.204C100.6 21.4484 100.219 20.1901 99.4876 19.3708C98.7561 18.5808 97.6735 18.1711 96.2689 18.1711C94.8644 18.1711 93.811 18.5808 93.0502 19.3708C92.3187 20.1609 91.9383 21.4484 91.9383 23.1748C91.9383 26.5398 93.3721 28.2369 96.2689 28.2369C99.1658 28.2369 100.6 26.569 100.6 23.204Z"
+                          fill="currentColor" />
+                    <path d="M108.324 15.245H111.689L111.953 16.9129H112.158C112.889 16.2984 113.708 15.8302 114.645 15.5084C115.581 15.1865 116.605 15.0109 117.659 15.0109C119.59 15.0109 121.112 15.5376 122.223 16.6203C123.335 17.7029 123.891 19.3708 123.891 21.6532V31.1045H119.795V21.8288C119.795 20.6291 119.531 19.7512 118.975 19.2245C118.449 18.6978 117.629 18.4345 116.576 18.4345C115.523 18.4345 115.054 18.5808 114.323 18.8441C113.591 19.1367 112.948 19.5464 112.421 20.1024V31.1045H108.324V15.2158V15.245Z"
+                          fill="currentColor" />
+                    <path d="M128.28 11.997C127.842 11.6459 127.637 11.1192 127.637 10.4462C127.637 9.77321 127.842 9.24651 128.28 8.89538C128.719 8.54425 129.363 8.36868 130.212 8.36868C131.06 8.36868 131.704 8.54425 132.143 8.89538C132.582 9.24651 132.787 9.77321 132.787 10.4462C132.787 11.1192 132.582 11.6459 132.143 11.997C131.704 12.3482 131.06 12.5237 130.212 12.5237C129.363 12.5237 128.719 12.3482 128.28 11.997ZM128.163 31.1338V15.245H132.26V31.1338H128.163Z"
+                          fill="currentColor" />
+                    <path d="M145.866 23.0577L152.304 31.1338H147.681L143.438 25.8083L139.166 31.1338H134.659L141.068 23.1455L134.806 15.245H139.429L143.526 20.395L147.622 15.245H152.099L145.837 23.0577H145.866Z"
+                          fill="currentColor" />
+                    <path d="M36.0789 0.0585327H25.4864C24.9208 0.0585327 24.4623 0.517055 24.4623 1.08267V11.6752C24.4623 12.2408 24.9208 12.6993 25.4864 12.6993H36.0789C36.6445 12.6993 37.1031 12.2408 37.1031 11.6752V1.08267C37.1031 0.517055 36.6445 0.0585327 36.0789 0.0585327Z"
+                          fill="#F0001E" />
+                    <path d="M36.0789 24.7256H25.3986C25.1353 24.7256 24.8719 24.8426 24.6963 25.0182L19.5171 30.0219C19.1075 30.4023 18.493 30.4023 18.0833 30.0219L8.01753 19.956L7.49083 19.4001C7.31527 19.2245 7.22748 19.0197 7.19822 18.7856C7.19822 18.7563 7.19822 18.7271 7.19822 18.6686C7.19822 18.6393 7.19822 18.61 7.19822 18.5515C7.19822 18.3467 7.31527 18.1126 7.49083 17.937L12.3482 12.9334C12.5237 12.7286 12.6408 12.4945 12.6408 12.2311V1.02414C12.6408 0.468177 12.1726 0 11.6166 0H1.02414C0.468177 0 0 0.468177 0 1.02414V12.2311C0 12.4945 0.117044 12.7578 0.292611 12.9334L5.14995 17.937C5.32552 18.1126 5.4133 18.3174 5.44256 18.5515C5.44256 18.5808 5.44256 18.61 5.44256 18.6686C5.44256 18.6978 5.44256 18.7271 5.44256 18.7856C5.44256 18.9904 5.32552 19.2245 5.14995 19.4001L0.292611 24.4037C0.117044 24.6086 0 24.8426 0 25.106V36.313C0 36.869 0.468177 37.3371 1.02414 37.3371H9.36354C9.36354 37.3371 9.53911 37.3371 9.80246 37.3371H11.6166C11.7044 37.3371 11.7922 37.3371 11.8507 37.3079C12.4067 37.2786 12.9627 37.0445 13.3723 36.6349L14.1331 35.9033L18.1126 32.0701C18.5223 31.6897 19.1367 31.6897 19.5464 32.0701L24.7256 37.0738C24.9304 37.2493 25.1645 37.3664 25.4279 37.3664H36.1082C36.6641 37.3664 37.1323 36.8982 37.1323 36.3422V25.7497C37.1323 25.1938 36.6641 24.7256 36.1082 24.7256H36.0789Z"
+                          fill="#F0001E" />
+                </svg>
+            </a>
+        </div>
+    </div>
+    <div class="h-search">
+        <div class="h-search__overlay"></div>
+        <div class="h-search__container">
+            <div class="container">
+                <form action="#" method="get" class="search-block search-form">
+                    <div class="search__input-group">
+                        <input type="search" name="s" class="search__input" placeholder="Пошук продукта" required>
+                        <button type="submit" class="btn btn_round search-submit"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="h-mega-menu">
+        <div class="container">
+            <div class="categories-grid">
+                    <a href="#" class="category-card">
+                        <h3 class="category-card__title category-with-decor">Риба &amp; Мясо</h3>
+                        <div class="category-card__img-wrap">
+                            <img src="images/catalog/prod-pannel-1.png" alt="Риба &amp; Мясо" class="category-card__img">
+                        </div>
+                        <span class="btn btn_main"><span class="icon"><img
+                                        src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути каталог</span>
+                    </a>
+                    <a href="#" class="category-card">
+                        <h3 class="category-card__title category-with-decor">Гастрономія</h3>
+                        <div class="category-card__img-wrap">
+                            <img src="images/catalog/prod-pannel-2.png" alt="Гастрономія" class="category-card__img">
+                        </div>
+                        <span class="btn btn_main"><span class="icon"><img
+                                        src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути каталог</span>
+                    </a>
+                    <a href="#" class="category-card">
+                        <h3 class="category-card__title category-with-decor">Напої</h3>
+                        <div class="category-card__img-wrap">
+                            <img src="images/catalog/prod-pannel-3.png" alt="Напої" class="category-card__img">
+                        </div>
+                        <span class="btn btn_main"><span class="icon"><img
+                                        src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути каталог</span>
+                    </a>
+                    <a href="#" class="category-card">
+                        <h3 class="category-card__title category-with-decor">Яйця</h3>
+                        <div class="category-card__img-wrap">
+                            <img src="images/catalog/prod-pannel-4.png" alt="Яйця" class="category-card__img">
+                        </div>
+                        <span class="btn btn_main"><span class="icon"><img
+                                        src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути каталог</span>
+                    </a>
+                    <a href="#" class="category-card">
+                        <h3 class="category-card__title category-with-decor">Овочі</h3>
+                        <div class="category-card__img-wrap">
+                            <img src="images/catalog/prod-pannel-5.png" alt="Овочі" class="category-card__img">
+                        </div>
+                        <span class="btn btn_main"><span class="icon"><img
+                                        src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Переглянути каталог</span>
+                    </a>
+            </div>
+        </div>
+    </div>
+</header>
+  <main class="main page page-blog">
+    <div class="animation-wrapper">
+        <div class="animation-view hero-layers-container">
+            <section class="section-under-banner hero-layer -back">
+                <div class="section__heading">
+                    <h1 class="staggered-heading text-dark">
+                        <span class="staggered-heading__line">Блог</span>
+                    </h1>
+                </div>
+            </section>
+
+            <section class="section-banner hero-layer -front">
+                <div class="banner-mask-wrapper">
+                    <div class="section-banner__bg">
+                        <img src="images/banner-home.jpg" alt="">
+                    </div>
+                    <div class="section__heading">
+                        <h1 class="staggered-heading text-white" aria-hidden="true">
+                            <span class="staggered-heading__line">Блог</span>
+                        </h1>
+                    </div>
+                    <div class="block-awards">
+                        <img src="images/block-awards.svg" alt="">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <section class="section-posts">
+        <div class="container">
+            <nav class="filter-category">
+                <div class="filter-category__item">
+
+                        <a href="#" class="btn btn_main btn_border btn_dark"><span class="icon"><img
+                                        src="images/icons/arrow-prev.svg" alt=""
+                                        aria-hidden="true"></span>Виробництво</a>
+
+                        <a href="#" class="btn btn_main btn_border btn_dark"><span class="icon"><img
+                                        src="images/icons/arrow-prev.svg" alt=""
+                                        aria-hidden="true"></span>Індустрія</a>
+
+                        <a href="#" class="btn btn_main btn_border btn_dark"><span class="icon"><img
+                                        src="images/icons/arrow-prev.svg" alt=""
+                                        aria-hidden="true"></span>Наші нагороди</a>
+
+                        <a href="#" class="btn btn_main btn_border btn_dark"><span class="icon"><img
+                                        src="images/icons/arrow-prev.svg" alt=""
+                                        aria-hidden="true"></span>Розробки</a>
+                </div>
+
+            </nav>
+            <h2 class="section-posts__title">Усі статті</h2>
+            <ul class="posts">
+                <li class="posts__item">
+                    <a href="single-post.html" class="card-article">
+                        <div class="card-article__thumb">
+                            <img src="images/thumb-post.jpg" alt="">
+                        </div>
+                        <h3 class="card-article__title">Сучасне пакування для мясної промисловості</h3>
+                        <span class="card-article__date">4 квітня, 2024</span>
+                    </a>
+                </li>
+                <li class="posts__item">
+                    <a href="single-post.html" class="card-article">
+                        <div class="card-article__thumb">
+                            <img src="images/thumb-post.jpg" alt="">
+                        </div>
+                        <h3 class="card-article__title">Сучасне пакування для мясної промисловості</h3>
+                        <span class="card-article__date">4 квітня, 2024</span>
+                    </a>
+                </li>
+                <li class="posts__item">
+                    <a href="single-post.html" class="card-article">
+                        <div class="card-article__thumb">
+                            <img src="images/thumb-post.jpg" alt="">
+                        </div>
+                        <h3 class="card-article__title">Сучасне пакування для мясної промисловості</h3>
+                        <span class="card-article__date">4 квітня, 2024</span>
+                    </a>
+                </li>
+                <li class="posts__item">
+                    <a href="single-post.html" class="card-article">
+                        <div class="card-article__thumb">
+                            <img src="images/thumb-post.jpg" alt="">
+                        </div>
+                        <h3 class="card-article__title">Сучасне пакування для мясної промисловості</h3>
+                        <span class="card-article__date">4 квітня, 2024</span>
+                    </a>
+                </li>
+                <li class="posts__item">
+                    <a href="single-post.html" class="card-article">
+                        <div class="card-article__thumb">
+                            <img src="images/thumb-post.jpg" alt="">
+                        </div>
+                        <h3 class="card-article__title">Сучасне пакування для мясної промисловості</h3>
+                        <span class="card-article__date">4 квітня, 2024</span>
+                    </a>
+                </li>
+                <li class="posts__item">
+                    <a href="single-post.html" class="card-article">
+                        <div class="card-article__thumb">
+                            <img src="images/thumb-post.jpg" alt="">
+                        </div>
+                        <h3 class="card-article__title">Сучасне пакування для мясної промисловості</h3>
+                        <span class="card-article__date">4 квітня, 2024</span>
+                    </a>
+                </li>
+                <li class="posts__item">
+                    <a href="single-post.html" class="card-article">
+                        <div class="card-article__thumb">
+                            <img src="images/thumb-post.jpg" alt="">
+                        </div>
+                        <h3 class="card-article__title">Сучасне пакування для мясної промисловості</h3>
+                        <span class="card-article__date">4 квітня, 2024</span>
+                    </a>
+                </li>
+                <li class="posts__item">
+                    <a href="single-post.html" class="card-article">
+                        <div class="card-article__thumb">
+                            <img src="images/thumb-post.jpg" alt="">
+                        </div>
+                        <h3 class="card-article__title">Сучасне пакування для мясної промисловості</h3>
+                        <span class="card-article__date">4 квітня, 2024</span>
+                    </a>
+                </li>
+                <li class="posts__item">
+                    <a href="single-post.html" class="card-article">
+                        <div class="card-article__thumb">
+                            <img src="images/thumb-post.jpg" alt="">
+                        </div>
+                        <h3 class="card-article__title">Сучасне пакування для мясної промисловості</h3>
+                        <span class="card-article__date">4 квітня, 2024</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="section-posts__footer">
+<nav class="pagination">
+    <a href="#" class="pagination__arrow pagination__prev">
+        <img src="images/icons/arrow-prev.svg" alt="Назад">
+    </a>
+    <ul class="pagination__list">
+        <li class="pagination__item"><a href="#" class="pagination__link">1</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link is-active">2</a></li>
+        <li class="pagination__item"><a href="#" class="pagination__link is-active">3</a></li>
+        <li class="pagination__item"><span class="pagination__dots">&hellip;</span></li>
+        <li class="pagination__item"><a href="#" class="pagination__link">33</a></li>
+    </ul>
+    <a href="#" class="pagination__arrow pagination__next">
+        <img src="images/icons/arrow-prev.svg" alt="Вперед">
+    </a>
+</nav>            </div>
+        </div>
+    </section>
+  </main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer_top">
+            <div class="footer__part">
+                <div class="footer__slogan section__heading">
+                    <h2 class="staggered-heading">
+                        <span class="staggered-heading__line">Більше,</span>
+                        <span class="staggered-heading__line">ніж просто</span>
+                        <span class="staggered-heading__line">упаковка</span>
+                    </h2>
+                </div>
+                <ul class="social-list">
+                    <li class="social-list__item">
+                        <a href="#">
+                            <img src="images/icons/ic-fb.svg" alt="Facebook">
+                        </a>
+                    </li>
+                    <li class="social-list__item">
+                        <a href="#">
+                            <img src="images/icons/ic-twitter.svg" alt="Twitter">
+                        </a>
+                    </li>
+                    <li class="social-list__item">
+                        <a href="#">
+                            <img src="images/icons/ic-google.svg" alt="Google">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__part">
+                <div class="menu">
+                    <div class="menu__item"><a href="about.html">Про нас</a></div>
+                    <div class="menu__item"><a href="page-catalog.html">Каталоги</a></div>
+                    <div class="menu__item"><a href="page-сertificates.html">Сертифікати</a></div>
+                    <div class="menu__item"><a href="page-blog.html">Блог</a></div>
+                    <div class="menu__item"><a href="page-contacts.html">Контакти</a></div>
+                </div>
+            </div>
+            <div class="footer__part">
+                <div class="working-hours">
+                    <h3>Робочі години</h3>
+                    <dl class="working-hours__content">
+                        <dt>Робочі дні</dt>
+                        <dd>8:00 – 20:00</dd>
+
+                        <dt>Субота</dt>
+                        <dd>9:00 – 16:00</dd>
+
+                        <dt>Неділя</dt>
+                        <dd class="closed">Зачинено</dd>
+
+                        <dt>Святкові дні</dt>
+                        <dd class="closed">Зачинено</dd>
+                    </dl>
+
+                </div>
+            </div>
+        </div>
+        <img src="images/icons/logo-xl.svg" alt="Leonix" class="logo_xl">
+        <div class="footer_bottom">
+            <div class="b-footer-item"><a href="mailto:nfo@leonix.com.ua">nfo@leonix.com.ua </a></div>
+            <div class="b-footer-item"><a href="tel:+380669842402">+38 066 984 24 02</a></div>
+            <div class="b-footer-item"><a href="tel:+380679834655 ">+38 067 983 46 55 </a></div>
+            <div class="b-footer-item">2026 Leonix. Усі права захищені</div>
+        </div>
+    </div>
+</footer></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.12.0/baguetteBox.min.js" integrity="sha512-HzIuiABxntLbBS8ClRa7drXZI3cqvkAZ5DD0JCAkmRwUtykSGqzA9uItHivDhRUYnW3MMyY5xqk7qVUHOEMbMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
