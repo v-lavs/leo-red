@@ -282,7 +282,9 @@ body.menu-open {
 }
 
 @include mixins.respond-to(variables.$xl) {
-
+.staggered-heading{
+  font-size: 82px;
+}
 }
 
 @include mixins.respond-to(variables.$lg) {

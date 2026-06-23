@@ -345,4 +345,8 @@
   }
 }
 
-
+@include mixins.respond-to(variables.$xl){
+  .overview-card__header {
+    font-size: 40px;
+  }
+}

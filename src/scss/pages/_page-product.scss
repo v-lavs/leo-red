@@ -33,13 +33,14 @@
 
 .product-labels {
   padding: 5px;
-  margin-bottom: 52px;
+  margin-bottom: 40px;
 
   &__item {
     border: 1px solid #000000;
     border-radius: 40px;
     display: inline-block;
     margin-right: 6px;
+    margin-bottom: 12px;
     padding: 12px 16px;
     font-weight: 400;
     font-size: 16px;
@@ -198,4 +199,9 @@
   max-width: 1006px;
   margin: 0 auto;
 }
+@include mixins.respond-to(variables.$xxl){
+  .page-product .page__title{
+    font-size: 70px;
+  }
 
+}
