@@ -541,7 +541,8 @@
         scrollTrigger: {
           trigger: baselineSection,
           start: "top 50%",
-          toggleActions: "play none none none"
+          toggleActions: "play none none none",
+          markers: true
         }
       });
     }
@@ -757,7 +758,6 @@
       });
     }
     initHeaderComponent();
-    initBaselineAnim();
     initSliderPartners();
     initTabs();
     initSplitTabs();
@@ -770,6 +770,7 @@
     initOpenSpecs();
     window.addEventListener("load", () => {
       initHeroAnimation();
+      initBaselineAnim();
     });
   }
 

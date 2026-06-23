@@ -323,6 +323,7 @@ export function init() {
                 trigger: baselineSection,
                 start: "top 50%",
                 toggleActions: "play none none none",
+                markers: true
             }
         });
     }
@@ -632,7 +633,7 @@ export function init() {
     // init function
     //===========================================================================
     initHeaderComponent();
-    initBaselineAnim();
+
     initSliderPartners();
     initTabs();
 
@@ -647,6 +648,7 @@ export function init() {
 
     window.addEventListener('load', () => {
         initHeroAnimation();
+        initBaselineAnim();
     });
     // window.addEventListener("load", () => {
     //   // Сначала регистрируем и создаем ВСЕ триггеры на странице

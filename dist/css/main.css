@@ -2699,9 +2699,6 @@ form .btn_submit {
   .container {
     max-width: 1180px;
   }
-  .container {
-    border: 2px solid red;
-  }
   .overview-card__header h3 {
     font-size: 36px;
   }
@@ -2712,17 +2709,11 @@ form .btn_submit {
     max-width: 980px;
     padding: 0 40px;
   }
-  .container {
-    border: 2px solid blue;
-  }
 }
 
 @media only screen and (max-width: 991px){
   .container {
     max-width: 870px;
-  }
-  .container {
-    border: 2px solid goldenrod;
   }
 }
 
@@ -2740,23 +2731,11 @@ form .btn_submit {
     padding: 0 20px;
     max-width: 640px;
   }
-  .container {
-    border: 2px solid greenyellow;
-  }
 }
 
 @media only screen and (max-width: 580px){
   .container {
     max-width: 100%;
-  }
-  .container {
-    border: 2px solid fuchsia;
-  }
-}
-
-@media only screen and (max-width: 420px){
-  .container {
-    border: 2px solid blueviolet;
   }
 }
 
