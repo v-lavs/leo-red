@@ -22,11 +22,7 @@
 <header class="header header_light">
     <div class="container">
         <div class="header__inner">
-            <button class="btn_burger" aria-label="Menu">
-                <span class="burger__line"></span>
-                <span class="burger__line"></span>
-                <span class="burger__line"></span>
-            </button>
+            <button class="btn_burger" aria-label="Menu"></button>
 
             <button type="button" class="btn_open-megamenu" aria-label="Головне меню каталогу"
                     aria-expanded="false"
@@ -132,8 +128,8 @@
   <main class="main page page-product">
     <article>
         <div class="container">
-            <div class="d-flex">
-                <div class="part product__info">
+            <div class="product-grid-container">
+                <div class="part grid-header ">
                     <div class="category-card__title  category-with-decor">гастрономія</div>
 
                     <h2 class="page__title">ЛОТОК 178X117X38</h2>
@@ -143,36 +139,6 @@
                         <li class="product-labels__item">Білий колір</li>
                         <li class="product-labels__item">Середній розмір</li>
                     </ul>
-
-                    <section class="product-description">
-                        <h2 class="product-description__title">
-                            <button type="button" class="product-description__trigger js-accordion-trigger"
-                                    aria-expanded="false"
-                                    aria-controls="accordion-description">
-                                <span class="icon"><img src="images/icons/arrow-prev.svg" alt=""
-                                                        aria-hidden="true"></span>
-                                Опис товару
-                            </button>
-                        </h2>
-                        <div id="accordion-description"
-                             class="product-description__content accordion-content js-accordion-content">
-                            <div class="product-description__inner">
-                                <div class="dynamic-content">
-                                    <p class="text_uppercase"><strong> Умови використання:</strong></p>
-                                    <ul>
-                                        <li>температура навколишнього середовища 0 – 300С</li>
-                                    </ul>
-                                    <p class="text_uppercase"><strong>Доступні варіанти за бажанням клієнта:</strong>
-                                    </p>
-                                    <ul>
-                                        <li> для заморозки (мін. -50С)</li>
-                                        <li>для глибокої заморозки (мін.-250С)</li>
-                                        <li>з слоєм РЕ</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
                 </div>
                 <div class="part wrap-product-slider">
                     <div class="splide product-slider" aria-label="Фото товару">
@@ -186,6 +152,35 @@
                         </div>
                     </div>
                 </div>
+                <section class="product-description">
+                    <h2 class="product-description__title">
+                        <button type="button" class="product-description__trigger js-accordion-trigger"
+                                aria-expanded="false"
+                                aria-controls="accordion-description">
+                                <span class="icon"><img src="images/icons/arrow-prev.svg" alt=""
+                                                        aria-hidden="true"></span>
+                            Опис товару
+                        </button>
+                    </h2>
+                    <div id="accordion-description"
+                         class="product-description__content accordion-content js-accordion-content">
+                        <div class="product-description__inner">
+                            <div class="dynamic-content">
+                                <p class="text_uppercase"><strong> Умови використання:</strong></p>
+                                <ul>
+                                    <li>температура навколишнього середовища 0 – 300С</li>
+                                </ul>
+                                <p class="text_uppercase"><strong>Доступні варіанти за бажанням клієнта:</strong>
+                                </p>
+                                <ul>
+                                    <li> для заморозки (мін. -50С)</li>
+                                    <li>для глибокої заморозки (мін.-250С)</li>
+                                    <li>з слоєм РЕ</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
 
             <section class="product-specs">
@@ -199,97 +194,97 @@
                     </button>
                 </h2>
                 <div id="accordion-specs" class="product-specs__content accordion-content js-accordion-content">
-                    <div class="product-specs__inner">
-                        <div class="product-specs__inner">
-                            <div class="product-specs__wrapper">
-                                <div class="product-specs__column">
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Призначення</div>
-                                        <div class="product-specs__value">Готові страви, риба, м'ясо</div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Матеріал</div>
-                                        <div class="product-specs__value">PP, PP-PE, PP-EVOH, PP-EVOH-PE, PET, PET-PE, PET-EVOH-PE</div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Вага </div>
-                                            <div class="product-specs__value">10,1 г. (+/-10%) </div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Довжина </div>
-                                        <div class="product-specs__value">178 </div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Висота </div>
-                                        <div class="product-specs__value">38 </div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Діаметр </div>
-                                        <div class="product-specs__value">38 </div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Колір </div>
-                                        <div class="product-specs__value">Білий, Прозорий, Чорний </div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Один пакет </div>
-                                        <div class="product-specs__value">Коробка + пакет </div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Кількість в упаковці </div>
-                                        <div class="product-specs__value">900 </div>
+
+                        <div class="product-specs__wrapper">
+                            <div class="product-specs__column">
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Призначення</div>
+                                    <div class="product-specs__value">Готові страви, риба, м'ясо</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Матеріал</div>
+                                    <div class="product-specs__value">PP, PP-PE, PP-EVOH, PP-EVOH-PE, PET, PET-PE,
+                                        PET-EVOH-PE
                                     </div>
                                 </div>
-
-                                <div class="product-specs__column">
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Тип піддона</div>
-                                        <div class="product-specs__value">Європіддон</div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Кількість</div>
-                                        <div class="product-specs__value">13500</div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Вага палети брутто </div>
-                                        <div class="product-specs__value">171 кг. </div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Вага палети нетто </div>
-                                        <div class="product-specs__value">145 кг. </div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Висота палети </div>
-                                        <div class="product-specs__value">1610 мм. </div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Розмір коробки </div>
-                                        <div class="product-specs__value">780x370x365 </div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Кількість коробок в ряд </div>
-                                        <div class="product-specs__value">3 </div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Кількість рядів </div>
-                                        <div class="product-specs__value">4 </div>
-                                    </div>
-                                    <div class="product-specs__row">
-                                        <div class="product-specs__label">Кількість коробок на палеті</div>
-                                        <div class="product-specs__value">12 </div>
-                                    </div>
-
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Вага</div>
+                                    <div class="product-specs__value">10,1 г. (+/-10%)</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Довжина</div>
+                                    <div class="product-specs__value">178</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Висота</div>
+                                    <div class="product-specs__value">38</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Діаметр</div>
+                                    <div class="product-specs__value">38</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Колір</div>
+                                    <div class="product-specs__value">Білий, Прозорий, Чорний</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Один пакет</div>
+                                    <div class="product-specs__value">Коробка + пакет</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Кількість в упаковці</div>
+                                    <div class="product-specs__value">900</div>
                                 </div>
                             </div>
+
+                            <div class="product-specs__column">
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Тип піддона</div>
+                                    <div class="product-specs__value">Європіддон</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Кількість</div>
+                                    <div class="product-specs__value">13500</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Вага палети брутто</div>
+                                    <div class="product-specs__value">171 кг.</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Вага палети нетто</div>
+                                    <div class="product-specs__value">145 кг.</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Висота палети</div>
+                                    <div class="product-specs__value">1610 мм.</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Розмір коробки</div>
+                                    <div class="product-specs__value">780x370x365</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Кількість коробок в ряд</div>
+                                    <div class="product-specs__value">3</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Кількість рядів</div>
+                                    <div class="product-specs__value">4</div>
+                                </div>
+                                <div class="product-specs__row">
+                                    <div class="product-specs__label">Кількість коробок на палеті</div>
+                                    <div class="product-specs__value">12</div>
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
+
                 </div>
             </section>
         </div>
     </article>
     <section class="section-similar">
         <div class="container">
-            <h2 class="section-similar__title">Більше статей</h2>
+            <h2 class="section-similar__title">Схожі товари</h2>
             <div class="slider-wrapper">
                 <div class="splide similar-products" role="group" aria-label="similar">
                     <div class="splide__track">
