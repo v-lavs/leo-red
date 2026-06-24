@@ -3,7 +3,7 @@
 
 .page-about .block-grey {
   padding: 160px 0;
-  margin-top: -30vh;
+  //margin-top: -30vh;
 }
 
 .section-about-material {
@@ -137,7 +137,7 @@
 @include mixins.respond-to(variables.$lg){
   .page-about .block-grey {
     padding: 0 0 160px;
-    margin-top: -45px;
+    //margin-top: -45px;
   }
   .cycle-step {
     max-width: 280px;

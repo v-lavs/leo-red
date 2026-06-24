@@ -24,6 +24,9 @@
 @include mixins.respond-to(variables.$md){
   .header__nav .menu{
     display: block;
+    height: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
   }
   .header__nav .menu__item{
     color: #000;

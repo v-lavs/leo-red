@@ -367,7 +367,12 @@
       tl.set(panel, { pointerEvents: "auto" });
       tl.fromTo(panel, { y: -140, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out" });
       if (content) {
-        tl.fromTo(content, { x: 100, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.5, ease: "power4.out" }, "-=0.2");
+        tl.fromTo(content, { x: 100, autoAlpha: 0 }, {
+          x: 0,
+          autoAlpha: 1,
+          duration: 0.5,
+          ease: "power4.out"
+        }, "-=0.2");
       }
       tl.eventCallback("onReverseComplete", () => {
         gsap.set(panel, { pointerEvents: "none" });
@@ -471,16 +476,94 @@
         }
       });
     }
+    function initMobMenu() {
+      const nav = document.querySelector(".header__nav");
+      const burger = document.querySelector(".btn_burger");
+      const menuLinks = document.querySelectorAll(".menu__link");
+      const body = document.body;
+      const btnClose = document.querySelector(".btn_close");
+      burger.addEventListener("click", (e) => {
+        e.preventDefault();
+        nav.classList.add("is_open");
+        body.classList.add("disable-scroll");
+      });
+      function closeMenu() {
+        nav.classList.remove("is_open");
+        body.classList.remove("disable-scroll");
+      }
+      btnClose.addEventListener("click", closeMenu);
+      menuLinks.forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+    }
     function initHeroAnimation() {
       if (!document.querySelector(".animation-view")) return;
       ScrollTrigger.config({ ignoreMobileResize: true });
+      gsap.fromTo(
+        ".section-banner .staggered-heading__line",
+        {
+          y: "50%",
+          // Спочатку слова сховані внизу під маскою
+          opacity: 0
+        },
+        {
+          y: "0%",
+          // Виринають вгору
+          opacity: 1,
+          duration: 2,
+          ease: "power3.out",
+          stagger: 0.25,
+          // Рядки з'являються по черзі
+          delay: 0.1
+          // Невеличка пауза після завантаження, щоб око встигло помітити
+        }
+      );
+      const spriteConfig = {
+        src: "images/plate-sprite.webp",
+        cols: 10,
+        totalFrames: 90,
+        frameWidth: 640,
+        frameHeight: 580
+      };
+      const canvas = document.querySelector(".canvas-container canvas");
+      let ctx = null;
+      const img = new Image();
+      if (canvas) {
+        ctx = canvas.getContext("2d");
+        canvas.width = spriteConfig.frameWidth;
+        canvas.height = spriteConfig.frameHeight;
+        img.src = spriteConfig.src;
+        img.onload = () => {
+          renderFrame(0);
+        };
+      }
+      function renderFrame(frameIndex) {
+        if (!ctx || !img.complete) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const cyclicFrame = frameIndex % spriteConfig.totalFrames;
+        const x = cyclicFrame % spriteConfig.cols * spriteConfig.frameWidth;
+        const y = Math.floor(cyclicFrame / spriteConfig.cols) * spriteConfig.frameHeight;
+        ctx.drawImage(
+          img,
+          x,
+          y,
+          spriteConfig.frameWidth,
+          spriteConfig.frameHeight,
+          0,
+          0,
+          canvas.width,
+          canvas.height
+          // Малюємо на всю внутрішню площу
+        );
+      }
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".animation-view",
           start: "top top",
-          end: "+=100%",
+          end: "+=200%",
+          // <-- Увеличили длину скролла со 100% до 150%, чтобы анимация не пролетала слишком быстро
           pin: true,
-          scrub: 1,
+          scrub: 1.8,
           invalidateOnRefresh: true
         }
       });
@@ -495,7 +578,7 @@
         // Стискаємо шторку знизу вгору до нуля
         ease: "none",
         duration: 1
-      }, 0);
+      }, 0.5);
       tl.fromTo(
         ".canvas-container",
         { clipPath: "inset(100% 0% 0% 0%)" },
@@ -506,6 +589,19 @@
         },
         0
       );
+      const plateTween = { currentFrame: 0 };
+      tl.to(plateTween, {
+        // currentFrame: spriteConfig.totalFrames - 1,
+        currentFrame: spriteConfig.totalFrames * 2 - 1,
+        snap: "currentFrame",
+        // Округляє значення до цілих кадрів (0, 1, 2...)
+        ease: "none",
+        duration: 1.5,
+        // Тривалість рівна 1, щоб анімація йшла синхронно з іншими елементами від початку до кінця скролу
+        onUpdate: () => {
+          renderFrame(plateTween.currentFrame);
+        }
+      }, 0);
       if (typeof my3DModel !== "undefined") {
         tl.to(my3DModel, {
           rotationY: Math.PI * 2,
@@ -535,9 +631,9 @@
         opacity: 1,
         scale: 1,
         y: 0,
-        duration: 0.6,
+        duration: 0.4,
         ease: "back.out(1.5)",
-        stagger: 0.6,
+        stagger: 0.4,
         scrollTrigger: {
           trigger: baselineSection,
           start: "top 50%",
@@ -758,7 +854,10 @@
         });
       });
     }
+    function initTabsSlider() {
+    }
     initHeaderComponent();
+    initMobMenu();
     initSliderPartners();
     initTabs();
     initSplitTabs();

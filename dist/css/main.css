@@ -127,6 +127,9 @@ body {
   display: flex;
   flex-direction: column;
 }
+body.disable-scroll {
+  overflow: hidden;
+}
 
 body.menu-open {
   overflow: hidden;
@@ -588,6 +591,7 @@ body.menu-open {
   position: relative;
   width: 100%;
   padding: 0 18px 20px;
+  min-height: 100vh;
   z-index: 0;
 }
 
@@ -639,6 +643,18 @@ body.menu-open {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.section-banner .staggered-heading__line {
+  opacity: 0;
+  overflow: hidden; /* Ховає текст, коли він зміщений вниз */
+  will-change: transform, opacity;
+  /* Примусово фіксує субпіксельне згладжування шрифту */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Прибирає мікро-зміщення при трансформаціях */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 .section-banner .staggered-heading.text-white {
   color: #ffffff;
@@ -699,10 +715,20 @@ body.menu-open {
   width: 100%;
   height: 100%;
   z-index: 3;
-  display: none;
+  display: none; /* Керується через GSAP */
   pointer-events: none;
   align-items: center;
   justify-content: center;
+}
+
+canvas {
+  display: block;
+  max-width: 550px; /* Вы можете изменить эту цифру, если тарелка покажется большой/маленькой */
+  max-height: 498.3px;
+  /* Автоматически рассчитываем высоту по пропорции кадра (580 / 640 = 0.906) */
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .section-about {
   position: relative;
@@ -1939,7 +1965,6 @@ form .btn_submit {
 }
 .page-about .block-grey {
   padding: 160px 0;
-  margin-top: -30vh;
 }
 
 .section-about-material {
@@ -2369,6 +2394,8 @@ form .btn_submit {
   display: flex;
   justify-content: flex-start;
   align-items: baseline;
+  position: relative;
+  z-index: 10;
 }
 .top-bar__title {
   font-weight: 300;
@@ -2871,7 +2898,6 @@ form .btn_submit {
   }
   .page-about .block-grey {
     padding: 0 0 160px;
-    margin-top: -45px;
   }
   .cycle-step {
     max-width: 280px;
@@ -2949,9 +2975,6 @@ form .btn_submit {
   .header__inner {
     padding: 28px 0 27px;
   }
-  .header__logo {
-    z-index: 100;
-  }
   .btn_open-megamenu {
     display: none;
   }
@@ -2969,15 +2992,14 @@ form .btn_submit {
     border-radius: 0 0 30px 30px;
     background-color: #ffffff;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-    transform: translateY(-140px);
-    opacity: 0;
+    height: 100vh;
+    transform: translateY(-100%);
     pointer-events: none;
     z-index: 0;
-    transition: 0.6s opacity, 0.8s transform;
+    transition: 0.8s transform;
   }
   .header__nav.is_open {
     transform: translateY(0);
-    opacity: 1;
     pointer-events: auto;
     z-index: 10;
   }
@@ -3087,6 +3109,9 @@ form .btn_submit {
   }
   .header__nav .menu {
     display: block;
+    height: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
   }
   .header__nav .menu__item {
     color: #000;
@@ -3237,6 +3262,13 @@ form .btn_submit {
     font-size: 26px;
     margin: 60px 0 12px;
   }
+  .header__nav {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .btn_close {
+    left: 24px;
+  }
   .footer_bottom {
     display: flex;
     justify-content: space-between;
@@ -3280,6 +3312,10 @@ form .btn_submit {
   }
   .block-awards {
     right: 20px;
+  }
+  canvas {
+    max-width: 420px; /* Вы можете изменить эту цифру, если тарелка покажется большой/маленькой */
+    width: 75%;
   }
   .baseline__wrapper-icon {
     width: 40px;
@@ -3644,6 +3680,12 @@ form .btn_submit {
   }
   .dynamic-content h3 {
     font-size: 24px;
+  }
+  .header__logo {
+    max-width: 101px;
+  }
+  .header__nav {
+    border-radius: 0 0 15px 15px;
   }
   .footer__part:nth-child(2) {
     display: none;

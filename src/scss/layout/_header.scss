@@ -166,9 +166,6 @@
   .header__inner {
     padding: 28px 0 27px ;
   }
-  .header__logo {
-    z-index: 100;
-  }
   .btn_open-megamenu {
     display: none;
   }
@@ -186,16 +183,15 @@
     border-radius: 0 0 30px 30px;
     background-color: #ffffff;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    height: 100vh;
 
-    transform: translateY(-140px);
-    opacity: 0;
+    transform: translateY(-100%);
     pointer-events: none;
     z-index: 0;
-    transition: .6s opacity, .8s transform;
+    transition:  .8s transform;
 
     &.is_open {
       transform: translateY(0);
-      opacity: 1;
       pointer-events: auto;
       z-index: 10;
     }
@@ -205,5 +201,22 @@
   }
   .header_light  .btn_open-search{
     filter: none;
+  }
+}
+@include mixins.respond-to(variables.$sm) {
+  .header__nav{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .btn_close{
+    left: 24px;
+  }
+}
+@include mixins.respond-to(variables.$xs) {
+  .header__logo{
+    max-width: 101px;
+  }
+  .header__nav{
+    border-radius: 0 0 15px 15px;
   }
 }
