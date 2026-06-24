@@ -4,14 +4,14 @@
 .page-product {
   article {
     padding-top: 100px;
+  }
 
-    .product-grid-container {
-      display: grid;
-      gap:0  20px ;
-      grid-template-columns: 40% 60%;
-      grid-template-rows: auto auto auto;
-      align-items: start;
-    }
+  .product-grid-container {
+    display: grid;
+    gap: 0 20px;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: auto auto auto;
+    align-items: start;
   }
 }
 
@@ -22,7 +22,7 @@
   margin-bottom: 40px;
 }
 
-.grid-header  {
+.grid-header {
   grid-column: 1;
   grid-row: 1;
 
@@ -91,6 +91,7 @@
   background-color: #E7E5E2;
   border-radius: 30px;
   padding: 99px 103px;
+
   .product-slider {
 
     img {
@@ -138,12 +139,14 @@
 .accordion-content > div {
   overflow: hidden;
 }
-.product-description{
+
+.product-description {
   grid-column: 1;
   grid-row: 2;
   justify-self: start;
 }
-.product-description__content .dynamic-content{
+
+.product-description__content .dynamic-content {
   font-weight: 300;
 }
 
@@ -209,17 +212,20 @@
   max-width: 1006px;
   margin: 0 auto;
 }
-@include mixins.respond-to(variables.$xxl){
-  .page-product .page__title{
+
+@include mixins.respond-to(variables.$xxl) {
+  .page-product .page__title {
     font-size: 70px;
   }
 }
-@include mixins.respond-to(variables.$xl){
-  .page-product .page__title{
+
+@include mixins.respond-to(variables.$xl) {
+  .page-product .page__title {
     font-size: 60px;
   }
 }
-@include mixins.respond-to(variables.$md){
+
+@include mixins.respond-to(variables.$md) {
   .page-product .page__title {
     font-size: 40px;
   }
@@ -235,4 +241,108 @@
   .certificates {
     padding-top: 80px;
   }
+}
+
+@include mixins.respond-to(variables.$sm) {
+  .page-product .product-grid-container {
+    display: block;
+  }
+  .page-product article {
+    padding-top: 60px;
+  }
+  .grid-header .category-card__title {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+  .page-product .page__title {
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+  .product-labels {
+    padding: 0;
+
+    &__item {
+      font-size: 12px;
+      padding: 6px 12px;
+    }
+  }
+  .wrap-product-slider {
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    padding: 50px 52px;
+  }
+  .wrap-product-slider .splide__arrow {
+    bottom: 23px;
+  }
+  .splide__arrow--prev {
+    left: 6px;
+  }
+  .splide__arrow--next {
+    right: 6px;
+  }
+  .product-specs {
+    padding-top: 16px;
+  }
+  .js-accordion-trigger{
+    margin-bottom: 24px;
+  }
+  .section-similar{
+    padding-top: 60px;
+  }
+
+  .section-similar__title {
+    font-size: 32px;
+  }
+}
+
+@include mixins.respond-to(variables.$xs) {
+  .page-product article {
+    padding-top: 32px;
+  }
+  .wrap-product-slider {
+    border-radius: 15px;
+  }
+  .product-specs__column,
+  .product-specs__row {
+    display: block;
+    width: 100%;
+  }
+  .product-specs__label,
+  .product-specs__value {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+  }
+  .product-specs__label{
+    text-transform: none;
+    font-weight: 400;
+  }
+  .product-specs__row{
+    padding: 20px;
+    border-bottom: 0.7px solid rgba(0, 0, 0, 0.1);
+    &:first-child{
+      border-top: 0.7px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+  .section-similar{
+    padding-top: 40px;
+  }
+  .section-similar__title {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
+  //.product-specs__label {
+  //  font-weight: normal;
+  //  color: #666; /* Робимо колір трохи м'якшим, як на макеті */
+  //  margin-bottom: 4px;  /* Відступ до тексту знизу */
+  //}
+  //.product-specs__value {
+  //  color: #333;
+  //  padding-bottom: 16px; /* Внутрішній відступ до лінії */
+  //  margin-bottom: 16px;  /* Зовнішній відступ між блоками */
+  //  border-bottom: 1px solid #e0e0e0; /* Сіра лінія знизу */
+  //}
 }

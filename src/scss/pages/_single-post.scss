@@ -62,5 +62,36 @@
   .post__cat {
     padding-top: 60px;
   }
+}
 
+@include mixins.respond-to(variables.$sm){
+  .post__title {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+  .post__thumb {
+    min-height: 374px;
+  }
+  .section-related{
+    padding-top: 40px;
+  }
+  .post{
+    padding-bottom: 20px;
+  }
+  .section-related__title {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+  .post__thumb{
+    margin-bottom: 60px;
+  }
+}
+
+@include mixins.respond-to(variables.$xs){
+  .post__title {
+    font-size: 24px;
+  }
+  .section-related__title {
+    font-size: 24px;
+  }
 }

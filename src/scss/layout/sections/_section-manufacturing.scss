@@ -468,10 +468,11 @@
     margin-top: 0;
     padding-left: 12px;
     padding-right: 12px;
+    font-size: 14px;
   }
   .overview-card {
     padding-top: 0;
-
+    border: none;
   }
   .overview-card__header{
     padding: 24px 2px -32px;
@@ -479,7 +480,7 @@
   .prod-overview__tabs-content{
     padding-left: 0;
   }
-  .overview-card__title{
+  .overview-card__header h3 {
     font-size: 32px;
   }
   .overview-card__icon{
@@ -499,9 +500,16 @@
   }
 }
 
-@include mixins.respond-to(variables.$sm) {
+@include mixins.respond-to(variables.$xs) {
   .overview-card {
-    border: none;
 
+  }
+}
+@include mixins.respond-to(variables.$xxs) {
+    .overview-card__header h3 {
+      font-size: 28px;
+    }
+  .prod-overview__tab-btn{
+    font-size: 12px;
   }
 }

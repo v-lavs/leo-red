@@ -74,13 +74,21 @@
   .baseline__wrapper {
     line-height: 40px;
   }
+  .section-about .section__heading {
+    margin-bottom: 32px;
+  }
 }
 @include mixins.respond-to(variables.$xs){
   .baseline__wrapper-icon {
-    width: 20px;
-    height: 20px;
+    width: 27px;
+    height: 27px;
   }
   .baseline__wrapper {
     line-height: 20px;
+    margin-bottom: 32px;
+    &.text_xl{
+      font-size: 18px;
+      line-height: 27px;
+    }
   }
 }

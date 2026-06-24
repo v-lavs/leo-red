@@ -51,9 +51,6 @@
   .section-contacts .section__part-right {
     padding-left: 40px;
   }
-  .section-contacts {
-    overflow: hidden;
-  }
 }
 
 @include mixins.respond-to(variables.$sm){

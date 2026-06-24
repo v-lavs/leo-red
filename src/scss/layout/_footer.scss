@@ -206,17 +206,17 @@
   .footer {
     padding: 48px 0;
   }
-  .social-list{
+  .social-list {
     padding-bottom: 32px;
   }
-  .working-hours_{
+  .working-hours_ {
     line-height: 30px;
   }
-  .working-hours__content{
+  .working-hours__content {
     gap: 4px;
-    font-weight: 700;
   }
-  .working-hours__content dt{
+  .footer .working-hours__content dd,
+  .footer .working-hours__content dt {
     font-weight: 700;
   }
   .footer_top {

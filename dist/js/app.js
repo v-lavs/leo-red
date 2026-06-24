@@ -654,7 +654,6 @@
         arrows: true,
         autoWidth: false,
         breakpoints: {
-          576: { perPage: 1 },
           768: { perPage: 2 }
         }
       });

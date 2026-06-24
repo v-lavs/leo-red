@@ -43,21 +43,20 @@
     <section class="section-posts">
         <div class="container">
             <nav class="filter-category">
-                <div class="filter-category__item">
-                    {% set cat_posts = [
-                        {  cat_posts: "Виробництво"},
-                        {  cat_posts: "Індустрія"},
-                        {  cat_posts: "Наші нагороди"},
-                        {  cat_posts: "Розробки"}
-                    ] %}
-                    {% for item in cat_posts %}
 
+                {% set cat_posts = [
+                    {  cat_posts: "Виробництво"},
+                    {  cat_posts: "Індустрія"},
+                    {  cat_posts: "Наші нагороди"},
+                    {  cat_posts: "Розробки"}
+                ] %}
+                {% for item in cat_posts %}
+                    <div class="filter-category__item">
                         <a href="#" class="btn btn_main btn_border btn_dark"><span class="icon"><img
                                         src="images/icons/arrow-prev.svg" alt=""
                                         aria-hidden="true"></span>{{ item.cat_posts }}</a>
-                    {% endfor %}
-                </div>
-
+                    </div>
+                {% endfor %}
             </nav>
             <h2 class="section-posts__title">Усі статті</h2>
             <ul class="posts">
@@ -73,19 +72,27 @@
                     {  title: "Сучасне пакування для мясної промисловості", date:"4 квітня, 2024"},
                     {  title: "Сучасне пакування для мясної промисловості", date:"4 квітня, 2024"},
                     {  title: "Сучасне пакування для мясної промисловості", date:"4 квітня, 2024"}
-                     ] %}
+                ] %}
                 {% for item in post_list %}
-                <li class="posts__item">
-                    <a href="single-post.html" class="card-article">
-                        <div class="card-article__thumb">
-                            <img src="images/thumb-post.jpg" alt="">
-                        </div>
-                        <h3 class="card-article__title">{{ item.title }}</h3>
-                        <span class="card-article__date">{{ item.date }}</span>
-                    </a>
-                </li>
+                    <li class="posts__item">
+                        <a href="single-post.html" class="card-article">
+                            <div class="card-article__thumb">
+                                <img src="images/thumb-post.jpg" alt="">
+                            </div>
+                            <h3 class="card-article__title">{{ item.title }}</h3>
+                            <span class="card-article__date">{{ item.date }}</span>
+                            <!-- Цей блок має бути лише в картках з категорії  Розробки. Посилання картки на ПДФ. Зараз у блока стоїть  дісплей нон-->
+                            <div style="display:none;" class="card-article__footer">
+                            <span class="btn btn_main btn_border btn_dark"><span class="icon"><img
+                                            src="images/icons/arrow-prev.svg" alt=""
+                                            aria-hidden="true"></span>Завантажити PDF</span>
+                            </div>
+                            <!--           end   card-article footer               -->
+                        </a>
+                    </li>
                 {% endfor %}
             </ul>
+
             <div class="section-posts__footer">
                 {% include "partials/pagination.njk" %}
             </div>

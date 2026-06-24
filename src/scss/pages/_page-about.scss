@@ -136,7 +136,7 @@
 
 @include mixins.respond-to(variables.$lg){
   .page-about .block-grey {
-    padding: 0 0 60px;
+    padding: 0 0 160px;
     margin-top: -45px;
   }
   .cycle-step {
@@ -163,7 +163,7 @@
 }
 @include mixins.respond-to(variables.$sm){
   .page-about .block-grey .text_md  {
-    line-height: 2;
+    line-height: 2.5;
     text-align: center;
   }
   .section-about-material p{
@@ -184,5 +184,10 @@
 @include mixins.respond-to(variables.$xs){
   .plastic-loop__title{
     font-size: 24px;
+  }
+  .page-about .block-grey {
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 0 0 15px 15px;
   }
 }

@@ -164,9 +164,7 @@
 
 @include mixins.respond-to(variables.$md) {
   .header__inner {
-    padding-top: 24px;
-    padding-bottom: 24px;
-
+    padding: 28px 0 27px ;
   }
   .header__logo {
     z-index: 100;

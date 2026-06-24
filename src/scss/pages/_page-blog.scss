@@ -2,7 +2,7 @@
 @use "../base/variables";
 
 .page-blog {
-  .hero-layer .section__heading{
+  .hero-layer .section__heading {
     width: auto;
   }
 }
@@ -16,15 +16,20 @@
     line-height: 1.05;
     margin-bottom: 48px;
   }
-  &__footer{
+
+  &__footer {
     text-align: center;
   }
 }
 
 .filter-category {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-bottom: 60px;
+
   &__item {
-    margin-right: 20px;
-    margin-bottom: 60px;
+    margin-bottom: 4px;
 
     &:last-child {
       margin-right: 0;
@@ -32,26 +37,28 @@
   }
 }
 
-.posts{
+.posts {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  &__item{
-    width: 30%;
-    flex-grow: 1;
+
+  &__item {
+    width: calc(33.333% - (20px * 2 / 3));
   }
 }
 
-.card-article{
+.card-article {
   display: block;
   padding-bottom: 28px;
-  &__thumb{
+
+  &__thumb {
     padding-top: 69%;
     position: relative;
     border-right: 10px;
     overflow: hidden;
     margin-bottom: 20px;
-    img{
+
+    img {
       position: absolute;
       left: 0;
       right: 0;
@@ -62,7 +69,8 @@
       object-fit: cover;
     }
   }
-  &__title{
+
+  &__title {
     font-weight: 300;
     font-size: 24px;
     line-height: 1.58;
@@ -74,15 +82,19 @@
     text-overflow: ellipsis;
     word-break: break-word;
   }
-  &__date{
+
+  &__date {
     font-weight: 400;
     font-size: 12px;
     line-height: 1.17;
     color: #7C7C7C;
   }
+  &__footer{
+    padding-top: 20px;
+  }
 }
 
-@include mixins.respond-to(variables.$lg){
+@include mixins.respond-to(variables.$lg) {
   .card-article__title {
     font-size: 20px;
   }
@@ -96,9 +108,51 @@
   .card-article__title {
     font-size: 18px;
   }
+  .card-article__thumb {
+    margin-bottom: 8px;
+  }
+  .card-article .card-article__title{
+    margin-bottom: 8px;
+  }
+  .card-article  .card-article__date{
+    font-size: 14px;
+  }
 }
-@include mixins.respond-to(variables.$md){
+
+@include mixins.respond-to(variables.$sm) {
   .section-posts {
     padding-top: 80px;
+  }
+  .filter-category {
+    gap: 16px;
+  }
+  .section-posts {
+    padding-top: 40px;
+  }
+  .section-posts__title {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+  .posts__item {
+    width: 48%;
+  }
+  .card-article__title {
+    font-weight: 400;
+  }
+}
+
+@include mixins.respond-to(variables.$xs) {
+
+  .posts {
+    gap: 24px;
+  }
+  .section-posts__title {
+    font-size: 24px;
+  }
+  .posts__item {
+    width: 100%;
+  }
+  .card-article {
+    padding-bottom: 0;
   }
 }

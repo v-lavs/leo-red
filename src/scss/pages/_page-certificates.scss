@@ -45,3 +45,25 @@
     flex-shrink: 0;
   }
 }
+
+@include mixins.respond-to(variables.$sm) {
+  .certificates {
+    padding-top:45px;
+  }
+  .certificates__item {
+    display: block;
+    margin-bottom: 42px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .certificates__title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+}
+
+@include mixins.respond-to(variables.$xs) {
+
+}
