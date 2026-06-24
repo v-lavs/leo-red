@@ -1217,7 +1217,7 @@ canvas {
 
 .overview-card__products-grid .category-card {
   background-color: #edeae8;
-  width: 23%;
+  width: 100%;
   border-radius: 0 0 16px 16px;
   padding: 22px 10px 96px;
   height: 330px;
@@ -1247,6 +1247,25 @@ canvas {
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.tab-slider .splide__track {
+  overflow: visible;
+}
+
+.tab-slider .splide__list {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 16px; /* Ваші десктопні відступи */
+}
+
+/* Картки на десктопі займають по 4 в ряд */
+.tab-slider .splide__slide {
+  width: calc((100% - 48px) / 4);
+}
+
+.tab-slider .splide__arrows {
+  display: none; /* Ховаємо стрілочки */
 }
 .btn {
   display: inline-flex;
@@ -1537,6 +1556,19 @@ form .btn_submit {
 .slider-wrapper {
   position: relative;
   padding: 0 70px;
+}
+
+.splide__pagination {
+  bottom: 0;
+  display: none;
+}
+
+.splide__pagination__page {
+  background: #D9D9D9;
+}
+.splide__pagination__page.is-active {
+  background: red;
+  transform: none;
 }
 .custom-checkbox {
   display: flex;
@@ -2026,11 +2058,6 @@ form .btn_submit {
   width: 100%;
 }
 
-.cycle-steps {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .cycle-step {
   width: 25%;
   max-width: 313px;
@@ -2041,17 +2068,17 @@ form .btn_submit {
 .cycle-step:hover {
   transform: translateY(-10px);
 }
-.cycle-step__title {
+.cycle-step .cycle-step__title {
   font-weight: 700;
   font-size: 24px;
   line-height: 1.25;
   text-align: center;
   margin-bottom: 24px;
 }
-.cycle-step__body {
+.cycle-step .cycle-step__body {
   padding: 0 24px;
 }
-.cycle-step__img {
+.cycle-step .cycle-step__img {
   position: relative;
   padding-top: 100%;
   width: 100%;
@@ -2059,7 +2086,7 @@ form .btn_submit {
   overflow: hidden;
   margin-bottom: 42px;
 }
-.cycle-step__img img {
+.cycle-step .cycle-step__img img {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -2086,6 +2113,15 @@ form .btn_submit {
 
 .cycle-step:nth-child(4) {
   z-index: 4;
+}
+
+.steps-slider .splide__track {
+  overflow: visible;
+}
+
+.cycle-steps.splide__list {
+  display: flex !important;
+  justify-content: flex-end;
 }
 .page-certificates .animation-view .section__heading {
   width: auto;
@@ -2751,8 +2787,8 @@ form .btn_submit {
   .container {
     max-width: 1280px;
   }
-  .overview-card__products-grid .category-card {
-    width: 31%;
+  .tab-slider .splide__slide {
+    width: calc((100% - 32px) / 3);
   }
   .page-product .page__title {
     font-size: 70px;
@@ -3085,8 +3121,8 @@ form .btn_submit {
   .overview-card__description {
     padding-left: 0;
   }
-  .overview-card__products-grid .category-card {
-    width: 23%;
+  .tab-slider .splide__slide {
+    width: calc((100% - 48px) / 4);
   }
   .btn_round {
     width: 55px;
@@ -3135,12 +3171,39 @@ form .btn_submit {
     min-height: 0;
     padding: 100px 0;
   }
-  .cycle-step {
-    width: 50%;
+  .steps-slider {
+    max-width: 642px;
+    margin-left: auto;
+    padding-bottom: 44px;
   }
-  .cycle-steps {
-    flex-wrap: wrap;
-    gap: 24px;
+  .steps-slider .splide__pagination {
+    display: flex;
+  }
+  .steps-slider .splide__track {
+    overflow: hidden !important;
+  }
+  .cycle-steps.splide__list {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 0;
+  }
+  .cycle-step.splide__slide {
+    max-width: none;
+    margin-left: 0;
+    flex: 0 0 auto;
+  }
+  .cycle-step.splide__slide:hover {
+    transform: none;
+  }
+  .cycle-step .cycle-step__img {
+    margin-bottom: 32px;
+  }
+  .cycle-step .cycle-step__title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .cycle-step__description {
+    line-height: 22.43px;
   }
   .post__title {
     margin-bottom: 60px;
@@ -3443,6 +3506,20 @@ form .btn_submit {
   .overview-card .dynamic-content li:before {
     top: 10px;
   }
+  .tab-slider {
+    padding-bottom: 44px;
+  }
+  .tab-slider .splide__track {
+    overflow: hidden; /* Обрізаємо зайві слайди для коректної роботи слайдера */
+  }
+  .tab-slider .splide__list {
+    flex-wrap: nowrap; /* Забороняємо перенос, будуємо картки в одну лінію */
+    gap: 0; /* Скидаємо CSS відступ, тепер ним керує JS параметр gap */
+  }
+  /* Скидаємо жорстку десктопну ширину, даємо Splide керувати розмірами */
+  .tab-slider .splide__slide {
+    width: auto;
+  }
   .btn_round {
     width: 50px;
     height: 50px;
@@ -3460,6 +3537,9 @@ form .btn_submit {
   .pagination {
     padding-top: 32px;
     font-size: 18px;
+  }
+  .splide__pagination {
+    display: flex;
   }
   .splide__arrow {
     width: 50px;
@@ -3727,6 +3807,9 @@ form .btn_submit {
     font-size: 18px;
     line-height: 27px;
   }
+  .overview-card__products-grid .category-card__title {
+    font-size: 14px;
+  }
   .plastic-loop__title {
     font-size: 24px;
   }
@@ -3734,6 +3817,10 @@ form .btn_submit {
     margin-left: 0;
     margin-right: 0;
     border-radius: 0 0 15px 15px;
+  }
+  .steps-slider {
+    max-width: 313px;
+    margin: 0 auto;
   }
   .posts {
     gap: 24px;

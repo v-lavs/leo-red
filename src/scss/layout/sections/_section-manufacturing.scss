@@ -204,7 +204,6 @@
   }
 }
 
-
 .prod-overview {
   display: flex;
   flex-wrap: nowrap;
@@ -241,7 +240,6 @@
   }
 
   &__panel {
-
     background-color: #F3F1EE;
   }
 }
@@ -287,7 +285,7 @@
     padding-bottom: 32px;
   }
 
-  &__products-grid {
+  &__products-grid{
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
@@ -312,7 +310,8 @@
 .overview-card__products-grid {
   .category-card {
     background-color: #edeae8;
-    width: 23%;
+    //width: 23%;
+    width: 100%;
     border-radius: 0 0 16px 16px;
     padding: 22px 10px 96px;
     height: 330px;
@@ -326,9 +325,6 @@
     }
 
     &__img-wrap {
-      //width: 157px;
-      //height: 140px;
-      //margin-left: -10px;
       height: 140px;
       margin-left: 0;
       object-fit: contain;
@@ -339,7 +335,6 @@
 
 .overview-card__image-wrap {
   width: 100%;
-
   img {
     display: block;
     margin: 0 auto;
@@ -350,9 +345,27 @@
   }
 }
 
+.tab-slider .splide__track {
+  overflow: visible;
+}
+.tab-slider .splide__list {
+  display: flex!important;
+  flex-wrap: wrap;
+  gap: 16px; /* Ваші десктопні відступи */
+}
+
+/* Картки на десктопі займають по 4 в ряд */
+.tab-slider .splide__slide {
+  width: calc((100% - (16px * 3)) / 4);
+}
+
+.tab-slider .splide__arrows {
+  display: none; /* Ховаємо стрілочки */
+}
+
 @include mixins.respond-to(variables.$xxl) {
-  .overview-card__products-grid .category-card {
-    width: 31%;
+  .tab-slider .splide__slide {
+    width: calc((100% - (16px * 2)) / 3);
   }
 }
 
@@ -438,8 +451,8 @@
   .overview-card__description {
     padding-left: 0;
   }
-  .overview-card__products-grid .category-card {
-    width: 23%;
+  .tab-slider .splide__slide {
+    width: calc((100% - (16px * 3)) / 4);
   }
 }
 
@@ -498,11 +511,28 @@
   .overview-card .dynamic-content li:before{
     top: 10px;
   }
+  .tab-slider {
+    padding-bottom: 44px;
+    .splide__track {
+      overflow: hidden; /* Обрізаємо зайві слайди для коректної роботи слайдера */
+    }
+  }
+
+  .tab-slider .splide__list {
+    flex-wrap: nowrap; /* Забороняємо перенос, будуємо картки в одну лінію */
+    gap: 0; /* Скидаємо CSS відступ, тепер ним керує JS параметр gap */
+  }
+
+  /* Скидаємо жорстку десктопну ширину, даємо Splide керувати розмірами */
+  .tab-slider .splide__slide {
+    width: auto;
+  }
+
 }
 
 @include mixins.respond-to(variables.$xs) {
-  .overview-card {
-
+  .overview-card__products-grid .category-card__title {
+    font-size: 14px;
   }
 }
 @include mixins.respond-to(variables.$xxs) {

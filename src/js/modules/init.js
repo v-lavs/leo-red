@@ -140,7 +140,7 @@ export function init() {
         const tl = gsap.timeline({paused: true});
 
         tl.set(panel, {pointerEvents: 'auto'});
-        tl.fromTo(panel, {y: -140, autoAlpha: 0}, {y: 0, autoAlpha: 1, duration: 0.25, ease: 'power1.out'});
+        tl.fromTo(panel, {y: '-100%', autoAlpha: 0}, {y: 0, autoAlpha: 1, duration: 0.5, ease: 'power3.out'});
 
         if (cards.length) {
             tl.fromTo(cards, {x: 140, autoAlpha: 0, scale: 0.96}, {
@@ -744,11 +744,97 @@ export function init() {
         });
     }
     //===========================================================================
-    // SLIDERS IN TABS
+    // SLIDERS IN TABS MOB
     //===========================================================================
-    function initTabsSlider (){
+    function initTabsSlider() {
+        const tabSliderElements = document.querySelectorAll('.tab-slider');
+        const tabSliders = [];
 
+        tabSliderElements.forEach((el) => {
+            const slider = new Splide(el, {
+                destroy: true, // на десктопі відразу вимкнено
+                breakpoints: {
+                    767: {
+                        destroy: false, // вмикається на мобільних
+                        type: 'slide',
+                        perPage: 4,
+                        perMove: 1,
+                        focus: 0,
+                        gap: '16px',
+                        arrows: false,
+                        pagination: true,
+                    },
+                    580: {
+                        perPage: 3,
+                        perMove: 1,
+                        gap: '16px',
+                    },
+                    490: {
+                        perPage: 2,
+                        perMove: 1,
+                        gap: '16px',
+                    }
+                }
+            });
+
+            slider.mount();
+            tabSliders.push(slider); // зберігаємо екземпляр слайдера
+        });
+
+        // БЕЗПЕЧНЕ ОНОВЛЕННЯ ТАБІВ ЧЕРЕЗ КЛІК
+        // Знайдіть, який клас мають ваші кнопки табів, і впишіть сюди замість .tab-button
+        const tabButtons = document.querySelectorAll('.prod-overview__tab-btn');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Використовуємо невеликий таймаут (100мс), щоб таб встиг повністю відкритися (display: block)
+                setTimeout(() => {
+                    tabSliders.forEach(slider => {
+                        // Перевіряємо, чи ми на мобільному і чи слайдер активний, перш ніж оновлювати
+                        if (window.innerWidth <= 767 && typeof slider.refresh === 'function') {
+                            slider.refresh(); // Спокійно оновлюємо без нескінченних циклів
+                        }
+                    });
+                }, 100);
+            });
+        });
     }
+
+    //===========================================================================
+    // SLIDER CYCLE-STEPS MOB
+    //===========================================================================
+    function initStepsSlider() {
+        const stepsSliderEl = document.querySelector('.steps-slider');
+
+        // Захист: якщо блоку на сторінці немає, просто виходимо
+        if (!stepsSliderEl) return;
+
+        // Запускаємо Splide через вашу робочу логіку з breakpoints
+        const slider = new Splide(stepsSliderEl, {
+            destroy: true, // На десктопі відразу вимкнено (ваша робоча логіка)
+            breakpoints: {
+                991: {
+                    destroy: false, // Вмикається на мобільних (ваша робоча логіка)
+                    type: 'slide',
+                    perPage: 2,
+                    perMove: 1,     // СУВОРO ПО 1 СЛАЙДУ ЗА РАЗ
+                    focus: 0,       // Фіксуємо фокус, щоб рахувало поштучно, а не сторінками
+                    gap: '16px',
+                    arrows: false,
+                    pagination: true,
+                },
+                580: {
+                    perPage: 1,
+                    perMove: 1,     // Тут також по 1 слайду
+                    focus: 0,
+                    gap: '16px',
+                }
+            }
+        });
+
+        slider.mount();
+    }
+
     //===========================================================================
     // init function
     //===========================================================================
@@ -765,6 +851,8 @@ export function init() {
     initSliderProduct();
     initSliderSimilarProducts();
     initOpenSpecs();
+    initTabsSlider ();
+    initStepsSlider();
 
     window.addEventListener('load', () => {
         initHeroAnimation();

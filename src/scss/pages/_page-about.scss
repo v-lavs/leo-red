@@ -52,13 +52,16 @@
     overflow: visible;
   }
 }
+
 .certificate-link {
   display: block;
   width: 100%;
   height: 100%;
 }
+
 .plastic-loop {
   padding-bottom: 100px;
+
   &__title {
     font-weight: 300;
     font-size: 40px;
@@ -67,12 +70,6 @@
     max-width: 417px;
     width: 100%;
   }
-}
-
-.cycle-steps {
-  display: flex;
-  justify-content: flex-end;
-
 }
 
 .cycle-step {
@@ -85,7 +82,9 @@
   &:hover {
     transform: translateY(-10px);
   }
-   &__title {
+
+  // Назви класів написані явно, щоб не було конфлікту з .splide__slide
+  .cycle-step__title {
     font-weight: 700;
     font-size: 24px;
     line-height: 1.25;
@@ -93,48 +92,58 @@
     margin-bottom: 24px;
   }
 
-    &__body {
-      padding: 0 24px;
-    }
+  .cycle-step__body {
+    padding: 0 24px;
+  }
 
-    &__img {
-      position: relative;
-      padding-top: 100%;
+  .cycle-step__img {
+    position: relative;
+    padding-top: 100%;
+    width: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 42px;
+
+    img {
+      position: absolute;
       width: 100%;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 42px;
-      img {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        inset: 0;
-      }
+      height: 100%;
+      object-fit: cover;
+      inset: 0;
     }
   }
+}
 
-  .cycle-step + .cycle-step {
-    margin-left: -36px;
-  }
+.cycle-step + .cycle-step {
+  margin-left: -36px;
+}
 
-  .cycle-step:nth-child(1) {
-    z-index: 1;
-  }
+.cycle-step:nth-child(1) {
+  z-index: 1;
+}
 
-  .cycle-step:nth-child(2) {
-    z-index: 2;
-  }
+.cycle-step:nth-child(2) {
+  z-index: 2;
+}
 
-  .cycle-step:nth-child(3) {
-    z-index: 3;
-  }
+.cycle-step:nth-child(3) {
+  z-index: 3;
+}
 
-  .cycle-step:nth-child(4) {
-    z-index: 4;
-  }
+.cycle-step:nth-child(4) {
+  z-index: 4;
+}
 
-@include mixins.respond-to(variables.$lg){
+.steps-slider .splide__track {
+  overflow: visible;
+}
+
+.cycle-steps.splide__list {
+  display: flex !important;
+  justify-content: flex-end;
+}
+
+@include mixins.respond-to(variables.$lg) {
   .page-about .block-grey {
     padding: 0 0 160px;
     //margin-top: -45px;
@@ -148,46 +157,89 @@
   }
 }
 
-@include mixins.respond-to(variables.$md){
+@include mixins.respond-to(variables.$md) {
   .section-about-material {
     min-height: 0;
     padding: 100px 0;
   }
-  .cycle-step {
-    width: 50%;
+  //.cycle-step {
+  //  width: 50%;
+  //}
+  //.cycle-steps {
+  //  flex-wrap: wrap;
+  //  gap: 24px;
+  //}
+  .steps-slider {
+    max-width: 642px;
+    margin-left: auto;
+    padding-bottom: 44px;
+
+    .splide__pagination {
+      display: flex;
+    }
+
+    .splide__track {
+      overflow: hidden !important;
+    }
   }
-  .cycle-steps {
-    flex-wrap: wrap;
-    gap: 24px;
+  .cycle-steps.splide__list {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  .cycle-step.splide__slide {
+    max-width: none;
+    margin-left: 0;
+    flex: 0 0 auto;
+
+    &:hover {
+      transform: none;
+    }
+  }
+  .cycle-step .cycle-step__img {
+    margin-bottom: 32px;
+  }
+  .cycle-step .cycle-step__title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .cycle-step__description {
+    line-height: 22.43px;
   }
 }
-@include mixins.respond-to(variables.$sm){
-  .page-about .block-grey .text_md  {
+
+@include mixins.respond-to(variables.$sm) {
+  .page-about .block-grey .text_md {
     line-height: 2.5;
     text-align: center;
   }
-  .section-about-material p{
-    line-height: 1.875 ;
+  .section-about-material p {
+    line-height: 1.875;
   }
   .section-about-material {
     padding: 76px 0;
   }
-.plastic-loop__title{
-  font-size: 32px;
-}
+  .plastic-loop__title {
+    font-size: 32px;
+  }
   .slider-certificates .splide__slide {
     width: 111px;
     height: 113px;
   }
 }
 
-@include mixins.respond-to(variables.$xs){
-  .plastic-loop__title{
+@include mixins.respond-to(variables.$xs) {
+  .plastic-loop__title {
     font-size: 24px;
   }
   .page-about .block-grey {
     margin-left: 0;
     margin-right: 0;
     border-radius: 0 0 15px 15px;
+  }
+  .steps-slider {
+    max-width: 313px;
+    margin: 0 auto;
   }
 }

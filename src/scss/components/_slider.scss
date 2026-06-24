@@ -39,14 +39,30 @@
   padding: 0 70px;
 }
 
+.splide__pagination {
+  bottom: 0;
+  display: none;
+}
+
+.splide__pagination__page {
+  background: #D9D9D9;
+}
+
 @include mixins.respond-to(variables.$md) {
   .splide__arrow {
     width: 55px;
     height: 55px;
   }
 }
+.splide__pagination__page.is-active {
+  background: red;
+  transform: none;
+}
 
 @include mixins.respond-to(variables.$sm) {
+  .splide__pagination {
+    display: flex;
+  }
   .splide__arrow {
     width: 50px;
     height: 50px;

@@ -80,17 +80,36 @@
             </div> {# <--- ТЕПЕРЬ ТЕГ ЗАКРЫВАЕТСЯ ЗДЕСЬ. Он закрывает .dynamic-content для ВСЕХ блоков! #}
 
             <!-- Независимая сетка всегда идет следом, снаружи текста -->
-            <div class="overview-card__products-grid">
-                {% for product in data.products %}
-                    <a href="#" class="category-card tech-block__product-card">
-                        <span class="category-card__title tech-block__product-category">{{ product.category }}</span>
-                        <div class="category-card__img-wrap">
-                            <img src="{{ product.image }}" alt="{{ product.category }}" class="category-card__img">
-                        </div>
-                    </a>
-                {% endfor %}
-            </div>
+{#            <div class="overview-card__products-grid">#}
+{#                {% for product in data.products %}#}
+{#                    <a href="#" class="category-card tech-block__product-card">#}
+{#                        <span class="category-card__title tech-block__product-category">{{ product.category }}</span>#}
+{#                        <div class="category-card__img-wrap">#}
+{#                            <img src="{{ product.image }}" alt="{{ product.category }}" class="category-card__img">#}
+{#                        </div>#}
+{#                    </a>#}
+{#                {% endfor %}#}
+{#            </div>#}
+            <div class="splide tab-slider">
+                <div class="splide__track">
+                    <!-- Ваша сітка тепер стає списком splide__list -->
+                    <div class="splide__list overview-card__products-grid">
 
+                        {% for product in data.products %}
+                            <!-- Кожна картка стає слайдом splide__slide -->
+                            <div class="splide__slide">
+                                <a href="#" class="category-card tech-block__product-card">
+                                    <span class="category-card__title tech-block__product-category">{{ product.category }}</span>
+                                    <div class="category-card__img-wrap">
+                                        <img src="{{ product.image }}" alt="{{ product.category }}" class="category-card__img">
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
         </div>
 
     </article>

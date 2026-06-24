@@ -97,19 +97,23 @@
                     description: "Упаковки очищають і подрібнюють, а отримані з них гранули використовують для виробництва подальших упаковок."
                 }
             ] %}
-            <ul class="cycle-steps">
-                {% for item in steps_list %}
-                    <li class="cycle-step">
-                        <div class="cycle-step__img">
-                            <img src="{{ item.image }}" alt="{{ item.title }}">
-                        </div>
-                        <div class="cycle-step__body">
-                            <h3 class="cycle-step__title">{{ item.title }}</h3>
-                            <div class="cycle-step__description">{{ item.description }}</div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
+            <div class="splide steps-slider">
+                <div class="splide__track">
+                    <ul class="cycle-steps splide__list">
+                        {% for item in steps_list %}
+                            <li class="cycle-step splide__slide">
+                                <div class="cycle-step__img">
+                                    <img src="{{ item.image }}" alt="{{ item.title }}">
+                                </div>
+                                <div class="cycle-step__body">
+                                    <h3 class="cycle-step__title">{{ item.title }}</h3>
+                                    <div class="cycle-step__description">{{ item.description }}</div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
     <section class="section-manufacturing">
