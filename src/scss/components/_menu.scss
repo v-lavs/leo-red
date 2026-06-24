@@ -20,3 +20,13 @@
     }
   }
 }
+
+@include mixins.respond-to(variables.$md){
+  .header__nav .menu{
+    display: block;
+  }
+  .header__nav .menu__item{
+    color: #000;
+    font-size: 22px;
+  }
+}

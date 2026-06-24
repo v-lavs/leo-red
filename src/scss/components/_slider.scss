@@ -33,3 +33,9 @@
   position: relative;
   padding: 0 70px;
 }
+@include mixins.respond-to(variables.$md){
+  .splide__arrow {
+    width: 55px;
+    height: 55px;
+  }
+}

@@ -52,7 +52,11 @@
     overflow: visible;
   }
 }
-
+.certificate-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .plastic-loop {
   padding-bottom: 100px;
   &__title {
@@ -74,7 +78,7 @@
 .cycle-step {
   width: 25%;
   max-width: 313px;
-  line-height: 2.5rem;
+  line-height: 2.5;
   text-align: center;
   transition: transform 0.5s ease;
 
@@ -99,7 +103,7 @@
       width: 100%;
       border-radius: 50%;
       overflow: hidden;
-
+      margin-bottom: 42px;
       img {
         position: absolute;
         width: 100%;
@@ -130,4 +134,55 @@
     z-index: 4;
   }
 
-  //.tab
+@include mixins.respond-to(variables.$lg){
+  .page-about .block-grey {
+    padding: 0 0 60px;
+    margin-top: -45px;
+  }
+  .cycle-step {
+    max-width: 280px;
+    line-height: 2;
+  }
+  .section-about-material {
+    min-height: 680px;
+  }
+}
+
+@include mixins.respond-to(variables.$md){
+  .section-about-material {
+    min-height: 0;
+    padding: 100px 0;
+  }
+  .cycle-step {
+    width: 50%;
+  }
+  .cycle-steps {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+}
+@include mixins.respond-to(variables.$sm){
+  .page-about .block-grey .text_md  {
+    line-height: 2;
+    text-align: center;
+  }
+  .section-about-material p{
+    line-height: 1.875 ;
+  }
+  .section-about-material {
+    padding: 76px 0;
+  }
+.plastic-loop__title{
+  font-size: 32px;
+}
+  .slider-certificates .splide__slide {
+    width: 111px;
+    height: 113px;
+  }
+}
+
+@include mixins.respond-to(variables.$xs){
+  .plastic-loop__title{
+    font-size: 24px;
+  }
+}

@@ -54,3 +54,13 @@
   position: initial;
 
 }
+
+@include mixins.respond-to(variables.$md){
+  .post__title{
+    margin-bottom: 60px;
+  }
+  .post__cat {
+    padding-top: 60px;
+  }
+
+}

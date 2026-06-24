@@ -2,7 +2,9 @@
 @use "../base/variables";
 
 .page-certificates {
-
+  .animation-view .section__heading {
+    width: auto;
+  }
 }
 
 .certificates {
@@ -16,13 +18,30 @@
     justify-content: space-between;
     gap: 30px;
     margin-bottom: 32px;
-    &:last-child{
+
+    &:last-child {
       margin-bottom: 0;
     }
   }
-  &__title{
+
+  &__title {
     font-weight: 300;
     font-size: 24px;
     line-height: 1.58;
+  }
+}
+
+@include mixins.respond-to(variables.$lg) {
+  .certificates__title {
+    font-size: 20px;
+  }
+  .page-contacts .block-grey .container {
+    padding: 0;
+  }
+  .tabs__nav-description {
+    line-height: 1.5;
+  }
+  .certificates__item .btn_dark {
+    flex-shrink: 0;
   }
 }

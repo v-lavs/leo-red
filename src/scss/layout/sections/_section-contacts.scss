@@ -14,6 +14,8 @@
   }
 }
 .contacts__list{
+  display: flex;
+  flex-direction: column;
   h3{
     font-weight: 700;
     font-size: 24px;
@@ -34,4 +36,46 @@
   a{
     display: block;
   }
+}
+
+@include  mixins.respond-to(variables.$lg){
+  .contacts__item {
+    font-size: 17px;
+  }
+  .contacts__list h3 {
+    font-size: 20px;
+  }
+}
+
+@include mixins.respond-to(variables.$md){
+  .section-contacts .section__part-right {
+    padding-left: 40px;
+  }
+  .section-contacts {
+    overflow: hidden;
+  }
+}
+
+@include mixins.respond-to(variables.$sm){
+  .contacts__list h3{
+    font-size: 16px;
+    line-height: 2;
+  }
+  .contacts__item {
+    font-size: 16px;
+  }
+  .section-contacts .d-flex{
+    flex-wrap: wrap;
+  }
+  .section-contacts   .section__part{
+    width: 100%;
+  }
+  .section-contacts  .section__part-right{
+    margin-bottom: 32px;
+    padding-left: 0;
+    order: -1;
+  }
+}
+@include mixins.respond-to(variables.$xs){
+
 }

@@ -5,9 +5,12 @@
   article {
     padding-top: 100px;
 
-    .d-flex {
-      gap: 20px;
-      align-items: flex-start;
+    .product-grid-container {
+      display: grid;
+      gap:0  20px ;
+      grid-template-columns: 40% 60%;
+      grid-template-rows: auto auto auto;
+      align-items: start;
     }
   }
 }
@@ -19,8 +22,9 @@
   margin-bottom: 40px;
 }
 
-.product__info {
-  width: 40%;
+.grid-header  {
+  grid-column: 1;
+  grid-row: 1;
 
   .category-card__title {
     display: inline-block;
@@ -82,7 +86,8 @@
 }
 
 .wrap-product-slider {
-  width: 60%;
+  grid-column: 2;
+  grid-row: 1 / span 3;
   background-color: #E7E5E2;
   border-radius: 30px;
   padding: 99px 103px;
@@ -132,6 +137,11 @@
 
 .accordion-content > div {
   overflow: hidden;
+}
+.product-description{
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: start;
 }
 .product-description__content .dynamic-content{
   font-weight: 300;
@@ -203,5 +213,26 @@
   .page-product .page__title{
     font-size: 70px;
   }
-
+}
+@include mixins.respond-to(variables.$xl){
+  .page-product .page__title{
+    font-size: 60px;
+  }
+}
+@include mixins.respond-to(variables.$md){
+  .page-product .page__title {
+    font-size: 40px;
+  }
+  .wrap-product-slider {
+    padding: 70px;
+  }
+  .product-specs__wrapper {
+    display: block;
+  }
+  .section-similar {
+    padding-top: 100px;
+  }
+  .certificates {
+    padding-top: 80px;
+  }
 }

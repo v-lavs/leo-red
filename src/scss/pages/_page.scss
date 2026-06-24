@@ -5,3 +5,9 @@
 .page-catalog{
   padding-top: 121px;
 }
+
+@include mixins.respond-to(variables.$md){
+  .page-product, .single-post, .page-catalog {
+    padding-top: 87px;
+  }
+}

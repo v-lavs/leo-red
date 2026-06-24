@@ -34,4 +34,8 @@ form{
     margin-top: 40px;
   }
 }
-
+@include mixins.respond-to(variables.$sm){
+  form .form-group{
+    margin-bottom: 12px;
+  }
+}

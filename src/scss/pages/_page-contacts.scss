@@ -2,6 +2,10 @@
 @use "../base/variables";
 
 .page-contacts {
+  .animation-view .section__heading {
+    width: auto;
+  }
+
   .textarea {
     height: 223px;
     padding-top: 26px;
@@ -9,7 +13,8 @@
 
   .block-grey {
     padding: 174px 50px 90px;
-    .container{
+
+    .container {
       padding: 52px 0;
     }
   }
@@ -27,11 +32,13 @@
     max-width: 640px;
     width: 50%;
   }
+
   .contacts__list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
   }
+
   .contacts__item {
     flex-direction: column;
     font-size: 24px;
@@ -39,10 +46,12 @@
     width: 48%;
     flex-grow: 1;
     gap: 0;
-    h3{
+
+    h3 {
       margin-bottom: 4px;
     }
-    .btn_dark{
+
+    .btn_dark {
       width: max-content;
     }
   }
@@ -69,7 +78,8 @@
 
   &__content {
     padding-top: 90px;
-    .container{
+
+    .container {
       position: relative;
     }
   }
@@ -86,10 +96,12 @@
     font-size: 16px;
     line-height: 2.5;
   }
-  .btn_dark{
+
+  .btn_dark {
     display: inline-flex;
   }
-  .tab-content{
+
+  .tab-content {
     background-color: #fff;
   }
 }
@@ -135,5 +147,25 @@
       object-fit: cover;
       z-index: 1;
     }
+  }
+}
+
+
+@include mixins.respond-to(variables.$lg) {
+  .page-contacts .contacts__item {
+    font-size: 20px;
+  }
+  .tabs__nav-item .text_md {
+    font-size: 24px;
+  }
+}
+
+@include mixins.respond-to(variables.$md) {
+  .page-contacts .block-grey {
+    padding: 0 50px 50px;
+  }
+
+  .tabs-nav__link {
+    padding: 32px 0 0;
   }
 }

@@ -1,8 +1,10 @@
 @use "./mixins";
 @use "./variables";
+
 select.js-custom-select {
   display: none !important;
 }
+
 html, body {
   height: auto;
   min-height: 100%;
@@ -240,9 +242,10 @@ body.menu-open {
   }
 
   a {
-    color:inherit;
+    color: inherit;
     text-decoration: underline;
     text-underline-offset: 4px;
+
     &:hover,
     &:focus {
       text-decoration: none;
@@ -282,45 +285,77 @@ body.menu-open {
 }
 
 @include mixins.respond-to(variables.$xxl) {
-.staggered-heading{
-  font-size: 82px;
-}
+  .staggered-heading {
+    font-size: 82px;
+  }
 
 }
+
 @include mixins.respond-to(variables.$xl) {
-
   .staggered-heading {
     font-size: 70px;
   }
 }
-@include mixins.respond-to(variables.$lg) {
 
+@include mixins.respond-to(variables.$lg) {
+  .staggered-heading {
+    font-size: 60px;
+  }
+  .section__heading {
+    padding: 40px 0 0 40px;
+
+    &:before {
+      width: 40px;
+      height: 40px;
+    }
+  }
 }
 
 @include mixins.respond-to(variables.$md) {
-  //.dynamic-content {
-  //  p, ul, ol {
-  //    margin: 24px 0;
-  //    line-height: 1.85;
-  //  }
-  //
-  //  h2,
-  //  h3, h4, h5, h6 {
-  //    margin-top: 32px;
-  //    margin-bottom: 24px;
-  //  }
-  //  li:before{
-  //    left: 12px;
-  //    top: -18px;
-  //  }
-  //  li,
-  //  ol li {
-  //    padding-left: 32px;
-  //    &:before{
-  //      left: 10px;
-  //    }
-  //  }
-  //}
+  .main {
+    padding-bottom: 100px;
+  }
+  .staggered-heading {
+    font-size: 50px;
+  }
+  .section__heading {
+    padding: 30px 0 0 30px;
+    margin-bottom: 60px;
+  }
+  .section__heading:before {
+    width: 30px;
+    height: 30px;
+  }
+  .section {
+    padding-top: 100px;
+  }
+  .dynamic-content {
+    h3 {
+      font-size: 28px;
+    }
+
+    //  p, ul, ol {
+    //    margin: 24px 0;
+    //    line-height: 1.85;
+    //  }
+    //
+    //  h2,
+    //  h3, h4, h5, h6 {
+    //    margin-top: 32px;
+    //    margin-bottom: 24px;
+    //  }
+    //  li:before{
+    //    left: 12px;
+    //    top: -18px;
+    //  }
+    //  li,
+    //  ol li {
+    //    padding-left: 32px;
+    //    &:before{
+    //      left: 10px;
+    //    }
+    //  }
+  }
 
 }
 
@@ -334,10 +369,36 @@ body.menu-open {
   .split-layout__col6 {
     width: 100%;
   }
+  .section__heading:before {
+    width: 15px;
+    height: 15px;
+  }
+  .animation-view .section__heading .staggered-heading {
+    font-size: 48px;
+  }
+  .section__heading {
+    padding-top: 15px;
+    padding-left: 15px;
+  }
+  .section {
+    padding-top: 60px;
+  }
+  .staggered-heading {
+    font-size: 36px;
+  }
+  .main {
+    padding-bottom: 80px;
+  }
 }
 
 @include mixins.respond-to(variables.$xs) {
-
+  .staggered-heading {
+    font-size: 32px;
+    line-height: 50px;
+  }
+  .section__heading {
+    margin-bottom: 32px;
+  }
   //.dynamic-content {
   //  p, ul, ol {
   //    margin: 16px 0;

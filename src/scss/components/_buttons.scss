@@ -76,3 +76,10 @@
     }
   }
 }
+
+@include mixins.respond-to(variables.$md){
+  .btn_round {
+    width: 55px;
+    height: 55px;
+  }
+}

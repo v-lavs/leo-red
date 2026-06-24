@@ -60,3 +60,28 @@
   padding: 32px 24px;
   width: 100%;
 }
+
+@include mixins.respond-to(variables.$xl){
+  .btn_open-search {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@include mixins.respond-to(variables.$md){
+  .btn_open-search {
+    width: 34px;
+    height: 34px;
+    background-color: transparent;
+    &:before {
+      width: 26px;
+      height: 26px;
+    }
+  }
+  .h-search {
+    padding-top: 120px;
+  }
+  .search__input {
+    font-size: 46px;
+  }
+}

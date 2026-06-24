@@ -1,16 +1,18 @@
 {% extends "layouts/base.njk" %}
 {% block title %}Home — {{ siteName }}{% endblock %}
 
-<svg width="0" height="0" style="position: absolute;">
-    <defs>
-        <clipPath id="bannerSvgMask" clipPathUnits="objectBoundingBox">
-            <path d="M 0,0 H 1 V 0.97 Q 1,1 0.97,1 H 0.03 Q 0,1 0,0.97 Z" />
-        </clipPath>
-    </defs>
-</svg>
-
 {% block main_class %}home{% endblock %}
 {% block content %}
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <clipPath id="bannerSvgMask" clipPathUnits="objectBoundingBox">
+                <path d="M 0,0 H 1 V 0.97 Q 1,1 0.97,1 H 0.03 Q 0,1 0,0.97 Z" />
+            </clipPath>
+            <clipPath id="bannerSvgMaskMob" clipPathUnits="objectBoundingBox">
+                <path d="M 0,0 H 1 V 0.98 Q 1,1 0.98,1 H 0.02 Q 0,1 0,0.98 Z" />
+            </clipPath>
+        </defs>
+    </svg>
     <div class="animation-wrapper">
 
         <div class="animation-view hero-layers-container">

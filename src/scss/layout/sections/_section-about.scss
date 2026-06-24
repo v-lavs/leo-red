@@ -54,3 +54,33 @@
 
   }
 }
+@include mixins.respond-to(variables.$md){
+  .baseline__wrapper {
+    margin-bottom: 64px;
+  }
+  .section-about {
+    padding: 96px 0;
+  }
+  .section-about .section__heading {
+    margin-bottom: 60px;
+  }
+
+}
+@include mixins.respond-to(variables.$sm){
+  .baseline__wrapper-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .baseline__wrapper {
+    line-height: 40px;
+  }
+}
+@include mixins.respond-to(variables.$xs){
+  .baseline__wrapper-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .baseline__wrapper {
+    line-height: 20px;
+  }
+}

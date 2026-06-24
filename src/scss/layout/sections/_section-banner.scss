@@ -9,9 +9,11 @@
   //z-index: 1;
   z-index: 0;
 }
+
 .banner-mask-wrapper {
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%; // GSAP зменшує висоту
   overflow: hidden;
@@ -20,6 +22,7 @@
   // Підключаємо наш новий контур
   clip-path: url(#bannerSvgMask);
 }
+
 // Запінений контейнер (фіксована коробка на 100vh)
 .animation-view {
   position: relative;
@@ -34,7 +37,10 @@
 // Загальні правила для шарів-сендвічів
 .hero-layer {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden; // Гарантує, що контент не випаде при обрізанні
 }
 
@@ -45,17 +51,26 @@
 
   &__bg {
     position: absolute;
-    top: 0; left: 0; width: 100%; bottom: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    bottom: 0;
     border-radius: 0 0 15px 15px;
     overflow: hidden;
     height: 100vh;
-    img { width: 100%; height: 100%; object-fit: cover; }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   .staggered-heading.text-white {
     color: #ffffff; // Чистий білий колір на тлі фото
   }
 }
+
 .banner-mask-wrapper {
   position: absolute;
   bottom: 0; // Прив'язуємо до низу (або top: 0, якщо шторка йде в інший бік. Якщо ховаємо знизу вгору — ставимо top: 0)
@@ -65,9 +80,10 @@
   height: 100%; // GSAP буде зменшувати цю висоту до 0%
 
   overflow: hidden;
-  border-radius: 0 0 30px 30px !important; // Твої залізобетонні 30px кути!
+  border-radius: 0 0 30px 30px;
   //will-change: height;
 }
+
 // ЗАДНІЙ ШАР: Сіра зона під банером
 .section-under-banner {
   z-index: 1; // Чекає знизу, поки зникне банер
@@ -113,13 +129,17 @@
 // Контейнер для твоєї 3D тарілки та гранул
 .canvas-container {
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 3;
   display: none;
   pointer-events: none;
   align-items: center;
   justify-content: center;
 }
+
 //.canvas-container {
 //  position: fixed;
 //  top: 0; left: 0; width: 100%; height: 100%;
@@ -130,4 +150,47 @@
 //  z-index: 3; // Найвищий рівень, щоб літало поверх усього контенту
 //  display: none;
 //}
+@include mixins.respond-to(variables.$xl) {
+  .animation-view .section__heading .staggered-heading {
+    font-size: 85px;
+  }
+  .block-awards {
+    max-width: 215px;
+  }
+}
 
+@include mixins.respond-to(variables.$lg) {
+  .animation-view .section__heading {
+    max-width: 623px;
+  }
+  .animation-view .section__heading .staggered-heading {
+    font-size: 75px;
+  }
+}
+
+@include mixins.respond-to(variables.$sm) {
+  .animation-view .section__heading {
+    max-width: 320px;
+  }
+  .block-awards {
+    right: 20px;
+  }
+}
+
+@include mixins.respond-to(variables.$xs) {
+  .animation-wrapper {
+    padding: 0 0 15px;
+  }
+  .section-banner,
+  .section-under-banner {
+    border-radius: 0 0 15px 15px;
+  }
+  .banner-mask-wrapper {
+    clip-path: url(#bannerSvgMaskMob);
+    border-radius: 0 0 15px 15px;
+  }
+
+  .block-awards {
+    right: 16px;
+  }
+}

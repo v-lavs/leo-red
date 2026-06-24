@@ -99,7 +99,7 @@ export function init() {
         tl.fromTo(panel, {y: -140, autoAlpha: 0}, {y: 0, autoAlpha: 1, duration: 0.5, ease: 'power3.out'});
 
         if (content) {
-            tl.fromTo(content, {x: 80, autoAlpha: 0}, {x: 0, autoAlpha: 1, duration: 0.5, ease: 'power4.out'}, '-=0.2');
+            tl.fromTo(content, {x: 100, autoAlpha: 0}, {x: 0, autoAlpha: 1, duration: 0.5, ease: 'power4.out'}, '-=0.2');
         }
 
         tl.eventCallback('onReverseComplete', () => {
@@ -138,12 +138,12 @@ export function init() {
         tl.fromTo(panel, {y: -140, autoAlpha: 0}, {y: 0, autoAlpha: 1, duration: 0.25, ease: 'power1.out'});
 
         if (cards.length) {
-            tl.fromTo(cards, {x: 80, autoAlpha: 0, scale: 0.96}, {
+            tl.fromTo(cards, {x: 140, autoAlpha: 0, scale: 0.96}, {
                 x: 0,
                 autoAlpha: 1,
                 scale: 1,
                 duration: 0.6,
-                stagger: 0.08,
+                stagger: 0.09,
                 ease: 'power1.out'
             }, '-=0.2');
         }
@@ -323,7 +323,6 @@ export function init() {
                 trigger: baselineSection,
                 start: "top 50%",
                 toggleActions: "play none none none",
-                markers: true
             }
         });
     }
@@ -521,9 +520,12 @@ export function init() {
             type: 'slide',
             drag: 'free',
             autoWidth: true,
-            gap: '18px',
+            gap: '12px',
             pagination: false,
-            arrows: false
+            arrows: false,
+            breakpoints:{
+                768: { gap: '18px',}
+            }
         }).mount();
 
         // 2. Запуск baguetteBox (Чистий текстовий селектор, який у вас працював)
@@ -649,14 +651,9 @@ export function init() {
     window.addEventListener('load', () => {
         initHeroAnimation();
         initBaselineAnim();
+          setTimeout(() => {
+            ScrollTrigger.refresh();
+          }, 100);
     });
-    // window.addEventListener("load", () => {
-    //   // Сначала регистрируем и создаем ВСЕ триггеры на странице
-    //   initBannerAnimations();
-    //
-    //   setTimeout(() => {
-    //     ScrollTrigger.refresh();
-    //   }, 100);
-    // });
 
 }
