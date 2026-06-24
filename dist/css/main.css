@@ -2753,9 +2753,6 @@ form .btn_submit {
   .container {
     max-width: 1180px;
   }
-  .container {
-    border: 2px solid red;
-  }
   .animation-view .section__heading .staggered-heading {
     font-size: 85px;
   }
@@ -2821,9 +2818,6 @@ form .btn_submit {
   .container {
     max-width: 980px;
     padding: 0 40px;
-  }
-  .container {
-    border: 2px solid blue;
   }
   .animation-view .section__heading {
     max-width: 623px;
@@ -3020,9 +3014,6 @@ form .btn_submit {
   }
   .container {
     max-width: 870px;
-  }
-  .container {
-    border: 2px solid goldenrod;
   }
   .baseline__wrapper {
     margin-bottom: 64px;
@@ -3283,9 +3274,6 @@ form .btn_submit {
   .container {
     padding: 0 20px;
     max-width: 640px;
-  }
-  .container {
-    border: 2px solid greenyellow;
   }
   .animation-view .section__heading {
     max-width: 320px;
@@ -3671,9 +3659,6 @@ form .btn_submit {
     max-width: 100%;
     padding: 0 16px;
   }
-  .container {
-    border: 2px solid fuchsia;
-  }
   .animation-wrapper {
     padding: 0 0 15px;
   }
@@ -3821,9 +3806,6 @@ form .btn_submit {
 }
 
 @media only screen and (max-width: 380px){
-  .container {
-    border: 2px solid blueviolet;
-  }
   .overview-card__header h3 {
     font-size: 28px;
   }
