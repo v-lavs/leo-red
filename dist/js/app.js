@@ -510,6 +510,36 @@
         link.addEventListener("click", closeMenu);
       });
     }
+    function initSidebar() {
+      const bntOpenSb = document.querySelector(".btn_open-sidebar");
+      const sidebar = document.querySelector(".sidebar");
+      const btnCloseSb = document.querySelector(".sidebar .btn_close");
+      const backdrop = document.querySelector(".sidebar-backdrop");
+      if (!sidebar || !backdrop) return;
+      if (bntOpenSb) {
+        bntOpenSb.addEventListener("click", (e) => {
+          e.preventDefault();
+          sidebar.classList.add("is_open");
+          backdrop.classList.add("show");
+          document.body.classList.add("disable-scroll");
+        });
+      }
+      function closeSidebar(e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        sidebar.classList.remove("is_open");
+        backdrop.classList.remove("show");
+        document.body.classList.remove("disable-scroll");
+      }
+      if (btnCloseSb) {
+        btnCloseSb.addEventListener("click", closeSidebar);
+      }
+      if (backdrop) {
+        backdrop.addEventListener("click", closeSidebar);
+      }
+    }
     function initHeroAnimation() {
       const container = document.querySelector(".animation-view");
       if (!container) return;
@@ -937,6 +967,7 @@
     initMobMenu();
     initSliderPartners();
     initTabs();
+    initSidebar();
     initSplitTabs();
     initSliderRelated();
     initCertificatesSlider();

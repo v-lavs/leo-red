@@ -5,13 +5,12 @@
 {% block title %}Каталог — {{ siteName }}{% endblock %}
 {% block main_class %}page page-catalog{% endblock %}
 {% block content %}
-
+    <div class="sidebar-backdrop"></div>
     <div class="container">
         <form action="/catalog" method="GET" class="catalog-filter">
             <div class="catalog-filter__header">
                 <div class="top-bar">
                     <h2 class="top-bar__title">Я шукаю контейнери для
-
                         <select class="js-custom-select category-select">
                             <option value="" disabled selected>всіх категорій</option>
                             <option value="gastronomy">гастрономії</option>
@@ -22,10 +21,8 @@
                             <option value="confectioner">кондитерських виробів</option>
                             <option value="dairy">молочної продукції</option>
                         </select>
-
                     </h2>
                 </div>
-
                 <div class="search-block">
                     <div class="search__input-group">
                         <input type="search" name="s" class="search__input" placeholder="Пошук продукта" required>
@@ -33,7 +30,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="tags-bar">
                 <ul class="tags-bar__list">
                     <li class="tag-item">Білий колір
@@ -59,8 +55,6 @@
                 </ul>
                 <button type="reset" class="filter-reset-btn">Скинути</button>
             </div>
-
-            <div class="sidebar-backdrop"></div>
             <div class="catalog-content">
                 <button type="button" class="btn_open-sidebar"></button>
                 <aside class="sidebar">

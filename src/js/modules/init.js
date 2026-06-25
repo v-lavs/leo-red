@@ -8,7 +8,6 @@ export function init() {
     //=====================================================================
     // SETTINGS HEADER
     //=====================================================================
-
     function initHeader() {
         const header = document.querySelector('.header');
 
@@ -292,170 +291,50 @@ export function init() {
     //=====================================================================
     // OPEN SIDEBAR
     //=====================================================================
-    // function initSidebar() {
-    //     const bntOpenSb = document.querySelector('.btn_open-sidebar');
-    //     const sidebar = document.querySelector('.sidebar');
-    //     const btnCloseSb = document.querySelector('.sidebar .btn_close');
-    //     const backdrop = document.querySelector('.sidebar-backdrop');
-    //     if (bntOpenSb) {
-    //         bntOpenSb.addEventListener('click', (e) => {
-    //             e.preventDefault();
-    //             sidebar.classList.add('is_open');
-    //             backdrop.classList.add('show');
-    //             document.body.classList.add('disable-scroll');
-    //         });
-    //     }
-    //
-    //     function closeSidebar(e) {
-    //         e.preventDefault();
-    //         e.stopPropagation();
-    //
-    //         sidebar.classList.remove('is_open');
-    //         backdrop.classList.remove('show');
-    //         document.body.classList.remove('disable-scroll');
-    //     }
-    //
-    //     btnCloseSb.addEventListener('click', closeSidebar);
-    //     backdrop.addEventListener('click', closeSidebar);
-    // }
+    function initSidebar() {
+        const bntOpenSb = document.querySelector('.btn_open-sidebar');
+        const sidebar = document.querySelector('.sidebar');
+        const btnCloseSb = document.querySelector('.sidebar .btn_close');
+        const backdrop = document.querySelector('.sidebar-backdrop');
+
+        // КРИТИЧНА ПЕРЕВІРКА: Якщо головних елементів немає на сторінці — просто виходимо
+        if (!sidebar || !backdrop) return;
+
+        // Відкриття сайдбару
+        if (bntOpenSb) {
+            bntOpenSb.addEventListener('click', (e) => {
+                e.preventDefault();
+                sidebar.classList.add('is_open');
+                backdrop.classList.add('show');
+                document.body.classList.add('disable-scroll');
+            });
+        }
+
+        // Функція закриття сайдбару
+        function closeSidebar(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            sidebar.classList.remove('is_open');
+            backdrop.classList.remove('show');
+            document.body.classList.remove('disable-scroll');
+        }
+
+        // Безпечно вішаємо слухачі, перевіряючи існування кнопок
+        if (btnCloseSb) {
+            btnCloseSb.addEventListener('click', closeSidebar);
+        }
+
+        if (backdrop) {
+            backdrop.addEventListener('click', closeSidebar);
+        }
+    }
 
     //=====================================================================
     // SECTION BANNER ANIMATION
     //=====================================================================
-//     function initHeroAnimation() {
-//         if (!document.querySelector(".animation-view")) return;
-//         ScrollTrigger.config({ignoreMobileResize: true});
-//
-//         gsap.fromTo(".section-banner .staggered-heading__line",
-//             {
-//                 y: "50%", // Спочатку слова сховані внизу під маскою
-//                 opacity: 0
-//             },
-//             {
-//                 y: "0%",   // Виринають вгору
-//                 opacity: 1,
-//                 duration: 2,
-//                 ease: "power3.out",
-//                 stagger: 0.25, // Рядки з'являються по черзі
-//                 delay: 0.1     // Невеличка пауза після завантаження, щоб око встигло помітити
-//             }
-//         );
-//         // --- НАЛАШТУВАННЯ ТАРІЛКИ (змініть цифри під свій файл) ---
-// // --- ТОЧНІ НАЛАШТУВАННЯ СІТКИ ---
-//         const spriteConfig = {
-//             src: 'images/plate-sprite.webp',
-//             cols: 10,
-//             totalFrames: 90,
-//             frameWidth: 640,
-//             frameHeight: 580
-//         };
-//
-//         const canvas = document.querySelector('.canvas-container canvas');
-//         let ctx = null;
-//         const img = new Image();
-//
-// // УСЯ логіка підготовки канвасу та завантаження картинки має бути ТІЛЬКИ ТУТ
-//         if (canvas) {
-//             ctx = canvas.getContext('2d');
-//             canvas.width = spriteConfig.frameWidth;
-//             canvas.height = spriteConfig.frameHeight;
-//
-//             img.src = spriteConfig.src;
-//             img.onload = () => {
-//                 renderFrame(0); // Малюємо перший кадр, коли тарілка завантажилась
-//             };
-//         }
-//
-//         function renderFrame(frameIndex) {
-//             if (!ctx || !img.complete) return;
-//             ctx.clearRect(0, 0, canvas.width, canvas.height);
-//
-//             const cyclicFrame = frameIndex % spriteConfig.totalFrames;
-//             const x = (cyclicFrame % spriteConfig.cols) * spriteConfig.frameWidth;
-//             const y = Math.floor(cyclicFrame / spriteConfig.cols) * spriteConfig.frameHeight;
-//
-//             ctx.drawImage(
-//                 img,
-//                 x, y, spriteConfig.frameWidth, spriteConfig.frameHeight,
-//                 0, 0, canvas.width, canvas.height // Малюємо на всю внутрішню площу
-//             );
-//         }
-//
-//         // --------------------------------------------------------
-//
-//         const tl = gsap.timeline({
-//             scrollTrigger: {
-//                 trigger: ".animation-view",
-//                 start: "top top",
-//                 end: "+=200%", // <-- Увеличили длину скролла со 100% до 150%, чтобы анимация не пролетала слишком быстро
-//                 pin: true,
-//                 scrub: 1.8,
-//                 invalidateOnRefresh: true,
-//             }
-//         });
-//
-//         // 1. Вмикаємо тарілку
-//         tl.set(".canvas-container", {display: "flex"}, 0);
-//
-//         // 2. Твій рідний стабільний clipPath для банера
-//         tl.to(".section-banner.hero-layer.-front", {
-//             clipPath: "inset(0% 0% 100% 0%)",
-//             ease: "none",
-//             duration: 1
-//         }, 0);
-//
-//         tl.to(".banner-mask-wrapper", {
-//             height: "0%",       // Стискаємо шторку знизу вгору до нуля
-//             ease: "none",
-//             duration: 1
-//         }, 0.5);
-//
-//         // 3. Синхронно відкриваємо тарілку
-//         tl.fromTo(".canvas-container",
-//             {clipPath: "inset(100% 0% 0% 0%)"},
-//             {
-//                 clipPath: "inset(0% 0% 0% 0%)",
-//                 ease: "none",
-//                 duration: 1
-//             }, 0);
-//
-//         // --- ІНТЕГРАЦІЯ АНІМАЦІЇ ТАРІЛКИ В ТАЙМЛАЙН ---
-//         const plateTween = {currentFrame: 0};
-//         tl.to(plateTween, {
-//             // currentFrame: spriteConfig.totalFrames - 1,
-//             currentFrame: (spriteConfig.totalFrames * 2) - 1,
-//             snap: "currentFrame", // Округляє значення до цілих кадрів (0, 1, 2...)
-//             ease: "none",
-//             duration: 1.5, // Тривалість рівна 1, щоб анімація йшла синхронно з іншими елементами від початку до кінця скролу
-//             onUpdate: () => {
-//                 renderFrame(plateTween.currentFrame);
-//             }
-//         }, 0); // Ставимо таймінг 0, щоб вона крутилася одночасно з відкриттям clipPath
-//         // --------------------------------------------------------
-//
-//         // 3D логіка
-//         if (typeof my3DModel !== 'undefined') {
-//             tl.to(my3DModel, {
-//                 rotationY: Math.PI * 2,
-//                 duration: 1,
-//                 ease: "none",
-//             }, 0);
-//         }
-//
-//         // Вимикач для третьої секції
-//         if (document.querySelector(".next-section")) {
-//             ScrollTrigger.create({
-//                 trigger: ".next-section",
-//                 start: "top top",
-//                 onEnter: () => {
-//                     gsap.set(".canvas-container", {display: "none"});
-//                 },
-//                 onLeaveBack: () => {
-//                     gsap.set(".canvas-container", {display: "flex"});
-//                 }
-//             });
-//         }
-//     }
     function initHeroAnimation() {
         const container = document.querySelector(".animation-view");
         if (!container) return;
@@ -590,6 +469,7 @@ export function init() {
             }
         }
     }
+
 //==============================================================================
 //  SECTION-ABOUT MEDIA STAGGER
 //  ============================================================================
@@ -729,7 +609,6 @@ export function init() {
     //==========================================================================
     //RELATED POSTS
     //==========================================================================
-
     function initSliderRelated() {
 
         if (!document.querySelector('.related-posts')) return null;
@@ -860,7 +739,6 @@ export function init() {
     //===========================================================================
     // CUSTOM SELECT
     //===========================================================================
-
     function initCustomSelect() {
         const customSelect = document.querySelector(".js-custom-select");
         if (customSelect) {
@@ -1014,11 +892,11 @@ export function init() {
     //===========================================================================
     // init function
     //===========================================================================
-    // initHeaderComponent();
+
     initMobMenu();
     initSliderPartners();
     initTabs();
-    // initSidebar();
+    initSidebar();
     initSplitTabs();
     initSliderRelated();
     initCertificatesSlider();
