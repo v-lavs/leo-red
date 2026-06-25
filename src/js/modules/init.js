@@ -273,32 +273,32 @@ export function init() {
     //=====================================================================
     // OPEN SIDEBAR
     //=====================================================================
-    function initSidebar() {
-        const bntOpenSb = document.querySelector('.btn_open-sidebar');
-        const sidebar = document.querySelector('.sidebar');
-        const btnCloseSb = document.querySelector('.sidebar .btn_close');
-        const backdrop = document.querySelector('.sidebar-backdrop');
-        if (bntOpenSb) {
-            bntOpenSb.addEventListener('click', (e) => {
-                e.preventDefault();
-                sidebar.classList.add('is_open');
-                backdrop.classList.add('show');
-                document.body.classList.add('disable-scroll');
-            });
-        }
-
-        function closeSidebar(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            sidebar.classList.remove('is_open');
-            backdrop.classList.remove('show');
-            document.body.classList.remove('disable-scroll');
-        }
-
-        btnCloseSb.addEventListener('click', closeSidebar);
-        backdrop.addEventListener('click', closeSidebar);
-    }
+    // function initSidebar() {
+    //     const bntOpenSb = document.querySelector('.btn_open-sidebar');
+    //     const sidebar = document.querySelector('.sidebar');
+    //     const btnCloseSb = document.querySelector('.sidebar .btn_close');
+    //     const backdrop = document.querySelector('.sidebar-backdrop');
+    //     if (bntOpenSb) {
+    //         bntOpenSb.addEventListener('click', (e) => {
+    //             e.preventDefault();
+    //             sidebar.classList.add('is_open');
+    //             backdrop.classList.add('show');
+    //             document.body.classList.add('disable-scroll');
+    //         });
+    //     }
+    //
+    //     function closeSidebar(e) {
+    //         e.preventDefault();
+    //         e.stopPropagation();
+    //
+    //         sidebar.classList.remove('is_open');
+    //         backdrop.classList.remove('show');
+    //         document.body.classList.remove('disable-scroll');
+    //     }
+    //
+    //     btnCloseSb.addEventListener('click', closeSidebar);
+    //     backdrop.addEventListener('click', closeSidebar);
+    // }
 
     //=====================================================================
     // SECTION BANNER ANIMATION
@@ -866,7 +866,7 @@ export function init() {
     initMobMenu();
     initSliderPartners();
     initTabs();
-    initSidebar();
+    // initSidebar();
     initSplitTabs();
     initSliderRelated();
     initCertificatesSlider();

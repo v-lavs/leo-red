@@ -252,13 +252,12 @@
 
     transform: translateX(-100%);
     opacity: 0;
-    transition: opasity .6s ease, transform .8s ease ;
-    will-change: transform, opaсity;
+    transition: opasity .8s ease, transform 0.6s ease ;
 
     &.is_open {
       opacity: 1;
       transform: translateX(0);
-      transition: transform 0.6s ease, opacity 0.8s ease ;
+      transition: transform 0.6s ease, opacity 1s ease ;
     }
 
     .btn_close {
