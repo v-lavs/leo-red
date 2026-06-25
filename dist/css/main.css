@@ -3265,13 +3265,12 @@ form .btn_submit {
     padding: 60px 0 60px 20px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     border-radius: 0 30px 30px 0;
-    height: 100%;
-    max-height: 100vh;
+    height: 100vh;
     overflow-y: auto;
+    flex-shrink: 1;
     transform: translateX(-100%);
     opacity: 0;
-    transition: opasity 0.6s ease, transform 0.8s ease;
-    will-change: transform, opaсity;
+    transition: opasity 0.2s ease, transform 0.8s ease;
   }
   .sidebar .btn_close {
     display: block;
@@ -3281,7 +3280,7 @@ form .btn_submit {
   .sidebar.is_open {
     opacity: 1;
     transform: translateX(0);
-    transition: transform 0.8s ease, opacity 0.6s ease;
+    transition: transform 0.8s ease;
   }
   .catalog-content {
     position: relative;
