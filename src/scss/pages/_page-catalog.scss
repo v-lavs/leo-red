@@ -214,27 +214,23 @@
     }
   }
 }
-
-.sidebar-backdrop {
+.sidebar-backdrop{
   position: fixed;
-  inset: 0;
-  background-color: rgba(255, 255, 255, .8);
-
+  inset:0;
+  background-color: rgba(255,255,255, .8);
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
   z-index: -1;
-  transition: opacity 0.8s ease, visibility 0s linear 0.8s;
-
-  &.show {
+  transition:  0.8s;
+  &.show{
     opacity: 1;
     pointer-events: auto;
     visibility: visible;
     z-index: 10;
-    transition: opacity 0.8s ease, visibility 0s linear 0s;
+    transition:  0.8s;
   }
 }
-
 @include mixins.respond-to(variables.$md) {
   .top-bar__title {
     font-size: 46px;
@@ -250,32 +246,26 @@
     padding: 60px 0 60px 20px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     border-radius: 0 30px 30px 0;
-    height: 100vh;
+    height: 100%;
+    max-height: 100vh;
     overflow-y: auto;
-    flex-shrink: 1;
 
     transform: translateX(-100%);
     opacity: 0;
-    transition: opasity .2s ease, transform .8s ease;
+    transition: opasity .6s ease, transform .8s ease ;
+    will-change: transform, opaсity;
+
+    &.is_open {
+      opacity: 1;
+      transform: translateX(0);
+      transition: transform 0.6s ease, opacity 0.8s ease ;
+    }
 
     .btn_close {
       display: block;
       left: 12px;
       top: 16px;
     }
-  }
-  //.sidebar.is_open {
-  //  opacity: 1;
-  //  transform: translateX(0);
-  //  transition: transform 0.8s ease;
-  //}
-  &.is_closing {
-    animation: slideOut 0.6s ease-in-out forwards;
-  }
-
-  /* Клас відкриття, який запускає плавне виникнення */
-  &.is_open {
-    animation: slideIn 0.6s ease-in-out forwards;
   }
   .catalog-content {
     position: relative;
