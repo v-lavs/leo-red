@@ -54,6 +54,7 @@
     height: 55px;
   }
 }
+
 .splide__pagination__page.is-active {
   background: red;
   transform: none;
@@ -69,7 +70,7 @@
   }
 
   .section-related,
-  .similar-products {
+  .section-similar {
     .slider-wrapper {
       padding: 0 0 82px;
     }
