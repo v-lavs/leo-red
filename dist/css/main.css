@@ -3892,9 +3892,11 @@ form .btn_submit {
   .tabs__nav {
     display: block;
   }
+  .tabs__nav-item {
+    width: 100%;
+  }
   .tabs__nav-item .text_md {
     font-weight: 500;
-    font-size: 18px;
   }
   .page-contacts .textarea {
     height: 90px;

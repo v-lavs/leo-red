@@ -352,7 +352,7 @@ export function init() {
             }
         );
 
-        // 2. Конфігурація спрайту та Канвасу (якщо він є)
+        // // 2. Конфігурація спрайту та Канвасу (якщо він є)
         const spriteConfig = {
             src: 'images/plate-sprite.webp',
             cols: 10,
@@ -360,6 +360,7 @@ export function init() {
             frameWidth: 640,
             frameHeight: 580
         };
+
 
         const canvas = document.querySelector('.canvas-container canvas');
         let ctx = null;

@@ -248,9 +248,11 @@
   .tabs__nav {
     display: block;
   }
-  .tabs__nav-item .text_md {
-    font-weight: 500;
-    font-size: 18px;
+  .tabs__nav-item {
+    width: 100%;
+    .text_md {
+      font-weight: 500;
+    }
   }
   .page-contacts .textarea {
     height: 90px;
