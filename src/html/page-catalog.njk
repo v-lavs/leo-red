@@ -60,143 +60,152 @@
                 <button type="reset" class="filter-reset-btn">Скинути</button>
             </div>
 
+            <div class="sidebar-backdrop"></div>
             <div class="catalog-content">
                 <button type="button" class="btn_open-sidebar"></button>
                 <aside class="sidebar">
-                    <button class="btn_close">
-                        <img src="images/icons/btn-close.svg" alt="Видалити тег">
-                    </button>
-                    <div class="sidebar__body">
-                        <div class="sidebar__section">
-                            <a href="#"
-                               class="sidebar__heading sidebar__heading_toggle"
-                               data-toggle="collapse"
-                               data-target="#size-filter">Розмір</a>
-                            <div class="collapse" id="size-filter">
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="size" value="size-xl" class="custom-checkbox__input">
-                                    <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Великий</span>
-
-                                </label>
-
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="size" value="size-md" class="custom-checkbox__input">
-                                    <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Середній</span>
-
-                                </label>
-
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="size" value="size-sm" class="custom-checkbox__input">
-                                    <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Малий</span>
-
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="sidebar__section">
-                            <a href="#"
-                               class="sidebar__heading sidebar__heading_toggle"
-                               data-toggle="collapse"
-                               data-target="#type-dish-filter">Тип страви</a>
-                            <div class="collapse" id="type-dish-filter">
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="dish-type" value="cool" class="custom-checkbox__input">
-                                    <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Холодні страви</span>
-                                </label>
-
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="dish-type" value="hot" class="custom-checkbox__input">
-                                    <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Гарчі страви</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="sidebar__section">
-                            <a href="#"
-                               class="sidebar__heading sidebar__heading_toggle"
-                               data-toggle="collapse"
-                               data-target="#type-product-filter">Тип продукту</a>
-                            <div class="collapse" id="type-product-filter">
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="product-type" value="ready-meals"
-                                           class="custom-checkbox__input">
-                                    <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Готові перші та другі страви</span>
-
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="product-type" value="salads"
-                                           class="custom-checkbox__input">
-                                    <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Салати та холодні закуски</span>
-
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="product-type" value="sauces"
-                                           class="custom-checkbox__input">
-                                    <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Соуси, пасти та хумус</span>
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="product-type" value="marinades"
-                                           class="custom-checkbox__input">
-                                    <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Оливки, соління та маринади</span>
-                                </label>
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="product-type" value=frozen-cooking"
-                                           class="custom-checkbox__input">
-                                    <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Заморожена кулінарія</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="sidebar__section">
-                            <a href="#"
-                               class="sidebar__heading sidebar__heading_toggle"
-                               data-toggle="collapse"
-                               data-target="#color-filter">Колір</a>
-                            <div class="collapse" id="color-filter">
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="color" value="black" class="custom-checkbox__input">
-                                    <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Чорний</span>
-
-                                </label>
-
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="color" value="white" class="custom-checkbox__input">
-                                    <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Білий</span>
-
-                                </label>
-
-                                <label class="custom-checkbox">
-                                    <input type="checkbox" name="color" value="transparent"
-                                           class="custom-checkbox__input">
-                                    <span class="custom-checkbox__box"></span>
-                                    <span class="custom-checkbox__label">Прозорий</span>
-
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sidebar__footer">
-                        <button type="submit" class="btn btn_main btn_border btn_dark"><span class="icon"><img
-                                        src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Застосувати
-                            фільтри
+                    <div class="sidebar__inner">
+                        <button class="btn_close">
+                            <img src="images/icons/btn-close.svg" alt="Видалити тег">
                         </button>
-                        <a href="#" class="btn btn_main btn_border btn_dark" download><span class="icon"><img
-                                        src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Завантажити
-                            каталог</a>
-                    </div>
+                        <div class="sidebar__body">
+                            <div class="sidebar__section">
+                                <a href="#"
+                                   class="sidebar__heading sidebar__heading_toggle"
+                                   data-toggle="collapse"
+                                   data-target="#size-filter">Розмір</a>
+                                <div class="collapse" id="size-filter">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="size" value="size-xl"
+                                               class="custom-checkbox__input">
+                                        <span class="custom-checkbox__box"></span>
+                                        <span class="custom-checkbox__label">Великий</span>
 
+                                    </label>
+
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="size" value="size-md"
+                                               class="custom-checkbox__input">
+                                        <span class="custom-checkbox__box"></span>
+                                        <span class="custom-checkbox__label">Середній</span>
+
+                                    </label>
+
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="size" value="size-sm"
+                                               class="custom-checkbox__input">
+                                        <span class="custom-checkbox__box"></span>
+                                        <span class="custom-checkbox__label">Малий</span>
+
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="sidebar__section">
+                                <a href="#"
+                                   class="sidebar__heading sidebar__heading_toggle"
+                                   data-toggle="collapse"
+                                   data-target="#type-dish-filter">Тип страви</a>
+                                <div class="collapse" id="type-dish-filter">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="dish-type" value="cool"
+                                               class="custom-checkbox__input">
+                                        <span class="custom-checkbox__box"></span>
+                                        <span class="custom-checkbox__label">Холодні страви</span>
+                                    </label>
+
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="dish-type" value="hot"
+                                               class="custom-checkbox__input">
+                                        <span class="custom-checkbox__box"></span>
+                                        <span class="custom-checkbox__label">Гарчі страви</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="sidebar__section">
+                                <a href="#"
+                                   class="sidebar__heading sidebar__heading_toggle"
+                                   data-toggle="collapse"
+                                   data-target="#type-product-filter">Тип продукту</a>
+                                <div class="collapse" id="type-product-filter">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="product-type" value="ready-meals"
+                                               class="custom-checkbox__input">
+                                        <span class="custom-checkbox__box"></span>
+                                        <span class="custom-checkbox__label">Готові перші та другі страви</span>
+
+                                    </label>
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="product-type" value="salads"
+                                               class="custom-checkbox__input">
+                                        <span class="custom-checkbox__box"></span>
+                                        <span class="custom-checkbox__label">Салати та холодні закуски</span>
+
+                                    </label>
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="product-type" value="sauces"
+                                               class="custom-checkbox__input">
+                                        <span class="custom-checkbox__box"></span>
+                                        <span class="custom-checkbox__label">Соуси, пасти та хумус</span>
+                                    </label>
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="product-type" value="marinades"
+                                               class="custom-checkbox__input">
+                                        <span class="custom-checkbox__box"></span>
+                                        <span class="custom-checkbox__label">Оливки, соління та маринади</span>
+                                    </label>
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="product-type" value=frozen-cooking"
+                                               class="custom-checkbox__input">
+                                        <span class="custom-checkbox__box"></span>
+                                        <span class="custom-checkbox__label">Заморожена кулінарія</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="sidebar__section">
+                                <a href="#"
+                                   class="sidebar__heading sidebar__heading_toggle"
+                                   data-toggle="collapse"
+                                   data-target="#color-filter">Колір</a>
+                                <div class="collapse" id="color-filter">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="color" value="black"
+                                               class="custom-checkbox__input">
+                                        <span class="custom-checkbox__box"></span>
+                                        <span class="custom-checkbox__label">Чорний</span>
+
+                                    </label>
+
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="color" value="white"
+                                               class="custom-checkbox__input">
+                                        <span class="custom-checkbox__box"></span>
+                                        <span class="custom-checkbox__label">Білий</span>
+
+                                    </label>
+
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="color" value="transparent"
+                                               class="custom-checkbox__input">
+                                        <span class="custom-checkbox__box"></span>
+                                        <span class="custom-checkbox__label">Прозорий</span>
+
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sidebar__footer">
+                            <button type="submit" class="btn btn_main btn_border btn_dark"><span class="icon"><img
+                                            src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Застосувати
+                                фільтри
+                            </button>
+                            <a href="#" class="btn btn_main btn_border btn_dark" download><span class="icon"><img
+                                            src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Завантажити
+                                каталог</a>
+                        </div>
+                    </div>
                 </aside>
 
                 <div class="products-grid">

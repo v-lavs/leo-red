@@ -257,26 +257,49 @@ export function init() {
             nav.classList.add('is_open');
             body.classList.add('disable-scroll');
         });
+
         function closeMenu() {
             nav.classList.remove('is_open');
             body.classList.remove('disable-scroll');
         }
+
         btnClose.addEventListener('click', closeMenu);
         menuLinks.forEach(link => {
             link.addEventListener('click', closeMenu);
         });
+
     }
+
     //=====================================================================
     // OPEN SIDEBAR
     //=====================================================================
-    // function initSidebar () {
-    //     const  bntOpenSb = document.querySelector('.btn_open-sidebar');
-    //     const sidebar = document.querySelector('.sidebar');
-    //     const btnCloseSb = document.querySelector('.sidebar .btn_close');
-    //     if(bntOpenSb){
-    //
-    //     }
-    // }
+    function initSidebar() {
+        const bntOpenSb = document.querySelector('.btn_open-sidebar');
+        const sidebar = document.querySelector('.sidebar');
+        const btnCloseSb = document.querySelector('.sidebar .btn_close');
+        const backdrop = document.querySelector('.sidebar-backdrop');
+        if (bntOpenSb) {
+            bntOpenSb.addEventListener('click', (e) => {
+                e.preventDefault();
+                sidebar.classList.add('is_open');
+                backdrop.classList.add('show');
+                document.body.classList.add('disable-scroll');
+            });
+        }
+
+        function closeSidebar(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            sidebar.classList.remove('is_open');
+            backdrop.classList.remove('show');
+            document.body.classList.remove('disable-scroll');
+        }
+
+        btnCloseSb.addEventListener('click', closeSidebar);
+        backdrop.addEventListener('click', closeSidebar);
+    }
+
     //=====================================================================
     // SECTION BANNER ANIMATION
     //=====================================================================
@@ -378,7 +401,7 @@ export function init() {
             }, 0);
 
         // --- ІНТЕГРАЦІЯ АНІМАЦІЇ ТАРІЛКИ В ТАЙМЛАЙН ---
-        const plateTween = { currentFrame: 0 };
+        const plateTween = {currentFrame: 0};
         tl.to(plateTween, {
             // currentFrame: spriteConfig.totalFrames - 1,
             currentFrame: (spriteConfig.totalFrames * 2) - 1,
@@ -743,6 +766,7 @@ export function init() {
             });
         });
     }
+
     //===========================================================================
     // SLIDERS IN TABS MOB
     //===========================================================================
@@ -842,7 +866,7 @@ export function init() {
     initMobMenu();
     initSliderPartners();
     initTabs();
-
+    initSidebar();
     initSplitTabs();
     initSliderRelated();
     initCertificatesSlider();
@@ -851,7 +875,7 @@ export function init() {
     initSliderProduct();
     initSliderSimilarProducts();
     initOpenSpecs();
-    initTabsSlider ();
+    initTabsSlider();
     initStepsSlider();
 
     window.addEventListener('load', () => {
