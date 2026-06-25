@@ -365,7 +365,12 @@
       let isOpen = false;
       const tl = gsap.timeline({ paused: true });
       tl.set(panel, { pointerEvents: "auto" });
-      tl.fromTo(panel, { y: -140, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out" });
+      tl.set(panel, { autoAlpha: 1 });
+      tl.fromTo(
+        panel,
+        { y: "-100%" },
+        { y: 0, duration: 0.45, ease: "power2.out" }
+      );
       if (content) {
         tl.fromTo(content, { x: 100, autoAlpha: 0 }, {
           x: 0,
@@ -398,7 +403,12 @@
       let isOpen = false;
       const tl = gsap.timeline({ paused: true });
       tl.set(panel, { pointerEvents: "auto" });
-      tl.fromTo(panel, { y: "-100%", autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out" });
+      tl.set(panel, { autoAlpha: 1 });
+      tl.fromTo(
+        panel,
+        { y: "-100%" },
+        { y: 0, duration: 0.5, ease: "power2.out" }
+      );
       if (cards.length) {
         tl.fromTo(cards, { x: 140, autoAlpha: 0, scale: 0.96 }, {
           x: 0,
@@ -428,6 +438,7 @@
     }
     function initHeaderComponent() {
       const header = initHeader();
+      if (!header) return;
       const search = initSearch(header);
       const categories = initCategories(header);
       const searchTrigger = document.querySelector(".btn_open-search");
@@ -453,28 +464,31 @@
         trigger?.addEventListener("mouseleave", close);
         panel?.addEventListener("mouseleave", close);
       }
+      function bindClick(trigger, instance, otherInstance) {
+        if (!trigger) return;
+        trigger.addEventListener("click", (e) => {
+          if (isDesktop.matches) return;
+          e.preventDefault();
+          if (instance.isOpen()) {
+            instance.close();
+          } else {
+            otherInstance?.close();
+            instance.open();
+          }
+        });
+      }
       bindHover(searchTrigger, searchPanel, search);
       bindHover(categoriesTrigger, categoriesPanel, categories);
-      searchTrigger?.addEventListener("click", (e) => {
-        if (isDesktop.matches) return;
-        e.preventDefault();
-        if (!search.isOpen()) {
-          categories?.close();
-          search.open();
-        } else {
-          search.close();
-        }
-      });
-      categoriesTrigger?.addEventListener("click", (e) => {
-        if (isDesktop.matches) return;
-        e.preventDefault();
-        if (!categories.isOpen()) {
-          search?.close();
-          categories.open();
-        } else {
-          categories.close();
-        }
-      });
+      bindClick(searchTrigger, search, categories);
+      bindClick(categoriesTrigger, categories, search);
+      if (categoriesPanel && categories) {
+        const categoryCards = categoriesPanel.querySelectorAll(".category-card");
+        categoryCards.forEach((card) => {
+          card.addEventListener("click", () => {
+            categories.close();
+          });
+        });
+      }
     }
     function initMobMenu() {
       const nav = document.querySelector(".header__nav");

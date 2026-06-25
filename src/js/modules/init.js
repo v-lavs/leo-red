@@ -93,10 +93,15 @@ export function init() {
 
         const content = panel.querySelector('.search-form');
         let isOpen = false;
-        const tl = gsap.timeline({paused: true});
+        const tl = gsap.timeline({ paused: true });
 
-        tl.set(panel, {pointerEvents: 'auto'});
-        tl.fromTo(panel, {y: -140, autoAlpha: 0}, {y: 0, autoAlpha: 1, duration: 0.5, ease: 'power3.out'});
+        tl.set(panel, { pointerEvents: 'auto' });
+        tl.set(panel, { autoAlpha: 1 });
+
+        tl.fromTo(panel,
+            { y: '-100%' },
+            { y: 0, duration: 0.45, ease: 'power2.out' }
+        );
 
         if (content) {
             tl.fromTo(content, {x: 100, autoAlpha: 0}, {
@@ -137,10 +142,14 @@ export function init() {
 
         const cards = panel.querySelectorAll('.category-card');
         let isOpen = false;
-        const tl = gsap.timeline({paused: true});
+        const tl = gsap.timeline({ paused: true });
 
-        tl.set(panel, {pointerEvents: 'auto'});
-        tl.fromTo(panel, {y: '-100%', autoAlpha: 0}, {y: 0, autoAlpha: 1, duration: 0.5, ease: 'power3.out'});
+        tl.set(panel, { pointerEvents: 'auto' });
+        tl.set(panel, { autoAlpha: 1 });
+        tl.fromTo(panel,
+            { y: '-100%' },
+            { y: 0, duration: 0.5, ease: 'power2.out' }
+        );
 
         if (cards.length) {
             tl.fromTo(cards, {x: 140, autoAlpha: 0, scale: 0.96}, {
@@ -179,6 +188,8 @@ export function init() {
 // =====================================================================
     function initHeaderComponent() {
         const header = initHeader();
+        if (!header) return;
+
         const search = initSearch(header);
         const categories = initCategories(header);
 
@@ -187,20 +198,21 @@ export function init() {
         const categoriesTrigger = document.querySelector('.btn_open-megamenu');
         const categoriesPanel = document.querySelector('.h-mega-menu');
 
-// Перевірка на десктоп (ширина екрану > 1024px)
+        // Перевірка на десктоп
         const isDesktop = window.matchMedia('(min-width: 1025px)');
 
+        // --- ЛОГІКА ХОВЕРУ (ДЕСКТОП) ---
         function bindHover(trigger, panel, instance) {
             let timeout;
 
             const open = () => {
-                if (!isDesktop.matches) return; // Ігноруємо ховер на мобільних
+                if (!isDesktop.matches) return; // Ігноруємо ховер на мобілках
                 clearTimeout(timeout);
                 instance.open();
             };
 
             const close = () => {
-                if (!isDesktop.matches) return; // Ігноруємо ховер на мобільних
+                if (!isDesktop.matches) return; // Ігноруємо ховер на мобілках
                 timeout = setTimeout(() => {
                     instance.close();
                 }, 120);
@@ -212,36 +224,43 @@ export function init() {
             panel?.addEventListener('mouseleave', close);
         }
 
-// Навешуємо ховер (працюватиме лише на десктопі завдяки перевірці всередині)
+        // --- ЛОГІКА КЛІКУ (ТОГЛ ДЛЯ МОБІЛКИ) ---
+        function bindClick(trigger, instance, otherInstance) {
+            if (!trigger) return;
+
+            trigger.addEventListener('click', (e) => {
+                if (isDesktop.matches) return; // На десктопі керує ховер
+                e.preventDefault();
+
+                if (instance.isOpen()) {
+                    instance.close();
+                } else {
+                    otherInstance?.close(); // Закриваємо сусідню панель, якщо вона відкрита
+                    instance.open();
+                }
+            });
+        }
+
+        // Навешуємо ховер (працює лише на десктопі завдяки перевірці всередині)
         bindHover(searchTrigger, searchPanel, search);
         bindHover(categoriesTrigger, categoriesPanel, categories);
 
-// Кліки (для мобілки, а також як fallback для десктопу)
-        searchTrigger?.addEventListener('click', (e) => {
-            if (isDesktop.matches) return; // На десктопі керує ховер
-            e.preventDefault();
+        // Навешуємо тогл по кліку (працює лише на мобільних)
+        bindClick(searchTrigger, search, categories);
+        bindClick(categoriesTrigger, categories, search);
 
-            if (!search.isOpen()) {
-                categories?.close();
-                search.open();
-            } else {
-                search.close();
-            }
-        });
+        // --- ЗАКРИТТЯ ПРИ КЛІКУ НА КАРТКУ (КАТЕГОРІЮ) ---
+        if (categoriesPanel && categories) {
+            const categoryCards = categoriesPanel.querySelectorAll('.category-card');
 
-        categoriesTrigger?.addEventListener('click', (e) => {
-            if (isDesktop.matches) return; // На десктопі керує ховер
-            e.preventDefault();
-
-            if (!categories.isOpen()) {
-                search?.close();
-                categories.open();
-            } else {
-                categories.close();
-            }
-        });
+            categoryCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Закриваємо панель (актуально і для мобілки, і для десктопу, якщо картка не є прямим посиланням з перезавантаженням сторінки)
+                    categories.close();
+                });
+            });
+        }
     }
-
     //=====================================================================
     // MOBILE MENU
     //=====================================================================
@@ -1020,16 +1039,10 @@ export function init() {
     // });
     window.addEventListener('load', () => {
 
-        // Спочатку ініціалізуємо хедер/панелі, які стоять вище за всіх
         initHeaderComponent();
-
-        // Потім запускаємо нижні анімації
         initBaselineAnim();
-
-        // Останньою запускаємо Hero-анімацію (вона сама розбереться, чекати канвас чи ні)
         initHeroAnimation();
 
-        // Замість таймауту — примусово сортуємо та рефрешимо ВСЕ за один прохід
         ScrollTrigger.sort();
         ScrollTrigger.refresh();
     });
