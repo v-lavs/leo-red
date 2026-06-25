@@ -303,26 +303,161 @@ export function init() {
     //=====================================================================
     // SECTION BANNER ANIMATION
     //=====================================================================
+//     function initHeroAnimation() {
+//         if (!document.querySelector(".animation-view")) return;
+//         ScrollTrigger.config({ignoreMobileResize: true});
+//
+//         gsap.fromTo(".section-banner .staggered-heading__line",
+//             {
+//                 y: "50%", // Спочатку слова сховані внизу під маскою
+//                 opacity: 0
+//             },
+//             {
+//                 y: "0%",   // Виринають вгору
+//                 opacity: 1,
+//                 duration: 2,
+//                 ease: "power3.out",
+//                 stagger: 0.25, // Рядки з'являються по черзі
+//                 delay: 0.1     // Невеличка пауза після завантаження, щоб око встигло помітити
+//             }
+//         );
+//         // --- НАЛАШТУВАННЯ ТАРІЛКИ (змініть цифри під свій файл) ---
+// // --- ТОЧНІ НАЛАШТУВАННЯ СІТКИ ---
+//         const spriteConfig = {
+//             src: 'images/plate-sprite.webp',
+//             cols: 10,
+//             totalFrames: 90,
+//             frameWidth: 640,
+//             frameHeight: 580
+//         };
+//
+//         const canvas = document.querySelector('.canvas-container canvas');
+//         let ctx = null;
+//         const img = new Image();
+//
+// // УСЯ логіка підготовки канвасу та завантаження картинки має бути ТІЛЬКИ ТУТ
+//         if (canvas) {
+//             ctx = canvas.getContext('2d');
+//             canvas.width = spriteConfig.frameWidth;
+//             canvas.height = spriteConfig.frameHeight;
+//
+//             img.src = spriteConfig.src;
+//             img.onload = () => {
+//                 renderFrame(0); // Малюємо перший кадр, коли тарілка завантажилась
+//             };
+//         }
+//
+//         function renderFrame(frameIndex) {
+//             if (!ctx || !img.complete) return;
+//             ctx.clearRect(0, 0, canvas.width, canvas.height);
+//
+//             const cyclicFrame = frameIndex % spriteConfig.totalFrames;
+//             const x = (cyclicFrame % spriteConfig.cols) * spriteConfig.frameWidth;
+//             const y = Math.floor(cyclicFrame / spriteConfig.cols) * spriteConfig.frameHeight;
+//
+//             ctx.drawImage(
+//                 img,
+//                 x, y, spriteConfig.frameWidth, spriteConfig.frameHeight,
+//                 0, 0, canvas.width, canvas.height // Малюємо на всю внутрішню площу
+//             );
+//         }
+//
+//         // --------------------------------------------------------
+//
+//         const tl = gsap.timeline({
+//             scrollTrigger: {
+//                 trigger: ".animation-view",
+//                 start: "top top",
+//                 end: "+=200%", // <-- Увеличили длину скролла со 100% до 150%, чтобы анимация не пролетала слишком быстро
+//                 pin: true,
+//                 scrub: 1.8,
+//                 invalidateOnRefresh: true,
+//             }
+//         });
+//
+//         // 1. Вмикаємо тарілку
+//         tl.set(".canvas-container", {display: "flex"}, 0);
+//
+//         // 2. Твій рідний стабільний clipPath для банера
+//         tl.to(".section-banner.hero-layer.-front", {
+//             clipPath: "inset(0% 0% 100% 0%)",
+//             ease: "none",
+//             duration: 1
+//         }, 0);
+//
+//         tl.to(".banner-mask-wrapper", {
+//             height: "0%",       // Стискаємо шторку знизу вгору до нуля
+//             ease: "none",
+//             duration: 1
+//         }, 0.5);
+//
+//         // 3. Синхронно відкриваємо тарілку
+//         tl.fromTo(".canvas-container",
+//             {clipPath: "inset(100% 0% 0% 0%)"},
+//             {
+//                 clipPath: "inset(0% 0% 0% 0%)",
+//                 ease: "none",
+//                 duration: 1
+//             }, 0);
+//
+//         // --- ІНТЕГРАЦІЯ АНІМАЦІЇ ТАРІЛКИ В ТАЙМЛАЙН ---
+//         const plateTween = {currentFrame: 0};
+//         tl.to(plateTween, {
+//             // currentFrame: spriteConfig.totalFrames - 1,
+//             currentFrame: (spriteConfig.totalFrames * 2) - 1,
+//             snap: "currentFrame", // Округляє значення до цілих кадрів (0, 1, 2...)
+//             ease: "none",
+//             duration: 1.5, // Тривалість рівна 1, щоб анімація йшла синхронно з іншими елементами від початку до кінця скролу
+//             onUpdate: () => {
+//                 renderFrame(plateTween.currentFrame);
+//             }
+//         }, 0); // Ставимо таймінг 0, щоб вона крутилася одночасно з відкриттям clipPath
+//         // --------------------------------------------------------
+//
+//         // 3D логіка
+//         if (typeof my3DModel !== 'undefined') {
+//             tl.to(my3DModel, {
+//                 rotationY: Math.PI * 2,
+//                 duration: 1,
+//                 ease: "none",
+//             }, 0);
+//         }
+//
+//         // Вимикач для третьої секції
+//         if (document.querySelector(".next-section")) {
+//             ScrollTrigger.create({
+//                 trigger: ".next-section",
+//                 start: "top top",
+//                 onEnter: () => {
+//                     gsap.set(".canvas-container", {display: "none"});
+//                 },
+//                 onLeaveBack: () => {
+//                     gsap.set(".canvas-container", {display: "flex"});
+//                 }
+//             });
+//         }
+//     }
     function initHeroAnimation() {
-        if (!document.querySelector(".animation-view")) return;
-        ScrollTrigger.config({ignoreMobileResize: true});
+        const container = document.querySelector(".animation-view");
+        if (!container) return;
 
+        // Глобальне налаштування для мобільних
+        ScrollTrigger.config({ ignoreMobileResize: true });
+
+        // 1. Стартова анімація заголовків (працює завжди)
         gsap.fromTo(".section-banner .staggered-heading__line",
+            { y: "50%", opacity: 0 },
             {
-                y: "50%", // Спочатку слова сховані внизу під маскою
-                opacity: 0
-            },
-            {
-                y: "0%",   // Виринають вгору
+                y: "0%",
                 opacity: 1,
                 duration: 2,
                 ease: "power3.out",
-                stagger: 0.25, // Рядки з'являються по черзі
-                delay: 0.1     // Невеличка пауза після завантаження, щоб око встигло помітити
+                stagger: 0.25,
+                delay: 0.1
             }
         );
-        // --- НАЛАШТУВАННЯ ТАРІЛКИ (змініть цифри під свій файл) ---
-// --- ТОЧНІ НАЛАШТУВАННЯ СІТКИ ---
+
+        // 2. Конфігурація спрайту та Канвасу (якщо він є)
         const spriteConfig = {
             src: 'images/plate-sprite.webp',
             cols: 10,
@@ -333,22 +468,11 @@ export function init() {
 
         const canvas = document.querySelector('.canvas-container canvas');
         let ctx = null;
-        const img = new Image();
+        let img = null;
 
-// УСЯ логіка підготовки канвасу та завантаження картинки має бути ТІЛЬКИ ТУТ
-        if (canvas) {
-            ctx = canvas.getContext('2d');
-            canvas.width = spriteConfig.frameWidth;
-            canvas.height = spriteConfig.frameHeight;
-
-            img.src = spriteConfig.src;
-            img.onload = () => {
-                renderFrame(0); // Малюємо перший кадр, коли тарілка завантажилась
-            };
-        }
-
+        // Функція рендерингу кадрів
         function renderFrame(frameIndex) {
-            if (!ctx || !img.complete) return;
+            if (!ctx || !img || !img.complete) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             const cyclicFrame = frameIndex % spriteConfig.totalFrames;
@@ -358,86 +482,95 @@ export function init() {
             ctx.drawImage(
                 img,
                 x, y, spriteConfig.frameWidth, spriteConfig.frameHeight,
-                0, 0, canvas.width, canvas.height // Малюємо на всю внутрішню площу
+                0, 0, canvas.width, canvas.height
             );
         }
 
-        // --------------------------------------------------------
+        // 3. Логіка завантаження: якщо канвас є — чекаємо картинку, якщо немає — стартуємо відразу
+        if (canvas) {
+            ctx = canvas.getContext('2d');
+            canvas.width = spriteConfig.frameWidth;
+            canvas.height = spriteConfig.frameHeight;
 
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".animation-view",
-                start: "top top",
-                end: "+=200%", // <-- Увеличили длину скролла со 100% до 150%, чтобы анимация не пролетала слишком быстро
-                pin: true,
-                scrub: 1.8,
-                invalidateOnRefresh: true,
-            }
-        });
+            img = new Image();
+            img.src = spriteConfig.src;
+            img.onload = () => {
+                renderFrame(0); // Малюємо перший кадр
+                initScrollAnimation(true); // Запускаємо скрол з прапорцем hasCanvas = true
+            };
+        } else {
+            // Якщо канвасу немає на сторінці, просто запускаємо анімацію шарів
+            initScrollAnimation(false);
+        }
 
-        // 1. Вмикаємо тарілку
-        tl.set(".canvas-container", {display: "flex"}, 0);
+        // 4. Основна логіка ScrollTrigger
+        function initScrollAnimation(hasCanvas) {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: container,
+                    start: "top top",
+                    end: "+=200%",
+                    pin: true,
+                    scrub: 1.8,
+                    invalidateOnRefresh: true,
+                    refreshPriority: 1,
+                }
+            });
 
-        // 2. Твій рідний стабільний clipPath для банера
-        tl.to(".section-banner.hero-layer.-front", {
-            clipPath: "inset(0% 0% 100% 0%)",
-            ease: "none",
-            duration: 1
-        }, 0);
-
-        tl.to(".banner-mask-wrapper", {
-            height: "0%",       // Стискаємо шторку знизу вгору до нуля
-            ease: "none",
-            duration: 1
-        }, 0.5);
-
-        // 3. Синхронно відкриваємо тарілку
-        tl.fromTo(".canvas-container",
-            {clipPath: "inset(100% 0% 0% 0%)"},
-            {
-                clipPath: "inset(0% 0% 0% 0%)",
+            // Рух шторки банера (працює всюди)
+            tl.to(".section-banner.hero-layer.-front", {
+                clipPath: "inset(0% 0% 100% 0%)",
                 ease: "none",
                 duration: 1
             }, 0);
 
-        // --- ІНТЕГРАЦІЯ АНІМАЦІЇ ТАРІЛКИ В ТАЙМЛАЙН ---
-        const plateTween = {currentFrame: 0};
-        tl.to(plateTween, {
-            // currentFrame: spriteConfig.totalFrames - 1,
-            currentFrame: (spriteConfig.totalFrames * 2) - 1,
-            snap: "currentFrame", // Округляє значення до цілих кадрів (0, 1, 2...)
-            ease: "none",
-            duration: 1.5, // Тривалість рівна 1, щоб анімація йшла синхронно з іншими елементами від початку до кінця скролу
-            onUpdate: () => {
-                renderFrame(plateTween.currentFrame);
-            }
-        }, 0); // Ставимо таймінг 0, щоб вона крутилася одночасно з відкриттям clipPath
-        // --------------------------------------------------------
-
-        // 3D логіка
-        if (typeof my3DModel !== 'undefined') {
-            tl.to(my3DModel, {
-                rotationY: Math.PI * 2,
-                duration: 1,
+            tl.to(".banner-mask-wrapper", {
+                height: "0%",
                 ease: "none",
-            }, 0);
-        }
+                duration: 1
+            }, 0.5);
 
-        // Вимикач для третьої секції
-        if (document.querySelector(".next-section")) {
-            ScrollTrigger.create({
-                trigger: ".next-section",
-                start: "top top",
-                onEnter: () => {
-                    gsap.set(".canvas-container", {display: "none"});
-                },
-                onLeaveBack: () => {
-                    gsap.set(".canvas-container", {display: "flex"});
-                }
-            });
+            // Анімації суто для КАНВАСУ (виконуються тільки якщо він існує)
+            if (hasCanvas) {
+                tl.set(".canvas-container", { display: "flex" }, 0);
+
+                tl.fromTo(".canvas-container",
+                    { clipPath: "inset(100% 0% 0% 0%)" },
+                    { clipPath: "inset(0% 0% 0% 0%)", ease: "none", duration: 1 },
+                    0
+                );
+
+                const plateTween = { currentFrame: 0 };
+                tl.to(plateTween, {
+                    currentFrame: (spriteConfig.totalFrames * 2) - 1,
+                    snap: "currentFrame",
+                    ease: "none",
+                    duration: 1.5,
+                    onUpdate: () => renderFrame(plateTween.currentFrame)
+                }, 0);
+            }
+
+            // Інтеграція 3D моделі (якщо вона існує)
+            if (typeof my3DModel !== 'undefined') {
+                tl.to(my3DModel, {
+                    rotationY: Math.PI * 2,
+                    duration: 1,
+                    ease: "none",
+                }, 0);
+            }
+
+            // 5. Перемикач видимості канвасу (актуально тільки якщо є канвас)
+            const nextSection = document.querySelector(".next-section");
+            if (nextSection && hasCanvas) {
+                ScrollTrigger.create({
+                    trigger: nextSection,
+                    start: "top top",
+                    onEnter: () => gsap.set(".canvas-container", { display: "none" }),
+                    onLeaveBack: () => gsap.set(".canvas-container", { display: "flex" })
+                });
+            }
         }
     }
-
 //==============================================================================
 //  SECTION-ABOUT MEDIA STAGGER
 //  ============================================================================
@@ -862,7 +995,7 @@ export function init() {
     //===========================================================================
     // init function
     //===========================================================================
-    initHeaderComponent();
+    // initHeaderComponent();
     initMobMenu();
     initSliderPartners();
     initTabs();
@@ -878,12 +1011,26 @@ export function init() {
     initTabsSlider();
     initStepsSlider();
 
+    // window.addEventListener('load', () => {
+    //     initHeroAnimation();
+    //     initBaselineAnim();
+    //     setTimeout(() => {
+    //         ScrollTrigger.refresh();
+    //     }, 100);
+    // });
     window.addEventListener('load', () => {
-        initHeroAnimation();
-        initBaselineAnim();
-        setTimeout(() => {
-            ScrollTrigger.refresh();
-        }, 100);
-    });
 
+        // Спочатку ініціалізуємо хедер/панелі, які стоять вище за всіх
+        initHeaderComponent();
+
+        // Потім запускаємо нижні анімації
+        initBaselineAnim();
+
+        // Останньою запускаємо Hero-анімацію (вона сама розбереться, чекати канвас чи ні)
+        initHeroAnimation();
+
+        // Замість таймауту — примусово сортуємо та рефрешимо ВСЕ за один прохід
+        ScrollTrigger.sort();
+        ScrollTrigger.refresh();
+    });
 }
