@@ -3257,12 +3257,12 @@ form .btn_submit {
     font-size: 46px;
   }
   .sidebar {
-    background-color: lightgreen;
     position: fixed;
     left: 0;
     top: 0;
     bottom: 0;
     z-index: 320;
+    background-color: #fff;
     padding: 60px 0 60px 20px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     border-radius: 0 30px 30px 0;

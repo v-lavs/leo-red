@@ -309,19 +309,16 @@ export function init() {
                 document.body.classList.add('disable-scroll');
             });
         }
-
         // Функція закриття сайдбару
         function closeSidebar(e) {
             if (e) {
                 e.preventDefault();
                 e.stopPropagation();
             }
-
             sidebar.classList.remove('is_open');
             backdrop.classList.remove('show');
             document.body.classList.remove('disable-scroll');
         }
-
         // Безпечно вішаємо слухачі, перевіряючи існування кнопок
         if (btnCloseSb) {
             btnCloseSb.addEventListener('click', closeSidebar);
@@ -348,7 +345,7 @@ export function init() {
             {
                 y: "0%",
                 opacity: 1,
-                duration: 2,
+                duration: 1.5,
                 ease: "power3.out",
                 stagger: 0.25,
                 delay: 0.1

@@ -550,7 +550,7 @@
         {
           y: "0%",
           opacity: 1,
-          duration: 2,
+          duration: 1.5,
           ease: "power3.out",
           stagger: 0.25,
           delay: 0.1
