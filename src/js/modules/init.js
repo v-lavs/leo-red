@@ -405,7 +405,7 @@ export function init() {
                 scrollTrigger: {
                     trigger: container,
                     start: "top top",
-                    end: "+=200%",
+                    end: "+=150%",
                     pin: true,
                     scrub: 1.8,
                     invalidateOnRefresh: true,

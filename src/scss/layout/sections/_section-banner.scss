@@ -155,6 +155,27 @@
   pointer-events: none;
   align-items: center;
   justify-content: center;
+  &:before{
+    position: absolute;
+    content: '';
+    display: block;    background-image: url(../images/category-card-bg.png);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+
+    animation: spin 2s linear infinite;
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 canvas {
   display: block;
