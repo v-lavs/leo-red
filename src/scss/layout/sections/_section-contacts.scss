@@ -18,8 +18,7 @@
   flex-direction: column;
   h3{
     font-weight: 700;
-    font-size: 24px;
-    line-height: 1.67;
+    font-size: 20px;
     color: #FF0000;
   }
 }
@@ -42,9 +41,9 @@
   .contacts__item {
     font-size: 17px;
   }
-  .contacts__list h3 {
-    font-size: 20px;
-  }
+  //.contacts__list h3 {
+  //  font-size: 20px;
+  //}
 }
 
 @include mixins.respond-to(variables.$md){

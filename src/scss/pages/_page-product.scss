@@ -63,7 +63,8 @@
   border-radius: 22px;
   color: #FFFFFF;
   background-color: #DC0101;
-  margin-bottom: 32px;
+  //margin-bottom: 32px;
+  margin-bottom: 22px;
 
   .icon {
     width: 22px;
@@ -151,6 +152,7 @@
 }
 
 .product-specs__wrapper {
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 0;

@@ -32,7 +32,7 @@
 }
 
 .tags-bar {
-  padding: 40px 0;
+  padding: 40px 0 80px;
   display: flex;
   align-items: flex-start;
   gap: 24px;
@@ -96,7 +96,7 @@
 
 .sidebar {
   width: 294px;
-  padding-right: 20px;
+  padding-right: 40px;
   flex-shrink: 0;
 
   .btn_close {
@@ -307,8 +307,11 @@
     padding-bottom: 12px;
     padding-top: 12px;
   }
-  .tags-bar__list {
-    gap: 16px;
+  .tags-bar {
+    padding-bottom: 60px;
+    &__list {
+      gap: 16px;
+    }
   }
 }
 

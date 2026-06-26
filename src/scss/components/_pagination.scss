@@ -5,7 +5,7 @@
   display: inline-flex;
   gap: 24px;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1;
   padding-top: 70px;
   &__list {
@@ -31,9 +31,6 @@
   .pagination__arrow {
     width: 55px;
     height: 55px;
-  }
-  .pagination {
-    font-size: 20px
   }
 }
 @include mixins.respond-to(variables.$sm){

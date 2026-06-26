@@ -306,7 +306,9 @@
     }
   }
 }
-
+#solutions .overview-card__icon{
+  padding: 5px;
+}
 .overview-card__products-grid {
   .category-card {
     background-color: #edeae8;
@@ -501,6 +503,9 @@
     height: 24px;
     top: 0;
     left: 0;
+  }
+  #solutions .overview-card__icon {
+    padding: 2px;
   }
   .overview-card__content p {
     line-height: 25px;

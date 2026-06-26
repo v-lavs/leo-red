@@ -233,6 +233,8 @@ body.menu-open {
   position: absolute;
   content: "";
   right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 1em;
   height: 1em;
   background-image: url(../images/icons/logo-sm-red.svg);
@@ -514,7 +516,7 @@ body.menu-open {
   margin-left: 0;
   margin-right: 0;
   margin-bottom: 24px;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1;
 }
@@ -543,9 +545,9 @@ body.menu-open {
 }
 .working-hours h3 {
   font-weight: 700;
-  font-size: 24px;
-  line-height: 30px;
-  margin-bottom: 32px;
+  font-size: 20px;
+  margin-bottom: 24px;
+  line-height: 1;
 }
 
 .working-hours__content {
@@ -592,6 +594,7 @@ body.menu-open {
   width: 100%;
   padding: 0 18px 20px;
   min-height: 100vh;
+  min-height: 100svh;
   z-index: 0;
 }
 
@@ -611,6 +614,8 @@ body.menu-open {
   width: 100%;
   height: 100vh;
   min-height: 100vh;
+  height: 100svh;
+  min-height: 100svh;
   overflow: hidden;
   z-index: 2;
 }
@@ -637,6 +642,7 @@ body.menu-open {
   border-radius: 0 0 15px 15px;
   overflow: hidden;
   height: 100vh;
+  height: 100svh;
 }
 .section-banner__bg img {
   width: 100%;
@@ -937,8 +943,7 @@ canvas {
 }
 .contacts__list h3 {
   font-weight: 700;
-  font-size: 24px;
-  line-height: 1.67;
+  font-size: 20px;
   color: #FF0000;
 }
 
@@ -1215,6 +1220,10 @@ canvas {
   top: 18px;
 }
 
+#solutions .overview-card__icon {
+  padding: 5px;
+}
+
 .overview-card__products-grid .category-card {
   background-color: #edeae8;
   width: 100%;
@@ -1277,6 +1286,7 @@ canvas {
   font-size: 16px;
   line-height: 1;
   align-items: center;
+  transition: 0.35s;
 }
 .btn_main {
   color: #1E1E1E;
@@ -1284,6 +1294,13 @@ canvas {
   border-radius: 30px;
   border: none;
   background: rgba(0, 0, 0, 0.1);
+}
+.btn_main:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+.btn_main:hover .icon {
+  filter: invert(1);
 }
 .btn_main .icon {
   width: 30px;
@@ -1306,12 +1323,19 @@ canvas {
   padding-top: 14px;
   padding-bottom: 14px;
 }
+.btn_border:hover {
+  background-color: #000000;
+}
 .btn_border .icon {
   filter: invert(1);
 }
 .btn_dark {
   border-color: #DC0101;
   background-color: #DC0101;
+}
+.btn_dark:hover {
+  background-color: #000000;
+  border-color: #000;
 }
 .btn_round {
   width: 66px;
@@ -1503,7 +1527,7 @@ form .btn_submit {
   display: inline-flex;
   gap: 24px;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1;
   padding-top: 70px;
 }
@@ -1998,6 +2022,12 @@ form .btn_submit {
 .page-about .block-grey {
   padding: 160px 0;
 }
+.page-about .block-grey .text_md {
+  max-width: 1006px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
 
 .section-about-material {
   color: #FFFFFF;
@@ -2010,11 +2040,21 @@ form .btn_submit {
   padding: 150px 0;
   text-align: center;
 }
+.section-about-material .section__content {
+  max-width: 1006px;
+  margin: 0 auto;
+  width: 100%;
+}
 
 .section-awards {
   overflow: hidden;
 }
 
+.slider-certificates {
+  padding: 42px 0;
+  border-top: 0.5px solid #1D1F25;
+  border-bottom: 0.5px solid #1D1F25;
+}
 .slider-certificates .splide__slide {
   display: flex;
   justify-content: center;
@@ -2073,7 +2113,7 @@ form .btn_submit {
   font-size: 24px;
   line-height: 1.25;
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 .cycle-step .cycle-step__body {
   padding: 0 24px;
@@ -2144,7 +2184,7 @@ form .btn_submit {
 }
 .certificates__title {
   font-weight: 300;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.58;
 }
 .page-blog .hero-layer .section__heading {
@@ -2314,7 +2354,7 @@ form .btn_submit {
 }
 .page-contacts .contacts__item {
   flex-direction: column;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.58;
   width: 48%;
   flex-grow: 1;
@@ -2442,7 +2482,7 @@ form .btn_submit {
 }
 
 .tags-bar {
-  padding: 40px 0;
+  padding: 40px 0 80px;
   display: flex;
   align-items: flex-start;
   gap: 24px;
@@ -2501,7 +2541,7 @@ form .btn_submit {
 
 .sidebar {
   width: 294px;
-  padding-right: 20px;
+  padding-right: 40px;
   flex-shrink: 0;
 }
 .sidebar .btn_close {
@@ -2674,7 +2714,7 @@ form .btn_submit {
   border-radius: 22px;
   color: #FFFFFF;
   background-color: #DC0101;
-  margin-bottom: 32px;
+  margin-bottom: 22px;
 }
 .js-accordion-trigger .icon {
   width: 22px;
@@ -2753,6 +2793,7 @@ form .btn_submit {
 }
 
 .product-specs__wrapper {
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -2912,9 +2953,6 @@ form .btn_submit {
   .contacts__item {
     font-size: 17px;
   }
-  .contacts__list h3 {
-    font-size: 20px;
-  }
   .prod-scheme__wrap-img {
     width: 80px;
     height: 80px;
@@ -2961,7 +2999,7 @@ form .btn_submit {
     min-height: 680px;
   }
   .certificates__title {
-    font-size: 20px;
+    font-size: 18px;
   }
   .page-contacts .block-grey .container {
     padding: 0;
@@ -2993,9 +3031,6 @@ form .btn_submit {
   }
   .card-article .card-article__date {
     font-size: 14px;
-  }
-  .page-contacts .contacts__item {
-    font-size: 20px;
   }
   .tabs__nav-item .text_md {
     font-size: 24px;
@@ -3176,9 +3211,6 @@ form .btn_submit {
     width: 55px;
     height: 55px;
   }
-  .pagination {
-    font-size: 20px;
-  }
   .splide__arrow {
     width: 55px;
     height: 55px;
@@ -3219,7 +3251,6 @@ form .btn_submit {
   }
   .cycle-step .cycle-step__title {
     font-size: 20px;
-    margin-bottom: 16px;
   }
   .cycle-step__description {
     line-height: 22.43px;
@@ -3536,6 +3567,9 @@ form .btn_submit {
     top: 0;
     left: 0;
   }
+  #solutions .overview-card__icon {
+    padding: 2px;
+  }
   .overview-card__content p {
     line-height: 25px;
   }
@@ -3632,7 +3666,7 @@ form .btn_submit {
     margin-bottom: 0;
   }
   .certificates__title {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 24px;
   }
   .section-posts {
@@ -3728,6 +3762,9 @@ form .btn_submit {
   .filter-reset-btn {
     padding-bottom: 12px;
     padding-top: 12px;
+  }
+  .tags-bar {
+    padding-bottom: 60px;
   }
   .tags-bar__list {
     gap: 16px;

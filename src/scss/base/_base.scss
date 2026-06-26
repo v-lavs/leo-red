@@ -135,6 +135,8 @@ body.menu-open {
     position: absolute;
     content: '';
     right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 1em;
     height: 1em;
     background-image: url(../images/icons/logo-sm-red.svg);

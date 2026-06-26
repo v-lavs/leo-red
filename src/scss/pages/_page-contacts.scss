@@ -41,7 +41,8 @@
 
   .contacts__item {
     flex-direction: column;
-    font-size: 24px;
+    //font-size: 24px;
+    font-size: 20px;
     line-height: 1.58;
     width: 48%;
     flex-grow: 1;
@@ -156,9 +157,9 @@
 
 
 @include mixins.respond-to(variables.$lg) {
-  .page-contacts .contacts__item {
-    font-size: 20px;
-  }
+  //.page-contacts .contacts__item {
+    //font-size: 20px;
+  //}
   .tabs__nav-item .text_md {
     font-size: 24px;
   }
