@@ -93,7 +93,12 @@
     max-width: 334px;
   }
 }
-
+.card  .category-card__title {
+  &:after{
+    top: 0;
+    transform: none;
+  }
+}
 .sidebar {
   width: 294px;
   padding-right: 40px;

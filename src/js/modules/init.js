@@ -332,14 +332,9 @@ export function init() {
     //=====================================================================
     // SECTION BANNER ANIMATION
     //=====================================================================
+
     function initHeroAnimation() {
-        const container = document.querySelector(".animation-view");
-        if (!container) return;
-
-        // Глобальне налаштування для мобільних
-        ScrollTrigger.config({ ignoreMobileResize: true });
-
-        // 1. Стартова анімація заголовків (працює завжди)
+        // 1. Стартова анімація заголовків (Тепер ПРАЦЮЄ ЗАВЖДИ на всіх сторінках)
         gsap.fromTo(".section-banner .staggered-heading__line",
             { y: "50%", opacity: 0 },
             {
@@ -352,7 +347,14 @@ export function init() {
             }
         );
 
-        // // 2. Конфігурація спрайту та Канвасу (якщо він є)
+        // Перевірка наявності головного контейнера для скрол-анімації (Головна сторінка)
+        const container = document.querySelector(".animation-view");
+        if (!container) return; // Якщо його немає (проста сторінка) — виходимо, текст уже з'явився!
+
+        // Глобальне налаштування для мобільних
+        ScrollTrigger.config({ ignoreMobileResize: true });
+
+        // 2. Конфігурація спрайту та Канвасу
         const spriteConfig = {
             src: 'images/plate-sprite.webp',
             cols: 10,
@@ -361,12 +363,10 @@ export function init() {
             frameHeight: 580
         };
 
-
         const canvas = document.querySelector('.canvas-container canvas');
         let ctx = null;
         let img = null;
 
-        // Функція рендерингу кадрів
         function renderFrame(frameIndex) {
             if (!ctx || !img || !img.complete) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -382,7 +382,7 @@ export function init() {
             );
         }
 
-        // 3. Логіка завантаження: якщо канвас є — чекаємо картинку, якщо немає — стартуємо відразу
+        // 3. Логіка завантаження
         if (canvas) {
             ctx = canvas.getContext('2d');
             canvas.width = spriteConfig.frameWidth;
@@ -391,15 +391,14 @@ export function init() {
             img = new Image();
             img.src = spriteConfig.src;
             img.onload = () => {
-                renderFrame(0); // Малюємо перший кадр
-                initScrollAnimation(true); // Запускаємо скрол з прапорцем hasCanvas = true
+                renderFrame(0);
+                initScrollAnimation(true);
             };
         } else {
-            // Якщо канвасу немає на сторінці, просто запускаємо анімацію шарів
             initScrollAnimation(false);
         }
 
-        // 4. Основна логіка ScrollTrigger
+        // 4. Основна логіка ScrollTrigger (Тільки для сторінок з .animation-view)
         function initScrollAnimation(hasCanvas) {
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -413,7 +412,6 @@ export function init() {
                 }
             });
 
-            // Рух шторки банера (працює всюди)
             tl.to(".section-banner.hero-layer.-front", {
                 clipPath: "inset(0% 0% 100% 0%)",
                 ease: "none",
@@ -426,7 +424,6 @@ export function init() {
                 duration: 1
             }, 0.5);
 
-            // Анімації суто для КАНВАСУ (виконуються тільки якщо він існує)
             if (hasCanvas) {
                 tl.set(".canvas-container", { display: "flex" }, 0);
 
@@ -446,7 +443,6 @@ export function init() {
                 }, 0);
             }
 
-            // Інтеграція 3D моделі (якщо вона існує)
             if (typeof my3DModel !== 'undefined') {
                 tl.to(my3DModel, {
                     rotationY: Math.PI * 2,
@@ -455,7 +451,6 @@ export function init() {
                 }, 0);
             }
 
-            // 5. Перемикач видимості канвасу (актуально тільки якщо є канвас)
             const nextSection = document.querySelector(".next-section");
             if (nextSection && hasCanvas) {
                 ScrollTrigger.create({
@@ -467,7 +462,6 @@ export function init() {
             }
         }
     }
-
 //==============================================================================
 //  SECTION-ABOUT MEDIA STAGGER
 //  ============================================================================

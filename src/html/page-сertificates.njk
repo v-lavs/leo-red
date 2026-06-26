@@ -12,50 +12,39 @@
 {% block main_class %}page page-certificates{% endblock %}
 {% block content %}
     <div class="animation-wrapper">
-        <div class="animation-view hero-layers-container">
-            <section class="section-under-banner hero-layer -back">
-                <div class="section__heading">
-                    <h1 class="staggered-heading text-dark">
-                        <span class="staggered-heading__line">Сертифікати</span>
-                    </h1>
-                </div>
-            </section>
-
-            <section class="section-banner hero-layer -front">
-                <div class="banner-mask-wrapper">
-                    <div class="section-banner__bg">
-                        <img src="images/banner-sertificat.jpg" alt="">
-                    </div>
-                    <div class="section__heading">
-                        <h1 class="staggered-heading text-white" aria-hidden="true">
-                            <span class="staggered-heading__line">Сертифікати</span>
-                        </h1>
-                    </div>
-                    <div class="block-awards">
-                        <img src="images/block-awards.svg" alt="">
-                    </div>
-                </div>
-            </section>
-        </div>
+        <section class="section-banner">
+            <div class="section-banner__bg">
+                <img src="images/banner-sertificat.jpg" alt="">
+            </div>
+            <div class="section__heading">
+                <h1 class="staggered-heading text-white">
+                    <span class="staggered-heading__line">Сертифікати</span>
+                </h1>
+            </div>
+            <div class="block-awards">
+                <img src="images/block-awards.webp" alt="">
+            </div>
+        </section>
     </div>
-
-<div class="container">
-    <ul class="certificates">
-        {% set certificates = [
-            {  url_pdf: "images/pdf/Doc_16.05.26_10-58.pdf", title_certificates: "BRC / PM Клаудин, вул. Жоржи (PL / EN / DE)"},
-            {  url_pdf: "images/pdf/Doc_16.05.26_10-58.pdf", title_certificates: "BRC / PM Клаудин, вул. Жоржи (PL / EN / DE)"},
-            {  url_pdf: "images/pdf/Doc_16.05.26_10-58.pdf", title_certificates: "Додаток – ISO 9001: 2015 (PL)"},
-            {  url_pdf: "images/pdf/Doc_16.05.26_10-58.pdf", title_certificates: "Додаток – ISO 9001: 2015 (PL)"},
-            {  url_pdf: "images/pdf/Doc_16.05.26_10-58.pdf", title_certificates: "Каталог нашої продкуції 2026"}
-        ] %}
-        {% for item in certificates %}
-        <li class="certificates__item">
-            <h3 class="certificates__title">{{ item.title_certificates }}</h3>
-            <a href="{{ item.url_pdf }}" class="btn btn_main btn_border btn_dark" download><span class="icon"><img
-                            src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Завантажити cертифікат</a>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
+    <div class="container">
+        <ul class="certificates">
+            {% set certificates = [
+                {  url_pdf: "images/pdf/Doc_16.05.26_10-58.pdf", title_certificates: "BRC / PM Клаудин, вул. Жоржи (PL / EN / DE)"},
+                {  url_pdf: "images/pdf/Doc_16.05.26_10-58.pdf", title_certificates: "BRC / PM Клаудин, вул. Жоржи (PL / EN / DE)"},
+                {  url_pdf: "images/pdf/Doc_16.05.26_10-58.pdf", title_certificates: "Додаток – ISO 9001: 2015 (PL)"},
+                {  url_pdf: "images/pdf/Doc_16.05.26_10-58.pdf", title_certificates: "Додаток – ISO 9001: 2015 (PL)"},
+                {  url_pdf: "images/pdf/Doc_16.05.26_10-58.pdf", title_certificates: "Каталог нашої продкуції 2026"}
+            ] %}
+            {% for item in certificates %}
+                <li class="certificates__item">
+                    <h3 class="certificates__title">{{ item.title_certificates }}</h3>
+                    <a href="{{ item.url_pdf }}" class="btn btn_main btn_border btn_dark" download><span
+                                class="icon"><img
+                                    src="images/icons/arrow-prev.svg" alt="" aria-hidden="true"></span>Завантажити
+                        cертифікат</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 
 {% endblock %}

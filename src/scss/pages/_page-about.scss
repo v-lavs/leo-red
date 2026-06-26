@@ -159,8 +159,7 @@
 
 @include mixins.respond-to(variables.$lg) {
   .page-about .block-grey {
-    padding: 0 0 160px;
-    //margin-top: -45px;
+    padding: 100px 0;
   }
   .cycle-step {
     max-width: 280px;
@@ -168,6 +167,10 @@
   }
   .section-about-material {
     min-height: 680px;
+  }
+  .section-about-material{
+    min-height: 0;
+    padding: 100px 0;
   }
 }
 

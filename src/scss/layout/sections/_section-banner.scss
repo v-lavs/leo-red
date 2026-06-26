@@ -7,7 +7,7 @@
   padding: 0 18px 20px;
   min-height: 100vh;
   min-height: 100svh;
-
+  //z-index: 1;
   z-index: 0;
 }
 
@@ -87,7 +87,14 @@
     color: #ffffff; // Чистий білий колір на тлі фото
   }
 }
-
+.section-banner:not(.home) {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  height: 100 svh;
+}
 .banner-mask-wrapper {
   position: absolute;
   bottom: 0; // Прив'язуємо до низу (або top: 0, якщо шторка йде в інший бік. Якщо ховаємо знизу вгору — ставимо top: 0)
